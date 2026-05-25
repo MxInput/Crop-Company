@@ -6,6 +6,11 @@
 [ext_resource type="Texture2D" uid="uid://cou6sjg11ar6l" path="res://tiles/select.png" id="4_6hfer"]
 [ext_resource type="Script" uid="uid://cqj5kdjgmiq4h" path="res://nodes/cameraController.gd" id="5_flw6b"]
 [ext_resource type="PackedScene" uid="uid://dndniilkom3fx" path="res://nodes/Toolbar.tscn" id="6_iae2t"]
+[ext_resource type="Texture2D" uid="uid://cymecwa1s5t5i" path="res://tiles/plants/watermelon/watermelon_almost.png" id="7_g42si"]
+[ext_resource type="Texture2D" uid="uid://dk1vcvbxdj8tu" path="res://tiles/plants/watermelon/watermelon_ready.png" id="8_j4xau"]
+[ext_resource type="Texture2D" uid="uid://cs83cciiwcehj" path="res://tiles/plants/watermelon/watermelon_sapling.png" id="9_k6djt"]
+[ext_resource type="Texture2D" uid="uid://835ev8cggm4a" path="res://tiles/plants/watermelon/watermelon_seed.png" id="10_0sinr"]
+[ext_resource type="Script" uid="uid://g0h53se4mujf" path="res://nodes/plantHandler.gd" id="11_j4xau"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_6hfer"]
 texture = ExtResource("1_cpdmu")
@@ -21,6 +26,33 @@ texture_region_size = Vector2i(32, 32)
 tile_size = Vector2i(32, 32)
 sources/0 = SubResource("TileSetAtlasSource_6hfer")
 sources/1 = SubResource("TileSetAtlasSource_flw6b")
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_61lfs"]
+texture = ExtResource("7_g42si")
+texture_region_size = Vector2i(32, 32)
+0:0/0 = 0
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_w8xfb"]
+texture = ExtResource("8_j4xau")
+texture_region_size = Vector2i(32, 32)
+0:0/0 = 0
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_rqcqk"]
+texture = ExtResource("9_k6djt")
+texture_region_size = Vector2i(32, 32)
+0:0/0 = 0
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_rge8o"]
+texture = ExtResource("10_0sinr")
+texture_region_size = Vector2i(32, 32)
+0:0/0 = 0
+
+[sub_resource type="TileSet" id="TileSet_ario3"]
+tile_size = Vector2i(32, 32)
+sources/0 = SubResource("TileSetAtlasSource_61lfs")
+sources/1 = SubResource("TileSetAtlasSource_w8xfb")
+sources/2 = SubResource("TileSetAtlasSource_rqcqk")
+sources/3 = SubResource("TileSetAtlasSource_rge8o")
 
 [node name="Game" type="Node" unique_id=182748300]
 
@@ -51,3 +83,8 @@ offset_bottom = 504.0
 visible = false
 
 [node name="Sprite2D" type="Sprite2D" parent="Dragged" unique_id=1929391485]
+
+[node name="Plants" type="TileMapLayer" parent="." unique_id=441402504]
+z_index = 1
+tile_set = SubResource("TileSet_ario3")
+script = ExtResource("11_j4xau")
