@@ -1,0 +1,15 @@
+[gd_scene format=3 uid="uid://bv5hna0vw8ey4"]
+
+[ext_resource type="Texture2D" uid="uid://y6jsinj3q8tg" path="res://tiles/toolbar/bar.png" id="1_yxp0c"]
+[ext_resource type="Texture2D" uid="uid://b1ler423ofut6" path="res://tiles/toolbar/watermelon-icon.png" id="2_aa4oc"]
+
+[node name="Container" type="TextureRect" unique_id=1314939844]
+offset_right = 40.0
+offset_bottom = 40.0
+texture = ExtResource("1_yxp0c")
+
+[node name="Fruit" type="TextureRect" parent="." unique_id=122056171]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+texture = ExtResource("2_aa4oc")
