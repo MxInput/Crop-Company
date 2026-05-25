@@ -44,3 +44,10 @@ script = ExtResource("5_flw6b")
 [node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=1557134395]
 
 [node name="Toolbar" parent="CanvasLayer" unique_id=1074677494 instance=ExtResource("6_iae2t")]
+offset_top = 504.0
+offset_bottom = 504.0
+
+[node name="Dragged" type="Node2D" parent="." unique_id=966772768]
+visible = false
+
+[node name="Sprite2D" type="Sprite2D" parent="Dragged" unique_id=1929391485]

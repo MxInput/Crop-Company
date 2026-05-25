@@ -13,6 +13,7 @@ offset_right = 1.0
 offset_bottom = 512.0
 grow_horizontal = 2
 grow_vertical = 2
+mouse_filter = 2
 
 [node name="ScrollContainer" type="ScrollContainer" parent="." unique_id=1055392940]
 layout_mode = 0
@@ -20,14 +21,13 @@ offset_left = -1.0
 offset_top = 96.0
 offset_right = 1151.0
 offset_bottom = 136.0
+mouse_filter = 2
 horizontal_scroll_mode = 2
 vertical_scroll_mode = 0
 
 [node name="HBoxContainer" type="HBoxContainer" parent="ScrollContainer" unique_id=363601170]
 layout_mode = 2
+mouse_filter = 2
 
 [node name="Container" parent="ScrollContainer/HBoxContainer" unique_id=1314939844 instance=ExtResource("1_2fnss")]
-layout_mode = 2
-
-[node name="Container2" parent="ScrollContainer/HBoxContainer" unique_id=991230126 instance=ExtResource("1_2fnss")]
 layout_mode = 2

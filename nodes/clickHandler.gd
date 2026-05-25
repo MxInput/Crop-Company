@@ -10,7 +10,7 @@ func  _input(event: InputEvent) -> void:
 		if (tile_id == 0):
 			set_cell(cell_pos, 1, Vector2i(0, 0))
 		
-func _process(delta: float):
+func _process(_delta: float):
 	var mouse_pos = get_local_mouse_position()
 	var cell_pos = local_to_map(mouse_pos)
 	highlight(cell_pos)
