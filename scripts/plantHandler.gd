@@ -3,6 +3,13 @@ extends TileMapLayer
 @onready var terrain: TileMapLayer = get_node("/root/Game/Terrain")
 @onready var overview: Control = get_node("/root/Game/Overview")
 
+@onready var tree_placement = get_child(0)
+@onready var tree_placement_sprite = tree_placement.get_child(0)
+@onready var tree_placement_area = tree_placement.get_child(1)
+
+@onready var able_to_place = preload("res://tiles/toolbar/trees/able.png")
+@onready var unable_to_place = preload("res://tiles/toolbar/trees/unable.png")
+
 var plant_info = {
 	"Watermelon": {
 		"stage1": { "sec": 10, "tile_id": 3},
@@ -54,83 +61,14 @@ var tree_info = {
 
 var plant_data = {}
 	
-func get_surrounding_tiles(current_tile, tree):
-	var tiles = [current_tile - Vector2i(2, 0), current_tile - Vector2i(1, 0), current_tile, current_tile + Vector2i(1, 0), current_tile + Vector2i(2, 0)]
-	if terrain.get_cell_source_id(tiles[0]) == 1 && terrain.get_cell_source_id(tiles[1]) == 1 && terrain.get_cell_source_id(tiles[2]) == 1:
-		for x in 5:
-			tiles[x] = tiles[x] + Vector2i.UP
-		if terrain.get_cell_source_id(tiles[0]) == 1 && terrain.get_cell_source_id(tiles[1]) == 1 && terrain.get_cell_source_id(tiles[2]) == 1:
-			set_cell(tiles[0], tree_info[tree]["stage1"]["tile_id"], Vector2i(0,2))
-			set_cell(tiles[1], tree_info[tree]["stage1"]["tile_id"], Vector2i(1,2))
-			set_cell(tiles[2], tree_info[tree]["stage1"]["tile_id"], Vector2i(2,2))
-			
-			set_cell(tiles[0] - Vector2i(0, -1), tree_info[tree]["stage1"]["tile_id"], Vector2i(0,3))
-			set_cell(tiles[1] - Vector2i(0, -1), tree_info[tree]["stage1"]["tile_id"], Vector2i(1,3))
-			set_cell(tiles[2] - Vector2i(0, -1), tree_info[tree]["stage1"]["tile_id"], Vector2i(2,3))
-			return true
-		else:	
-			for x in 5:
-				tiles[x] = tiles[x] + 2 * Vector2i.DOWN
-			if terrain.get_cell_source_id(tiles[0]) == 1 && terrain.get_cell_source_id(tiles[1]) == 1 && terrain.get_cell_source_id(tiles[2]) == 1:
-				set_cell(tiles[0], tree_info[tree]["stage1"]["tile_id"], Vector2i(0,3))
-				set_cell(tiles[1], tree_info[tree]["stage1"]["tile_id"], Vector2i(1,3))
-				set_cell(tiles[2], tree_info[tree]["stage1"]["tile_id"], Vector2i(2,3))
-				
-				set_cell(tiles[0] + Vector2i(0, -1), tree_info[tree]["stage1"]["tile_id"], Vector2i(0,2))
-				set_cell(tiles[1] + Vector2i(0, -1), tree_info[tree]["stage1"]["tile_id"], Vector2i(1,2))
-				set_cell(tiles[2] + Vector2i(0, -1), tree_info[tree]["stage1"]["tile_id"], Vector2i(2,2))
-				return true
-	tiles = [current_tile - Vector2i(2, 0), current_tile - Vector2i(1, 0), current_tile, current_tile + Vector2i(1, 0), current_tile + Vector2i(2, 0)]
-	if terrain.get_cell_source_id(tiles[1]) == 1 && terrain.get_cell_source_id(tiles[2]) == 1 && terrain.get_cell_source_id(tiles[3]) == 1:
-		for x in 5:
-			tiles[x] = tiles[x] + Vector2i.UP
-		if terrain.get_cell_source_id(tiles[1]) == 1 && terrain.get_cell_source_id(tiles[2]) == 1 && terrain.get_cell_source_id(tiles[3]) == 1:
-			set_cell(tiles[1], tree_info[tree]["stage1"]["tile_id"], Vector2i(0,2))
-			set_cell(tiles[2], tree_info[tree]["stage1"]["tile_id"], Vector2i(1,2))
-			set_cell(tiles[3], tree_info[tree]["stage1"]["tile_id"], Vector2i(2,2))
-			
-			set_cell(tiles[1] - Vector2i(0, -1), tree_info[tree]["stage1"]["tile_id"], Vector2i(0,3))
-			set_cell(tiles[2] - Vector2i(0, -1), tree_info[tree]["stage1"]["tile_id"], Vector2i(1,3))
-			set_cell(tiles[3] - Vector2i(0, -1), tree_info[tree]["stage1"]["tile_id"], Vector2i(2,3))
-			return true
-		else:	
-			for x in 5:
-				tiles[x] = tiles[x] + 2 * Vector2i.DOWN
-			if terrain.get_cell_source_id(tiles[1]) == 1 && terrain.get_cell_source_id(tiles[2]) == 1 && terrain.get_cell_source_id(tiles[3]) == 1:
-				set_cell(tiles[1], tree_info[tree]["stage1"]["tile_id"], Vector2i(0,3))
-				set_cell(tiles[2], tree_info[tree]["stage1"]["tile_id"], Vector2i(1,3))
-				set_cell(tiles[3], tree_info[tree]["stage1"]["tile_id"], Vector2i(2,3))
-				
-				set_cell(tiles[1] + Vector2i(0, -1), tree_info[tree]["stage1"]["tile_id"], Vector2i(0,2))
-				set_cell(tiles[2] + Vector2i(0, -1), tree_info[tree]["stage1"]["tile_id"], Vector2i(1,2))
-				set_cell(tiles[3] + Vector2i(0, -1), tree_info[tree]["stage1"]["tile_id"], Vector2i(2,2))
-				return true
-	tiles = [current_tile - Vector2i(2, 0), current_tile - Vector2i(1, 0), current_tile, current_tile + Vector2i(1, 0), current_tile + Vector2i(2, 0)]
-	if terrain.get_cell_source_id(tiles[2]) == 1 && terrain.get_cell_source_id(tiles[3]) == 1 && terrain.get_cell_source_id(tiles[4]) == 1:
-		for x in 5:
-			tiles[x] = tiles[x] + Vector2i.UP
-		if terrain.get_cell_source_id(tiles[2]) == 1 && terrain.get_cell_source_id(tiles[3]) == 1 && terrain.get_cell_source_id(tiles[4]) == 1:
-			set_cell(tiles[2], tree_info[tree]["stage1"]["tile_id"], Vector2i(0,2))
-			set_cell(tiles[3], tree_info[tree]["stage1"]["tile_id"], Vector2i(1,2))
-			set_cell(tiles[4], tree_info[tree]["stage1"]["tile_id"], Vector2i(2,2))
-			
-			set_cell(tiles[2] - Vector2i(0, -1), tree_info[tree]["stage1"]["tile_id"], Vector2i(0,3))
-			set_cell(tiles[3] - Vector2i(0, -1), tree_info[tree]["stage1"]["tile_id"], Vector2i(1,3))
-			set_cell(tiles[4] - Vector2i(0, -1), tree_info[tree]["stage1"]["tile_id"], Vector2i(2,3))
-			return true
-		else:	
-			for x in 5:
-				tiles[x] = tiles[x] + 2 * Vector2i.DOWN
-			if terrain.get_cell_source_id(tiles[2]) == 1 && terrain.get_cell_source_id(tiles[3]) == 1 && terrain.get_cell_source_id(tiles[4]) == 1:
-				set_cell(tiles[2], tree_info[tree]["stage1"]["tile_id"], Vector2i(0,3))
-				set_cell(tiles[3], tree_info[tree]["stage1"]["tile_id"], Vector2i(1,3))
-				set_cell(tiles[4], tree_info[tree]["stage1"]["tile_id"], Vector2i(2,3))
-				
-				set_cell(tiles[2] + Vector2i(0, -1), tree_info[tree]["stage1"]["tile_id"], Vector2i(0,2))
-				set_cell(tiles[3] + Vector2i(0, -1), tree_info[tree]["stage1"]["tile_id"], Vector2i(1,2))
-				set_cell(tiles[4] + Vector2i(0, -1), tree_info[tree]["stage1"]["tile_id"], Vector2i(2,2))
-				return true
-	return false
+func move_placement():
+	tree_placement.position = (get_local_mouse_position())
+	tree_placement_sprite.texture = able_to_place
+	
+	if tree_placement_area.has_overlapping_bodies:
+		for body in tree_placement_area.get_overlapping_bodies():
+			if body.name == name:
+				tree_placement_sprite.texture = unable_to_place
 	
 func plant(plant_name) -> void:
 	var local_pos = terrain.to_local(get_global_mouse_position())
@@ -140,7 +78,7 @@ func plant(plant_name) -> void:
 	var self_tile_id = get_cell_source_id(cell_pos)
 
 	if tree_info.get(plant_name):
-		get_surrounding_tiles(cell_pos, plant_name)
+		print(plant_name)
 	else:
 		if PlayerVariables.player.buy(plant_info[plant_name]["price"]):
 			if (self_tile_id == -1):
@@ -154,8 +92,11 @@ func _process(delta: float) -> void:
 	
 	if Input.is_action_pressed("click"):
 		if (plant_data.has(cell_pos)):
-			if plant_data[cell_pos]["stage"] == 4: 
+			if plant_data[cell_pos]["stage"] == 4:
 				PlayerVariables.player.sell(plant_info[plant_data[cell_pos]["fruit_name"]]["sell"])
+			elif ToolVariables.current_tool == "Shovel":
+				PlayerVariables.player.sell(plant_info[plant_data[cell_pos]["fruit_name"]]["price"])
+			if ToolVariables.current_tool == "Shovel" or plant_data[cell_pos]["stage"] == 4:
 				plant_data.erase(cell_pos)
 				set_cell(cell_pos, -1, Vector2i(0,0))
 				terrain.set_cell(cell_pos, 0, Vector2i(0,0))

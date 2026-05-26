@@ -37,6 +37,7 @@
 [ext_resource type="PackedScene" uid="uid://djx588r5klrch" path="res://nodes/CoinTeller.tscn" id="27_4teul"]
 [ext_resource type="Texture2D" uid="uid://bqfe2hfct7eqg" path="res://tiles/plants/trees/apple/apple_sapling.png" id="27_njtgi"]
 [ext_resource type="Texture2D" uid="uid://bsd74p1ixttwb" path="res://tiles/plants/trees/apple/apple_seed.png" id="28_r25gb"]
+[ext_resource type="Texture2D" uid="uid://bd2wciqx2wil5" path="res://tiles/toolbar/trees/able.png" id="38_csyuo"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_6hfer"]
 texture = ExtResource("1_cpdmu")
@@ -62,6 +63,7 @@ texture_region_size = Vector2i(32, 32)
 texture = ExtResource("8_j4xau")
 texture_region_size = Vector2i(32, 32)
 0:0/0 = 0
+0:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-16, -16, 16, -16, 16, 16, -16, 16)
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_d7d7s"]
 texture = ExtResource("9_7vemi")
@@ -155,6 +157,7 @@ texture_region_size = Vector2i(32, 32)
 texture = ExtResource("10_0sinr")
 texture_region_size = Vector2i(32, 32)
 0:0/0 = 0
+0:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-16, -16, 16, -16, 16, 16, -16, 16)
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_5xfwu"]
 texture = ExtResource("11_rqcqk")
@@ -188,6 +191,7 @@ texture_region_size = Vector2i(32, 32)
 
 [sub_resource type="TileSet" id="TileSet_ario3"]
 tile_size = Vector2i(32, 32)
+physics_layer_0/collision_layer = 1
 sources/0 = SubResource("TileSetAtlasSource_61lfs")
 sources/1 = SubResource("TileSetAtlasSource_w8xfb")
 sources/2 = SubResource("TileSetAtlasSource_rqcqk")
@@ -208,6 +212,9 @@ sources/16 = SubResource("TileSetAtlasSource_ha0qq")
 sources/17 = SubResource("TileSetAtlasSource_q4avf")
 sources/18 = SubResource("TileSetAtlasSource_07fvy")
 sources/19 = SubResource("TileSetAtlasSource_8lwub")
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_csyuo"]
+size = Vector2(60, 123)
 
 [node name="Game" type="Node" unique_id=182748300]
 
@@ -294,3 +301,15 @@ visible = false
 z_index = 1
 tile_set = SubResource("TileSet_ario3")
 script = ExtResource("11_j4xau")
+
+[node name="TreePlacement" type="Node2D" parent="Plants" unique_id=350434989]
+z_index = 2
+
+[node name="Sprite2D" type="Sprite2D" parent="Plants/TreePlacement" unique_id=1660608726]
+texture = ExtResource("38_csyuo")
+
+[node name="Area2D" type="Area2D" parent="Plants/TreePlacement" unique_id=420772973]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Plants/TreePlacement/Area2D" unique_id=1471233569]
+position = Vector2(0, -0.5)
+shape = SubResource("RectangleShape2D_csyuo")

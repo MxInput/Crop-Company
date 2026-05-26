@@ -15,9 +15,13 @@ func _process(_delta: float) -> void:
 			dragged_obj.modulate.a = 0.75
 				
 			HoverVariables.dragging = get_parent().name
+			
+			if plants.tree_info.get(get_parent().name):
+				plants.move_placement()
+				
 	if Input.is_action_just_released("click"):
 		if HoverVariables.dragging == get_parent().name:
-			plants.plant(self.get_parent().name)
+			plants.plant(get_parent().name)
 			dragged_obj.visible = false
 			HoverVariables.hovered_on = ""
 			HoverVariables.dragging = ""
