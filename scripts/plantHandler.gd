@@ -23,22 +23,70 @@ var plant_info = {
 		"stage3": { "sec": 50, "tile_id": 9},
 		"stage4": {"tile_id": 10},
 		"icon": load("res://tiles/toolbar/fruits/pumpkin_icon.png")
+	},
+	"Butternut Squash": {
+		"stage1": { "sec": 30, "tile_id": 11},
+		"stage2": { "sec": 40, "tile_id": 8},
+		"stage3": { "sec": 50, "tile_id": 9},
+		"stage4": {"tile_id": 10},
+		"icon": load("res://tiles/toolbar/fruits/butternut_icon.png")
 	}
 }
+
+var tree_info = {
+	"Apple": {
+		"stage1": { "sec": 30, "tile_id": 11},
+		"stage2": { "sec": 40, "tile_id": 8},
+		"stage3": { "sec": 50, "tile_id": 9},
+		"stage4": {"tile_id": 10},
+		"icon": load("res://tiles/toolbar/fruits/pumpkin_icon.png")
+	}
+}
+
 var plant_data = {}
 	
 func plant(plant_name) -> void:
 	var local_pos = terrain.to_local(get_global_mouse_position())
 	var cell_pos = terrain.local_to_map(local_pos)
 	var tile_id = (terrain.get_cell_source_id(cell_pos))
-	if (tile_id == 1):
-		plant_data[cell_pos] = { "fruit_name" : plant_name, "stage" : 1, "time" : 0}
-		set_cell(cell_pos, plant_info[plant_name]["stage1"]["tile_id"], Vector2i(0, 0))
+	
+	var self_local_pos = to_local(get_global_mouse_position())
+	var self_cell_pos = local_to_map(self_local_pos)
+	var self_tile_id = get_cell_source_id(self_cell_pos)
+
+	if (self_tile_id == -1):
+		if (tile_id == 1):
+			plant_data[cell_pos] = { "fruit_name" : plant_name, "stage" : 1, "time" : 0}
+			set_cell(cell_pos, plant_info[plant_name]["stage1"]["tile_id"], Vector2i(0, 0))
 		
 func _process(delta: float) -> void:
+	var mouse_pos = get_local_mouse_position()
+	var cell_pos = local_to_map(mouse_pos)
+	
+	if (plant_data.has(cell_pos)):
+		print(plant_data[cell_pos]["fruit_name"])
+	
 	for plant in plant_data:
 		var stage = plant_data[plant]["stage"]
-		var time = plant_data[plant]["time"]
-		time += delta
-		plant_data[plant]["time"] = time
+		if stage < 4:
+			plant_data[plant]["time"] += delta
+			if stage == 1:
+				var goal = plant_info[plant_data[plant]["fruit_name"]]["stage1"]["sec"]
+				if plant_data[plant]["time"] >= goal:
+					plant_data[plant]["stage"] += 1
+					plant_data[plant]["time"] = 0
+					set_cell(plant, plant_info[plant_data[plant]["fruit_name"]]["stage2"]["tile_id"], Vector2i(0, 0))
+			elif stage == 2:
+				var goal = plant_info[plant_data[plant]["fruit_name"]]["stage2"]["sec"]
+				if plant_data[plant]["time"] >= goal:
+					plant_data[plant]["stage"] += 1
+					plant_data[plant]["time"] = 0
+					set_cell(plant, plant_info[plant_data[plant]["fruit_name"]]["stage3"]["tile_id"], Vector2i(0, 0))
+			elif stage == 3:
+				var goal = plant_info[plant_data[plant]["fruit_name"]]["stage3"]["sec"]
+				if plant_data[plant]["time"] >= goal:
+					plant_data[plant]["stage"] += 1
+					plant_data[plant]["time"] = 0
+					set_cell(plant, plant_info[plant_data[plant]["fruit_name"]]["stage4"]["tile_id"], Vector2i(0, 0))
+				
 	

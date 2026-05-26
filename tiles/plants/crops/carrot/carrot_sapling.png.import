@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cymecwa1s5t5i"
-path="res://.godot/imported/watermelon_almost.png-e0d6a237df2fc114494131696c21ea8d.ctex"
+uid="uid://dxfekj7d4mfqi"
+path="res://.godot/imported/carrot_sapling.png-f32e7443938eaee76e3d903c5565fe61.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://tiles/plants/watermelon/watermelon_almost.png"
-dest_files=["res://.godot/imported/watermelon_almost.png-e0d6a237df2fc114494131696c21ea8d.ctex"]
+source_file="res://tiles/plants/crops/carrot/carrot_sapling.png"
+dest_files=["res://.godot/imported/carrot_sapling.png-f32e7443938eaee76e3d903c5565fe61.ctex"]
 
 [params]
 

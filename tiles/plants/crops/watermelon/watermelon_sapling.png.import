@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://c03cwuvp3sa58"
-path="res://.godot/imported/pumpkin_sapling.png-2b7aebb4991f4995fea03485b56b09e5.ctex"
+uid="uid://cs83cciiwcehj"
+path="res://.godot/imported/watermelon_sapling.png-7341211436614fb7e28a878cea9cfc47.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://tiles/plants/pumpkin/pumpkin_sapling.png"
-dest_files=["res://.godot/imported/pumpkin_sapling.png-2b7aebb4991f4995fea03485b56b09e5.ctex"]
+source_file="res://tiles/plants/crops/watermelon/watermelon_sapling.png"
+dest_files=["res://.godot/imported/watermelon_sapling.png-7341211436614fb7e28a878cea9cfc47.ctex"]
 
 [params]
 

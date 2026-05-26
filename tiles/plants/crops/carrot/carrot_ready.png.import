@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cbbq06j4psv6a"
-path="res://.godot/imported/pumpkin_seed.png-2920dc16ebd020d319ae6653256e7915.ctex"
+uid="uid://e3plngysj0xc"
+path="res://.godot/imported/carrot_ready.png-f0f73498cc8737ac64c64c51d8ba918f.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://tiles/plants/pumpkin/pumpkin_seed.png"
-dest_files=["res://.godot/imported/pumpkin_seed.png-2920dc16ebd020d319ae6653256e7915.ctex"]
+source_file="res://tiles/plants/crops/carrot/carrot_ready.png"
+dest_files=["res://.godot/imported/carrot_ready.png-f0f73498cc8737ac64c64c51d8ba918f.ctex"]
 
 [params]
 

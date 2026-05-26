@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dxfekj7d4mfqi"
-path="res://.godot/imported/carrot_sapling.png-fb7e27f98fb8b93a923f0da1c0a91397.ctex"
+uid="uid://csgos17oceag1"
+path="res://.godot/imported/pumpkin_almost.png-28bf0d607e857849a438b138d67d4e03.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://tiles/plants/carrot/carrot_sapling.png"
-dest_files=["res://.godot/imported/carrot_sapling.png-fb7e27f98fb8b93a923f0da1c0a91397.ctex"]
+source_file="res://tiles/plants/crops/pumpkin/pumpkin_almost.png"
+dest_files=["res://.godot/imported/pumpkin_almost.png-28bf0d607e857849a438b138d67d4e03.ctex"]
 
 [params]
 

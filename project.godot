@@ -15,6 +15,10 @@ run/main_scene="uid://147tw5uogvhl"
 config/features=PackedStringArray("4.6", "Forward Plus")
 config/icon="res://icon.svg"
 
+[autoload]
+
+HoverVariables="*uid://cfgl82r88d183"
+
 [editor_plugins]
 
 enabled=PackedStringArray("res://addons/godot_super-wakatime/plugin.cfg")

@@ -3,9 +3,6 @@ extends Control
 @onready var plants: TileMapLayer = get_node("/root/Game/Plants")
 @onready var container = get_child(0).get_child(0)
 
-var hovered_on : String = ""
-var dragging : String = ""
-
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	var temp_fruit = preload("res://nodes/Icon.tscn")

@@ -6,20 +6,19 @@
 [ext_resource type="Texture2D" uid="uid://cou6sjg11ar6l" path="res://tiles/select.png" id="4_6hfer"]
 [ext_resource type="Script" uid="uid://cqj5kdjgmiq4h" path="res://scripts/cameraController.gd" id="5_flw6b"]
 [ext_resource type="PackedScene" uid="uid://dndniilkom3fx" path="res://nodes/Toolbar.tscn" id="6_iae2t"]
-[ext_resource type="Texture2D" uid="uid://cymecwa1s5t5i" path="res://tiles/plants/crops/watermelon/watermelon_almost.png" id="7_g42si"]
-[ext_resource type="Texture2D" uid="uid://cdqusjw0ts2qd" path="res://icon.svg" id="7_yuymb"]
-[ext_resource type="Texture2D" uid="uid://dk1vcvbxdj8tu" path="res://tiles/plants/crops/watermelon/watermelon_ready.png" id="8_j4xau"]
-[ext_resource type="Texture2D" uid="uid://dhl3bwmfjb3ea" path="res://tiles/plants/crops/pumpkin/pumpkin_ready.png" id="9_7vemi"]
-[ext_resource type="Texture2D" uid="uid://cs83cciiwcehj" path="res://tiles/plants/crops/watermelon/watermelon_sapling.png" id="9_k6djt"]
-[ext_resource type="Texture2D" uid="uid://835ev8cggm4a" path="res://tiles/plants/crops/watermelon/watermelon_seed.png" id="10_0sinr"]
-[ext_resource type="Texture2D" uid="uid://cbbq06j4psv6a" path="res://tiles/plants/crops/pumpkin/pumpkin_seed.png" id="10_yuymb"]
+[ext_resource type="Texture2D" uid="uid://cymecwa1s5t5i" path="res://tiles/plants/watermelon/watermelon_almost.png" id="7_g42si"]
+[ext_resource type="Texture2D" uid="uid://dk1vcvbxdj8tu" path="res://tiles/plants/watermelon/watermelon_ready.png" id="8_j4xau"]
+[ext_resource type="Texture2D" uid="uid://dhl3bwmfjb3ea" path="res://tiles/plants/pumpkin/pumpkin_ready.png" id="9_7vemi"]
+[ext_resource type="Texture2D" uid="uid://cs83cciiwcehj" path="res://tiles/plants/watermelon/watermelon_sapling.png" id="9_k6djt"]
+[ext_resource type="Texture2D" uid="uid://835ev8cggm4a" path="res://tiles/plants/watermelon/watermelon_seed.png" id="10_0sinr"]
+[ext_resource type="Texture2D" uid="uid://cbbq06j4psv6a" path="res://tiles/plants/pumpkin/pumpkin_seed.png" id="10_yuymb"]
 [ext_resource type="Script" uid="uid://g0h53se4mujf" path="res://scripts/plantHandler.gd" id="11_j4xau"]
-[ext_resource type="Texture2D" uid="uid://by0uqbuk2pjk5" path="res://tiles/plants/crops/carrot/carrot_almost.png" id="11_rqcqk"]
-[ext_resource type="Texture2D" uid="uid://e3plngysj0xc" path="res://tiles/plants/crops/carrot/carrot_ready.png" id="12_rge8o"]
-[ext_resource type="Texture2D" uid="uid://dxfekj7d4mfqi" path="res://tiles/plants/crops/carrot/carrot_sapling.png" id="13_ario3"]
-[ext_resource type="Texture2D" uid="uid://0j4kdbokbnmn" path="res://tiles/plants/crops/carrot/carrot_seed.png" id="14_7vemi"]
-[ext_resource type="Texture2D" uid="uid://c03cwuvp3sa58" path="res://tiles/plants/crops/pumpkin/pumpkin_sapling.png" id="15_yuymb"]
-[ext_resource type="Texture2D" uid="uid://csgos17oceag1" path="res://tiles/plants/crops/pumpkin/pumpkin_almost.png" id="18_5xfwu"]
+[ext_resource type="Texture2D" uid="uid://by0uqbuk2pjk5" path="res://tiles/plants/carrot/carrot_almost.png" id="11_rqcqk"]
+[ext_resource type="Texture2D" uid="uid://e3plngysj0xc" path="res://tiles/plants/carrot/carrot_ready.png" id="12_rge8o"]
+[ext_resource type="Texture2D" uid="uid://dxfekj7d4mfqi" path="res://tiles/plants/carrot/carrot_sapling.png" id="13_ario3"]
+[ext_resource type="Texture2D" uid="uid://0j4kdbokbnmn" path="res://tiles/plants/carrot/carrot_seed.png" id="14_7vemi"]
+[ext_resource type="Texture2D" uid="uid://c03cwuvp3sa58" path="res://tiles/plants/pumpkin/pumpkin_sapling.png" id="15_yuymb"]
+[ext_resource type="Texture2D" uid="uid://csgos17oceag1" path="res://tiles/plants/pumpkin/pumpkin_almost.png" id="18_5xfwu"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_6hfer"]
 texture = ExtResource("1_cpdmu")
@@ -136,11 +135,6 @@ script = ExtResource("5_flw6b")
 [node name="Toolbar" parent="CanvasLayer" unique_id=1074677494 instance=ExtResource("6_iae2t")]
 offset_top = 504.0
 offset_bottom = 504.0
-
-[node name="TextureRect" type="TextureRect" parent="CanvasLayer" unique_id=963501238]
-offset_right = 40.0
-offset_bottom = 40.0
-texture = ExtResource("7_yuymb")
 
 [node name="Dragged" type="Node2D" parent="." unique_id=966772768]
 visible = false

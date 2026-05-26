@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://csgos17oceag1"
-path="res://.godot/imported/pumpkin_almost.png-23d7d9cd040cf3f902df4dcc982b41fd.ctex"
+uid="uid://be2lm10afns1f"
+path="res://.godot/imported/apple_almost.png-e52b47c8c7a3be313dab9910becf9f85.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://tiles/plants/pumpkin/pumpkin_almost.png"
-dest_files=["res://.godot/imported/pumpkin_almost.png-23d7d9cd040cf3f902df4dcc982b41fd.ctex"]
+source_file="res://tiles/plants/trees/apple/apple_almost.png"
+dest_files=["res://.godot/imported/apple_almost.png-e52b47c8c7a3be313dab9910becf9f85.ctex"]
 
 [params]
 
