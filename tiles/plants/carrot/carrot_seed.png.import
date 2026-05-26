@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://b1ler423ofut6"
-path="res://.godot/imported/watermelon-icon.png-c124843306d15308cc2a39738d91b77c.ctex"
+uid="uid://0j4kdbokbnmn"
+path="res://.godot/imported/carrot_seed.png-03bd3c989da0280e8dc672b67da15ba6.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://tiles/toolbar/watermelon-icon.png"
-dest_files=["res://.godot/imported/watermelon-icon.png-c124843306d15308cc2a39738d91b77c.ctex"]
+source_file="res://tiles/plants/carrot/carrot_seed.png"
+dest_files=["res://.godot/imported/carrot_seed.png-03bd3c989da0280e8dc672b67da15ba6.ctex"]
 
 [params]
 

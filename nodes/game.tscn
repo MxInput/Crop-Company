@@ -2,15 +2,23 @@
 
 [ext_resource type="Texture2D" uid="uid://cda2j88elnhvi" path="res://tiles/terrain/grass.png" id="1_cpdmu"]
 [ext_resource type="Texture2D" uid="uid://wjrxm7l580ou" path="res://tiles/terrain/soil.png" id="2_g5j3c"]
-[ext_resource type="Script" uid="uid://c2tcl0ola05at" path="res://nodes/clickHandler.gd" id="3_g5j3c"]
+[ext_resource type="Script" uid="uid://c2tcl0ola05at" path="res://scripts/clickHandler.gd" id="3_g5j3c"]
 [ext_resource type="Texture2D" uid="uid://cou6sjg11ar6l" path="res://tiles/select.png" id="4_6hfer"]
-[ext_resource type="Script" uid="uid://cqj5kdjgmiq4h" path="res://nodes/cameraController.gd" id="5_flw6b"]
+[ext_resource type="Script" uid="uid://cqj5kdjgmiq4h" path="res://scripts/cameraController.gd" id="5_flw6b"]
 [ext_resource type="PackedScene" uid="uid://dndniilkom3fx" path="res://nodes/Toolbar.tscn" id="6_iae2t"]
 [ext_resource type="Texture2D" uid="uid://cymecwa1s5t5i" path="res://tiles/plants/watermelon/watermelon_almost.png" id="7_g42si"]
 [ext_resource type="Texture2D" uid="uid://dk1vcvbxdj8tu" path="res://tiles/plants/watermelon/watermelon_ready.png" id="8_j4xau"]
+[ext_resource type="Texture2D" uid="uid://dhl3bwmfjb3ea" path="res://tiles/plants/pumpkin/pumpkin_ready.png" id="9_7vemi"]
 [ext_resource type="Texture2D" uid="uid://cs83cciiwcehj" path="res://tiles/plants/watermelon/watermelon_sapling.png" id="9_k6djt"]
 [ext_resource type="Texture2D" uid="uid://835ev8cggm4a" path="res://tiles/plants/watermelon/watermelon_seed.png" id="10_0sinr"]
-[ext_resource type="Script" uid="uid://g0h53se4mujf" path="res://nodes/plantHandler.gd" id="11_j4xau"]
+[ext_resource type="Texture2D" uid="uid://cbbq06j4psv6a" path="res://tiles/plants/pumpkin/pumpkin_seed.png" id="10_yuymb"]
+[ext_resource type="Script" uid="uid://g0h53se4mujf" path="res://scripts/plantHandler.gd" id="11_j4xau"]
+[ext_resource type="Texture2D" uid="uid://by0uqbuk2pjk5" path="res://tiles/plants/carrot/carrot_almost.png" id="11_rqcqk"]
+[ext_resource type="Texture2D" uid="uid://e3plngysj0xc" path="res://tiles/plants/carrot/carrot_ready.png" id="12_rge8o"]
+[ext_resource type="Texture2D" uid="uid://dxfekj7d4mfqi" path="res://tiles/plants/carrot/carrot_sapling.png" id="13_ario3"]
+[ext_resource type="Texture2D" uid="uid://0j4kdbokbnmn" path="res://tiles/plants/carrot/carrot_seed.png" id="14_7vemi"]
+[ext_resource type="Texture2D" uid="uid://c03cwuvp3sa58" path="res://tiles/plants/pumpkin/pumpkin_sapling.png" id="15_yuymb"]
+[ext_resource type="Texture2D" uid="uid://csgos17oceag1" path="res://tiles/plants/pumpkin/pumpkin_almost.png" id="18_5xfwu"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_6hfer"]
 texture = ExtResource("1_cpdmu")
@@ -37,6 +45,16 @@ texture = ExtResource("8_j4xau")
 texture_region_size = Vector2i(32, 32)
 0:0/0 = 0
 
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_d7d7s"]
+texture = ExtResource("9_7vemi")
+texture_region_size = Vector2i(32, 32)
+0:0/0 = 0
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_4teul"]
+texture = ExtResource("10_yuymb")
+texture_region_size = Vector2i(32, 32)
+0:0/0 = 0
+
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_rqcqk"]
 texture = ExtResource("9_k6djt")
 texture_region_size = Vector2i(32, 32)
@@ -47,12 +65,50 @@ texture = ExtResource("10_0sinr")
 texture_region_size = Vector2i(32, 32)
 0:0/0 = 0
 
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_5xfwu"]
+texture = ExtResource("11_rqcqk")
+texture_region_size = Vector2i(32, 32)
+0:0/0 = 0
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_h4f7p"]
+texture = ExtResource("12_rge8o")
+texture_region_size = Vector2i(32, 32)
+0:0/0 = 0
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_6afgg"]
+texture = ExtResource("13_ario3")
+texture_region_size = Vector2i(32, 32)
+0:0/0 = 0
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_14ebw"]
+texture = ExtResource("14_7vemi")
+texture_region_size = Vector2i(32, 32)
+0:0/0 = 0
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_hl4dp"]
+texture = ExtResource("15_yuymb")
+texture_region_size = Vector2i(32, 32)
+0:0/0 = 0
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_mksf2"]
+texture = ExtResource("18_5xfwu")
+texture_region_size = Vector2i(32, 32)
+0:0/0 = 0
+
 [sub_resource type="TileSet" id="TileSet_ario3"]
 tile_size = Vector2i(32, 32)
 sources/0 = SubResource("TileSetAtlasSource_61lfs")
 sources/1 = SubResource("TileSetAtlasSource_w8xfb")
 sources/2 = SubResource("TileSetAtlasSource_rqcqk")
 sources/3 = SubResource("TileSetAtlasSource_rge8o")
+sources/4 = SubResource("TileSetAtlasSource_5xfwu")
+sources/5 = SubResource("TileSetAtlasSource_h4f7p")
+sources/6 = SubResource("TileSetAtlasSource_6afgg")
+sources/7 = SubResource("TileSetAtlasSource_14ebw")
+sources/8 = SubResource("TileSetAtlasSource_hl4dp")
+sources/9 = SubResource("TileSetAtlasSource_mksf2")
+sources/10 = SubResource("TileSetAtlasSource_d7d7s")
+sources/11 = SubResource("TileSetAtlasSource_4teul")
 
 [node name="Game" type="Node" unique_id=182748300]
 

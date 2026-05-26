@@ -1,11 +1,11 @@
 [gd_scene format=3 uid="uid://bv5hna0vw8ey4"]
 
 [ext_resource type="Texture2D" uid="uid://y6jsinj3q8tg" path="res://tiles/toolbar/bar.png" id="1_yxp0c"]
-[ext_resource type="Texture2D" uid="uid://b1ler423ofut6" path="res://tiles/toolbar/watermelon-icon.png" id="2_aa4oc"]
-[ext_resource type="Script" uid="uid://def65f3hbn8xu" path="res://nodes/dragHandler.gd" id="3_jamr2"]
+[ext_resource type="Texture2D" uid="uid://b1ler423ofut6" path="res://tiles/toolbar/fruits/watermelon_icon.png" id="2_aa4oc"]
+[ext_resource type="Script" uid="uid://def65f3hbn8xu" path="res://scripts/dragHandler.gd" id="3_jamr2"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_2tbuw"]
-size = Vector2(40, 40)
+size = Vector2(32, 32)
 
 [node name="Container" type="TextureRect" unique_id=1314939844]
 offset_right = 40.0
@@ -17,8 +17,8 @@ texture = ExtResource("1_yxp0c")
 layout_mode = 0
 offset_left = 4.0
 offset_top = 3.0
-offset_right = 44.0
-offset_bottom = 43.0
+offset_right = 36.0
+offset_bottom = 36.0
 mouse_filter = 2
 texture = ExtResource("2_aa4oc")
 stretch_mode = 2

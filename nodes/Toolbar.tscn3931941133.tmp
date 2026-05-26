@@ -1,5 +1,6 @@
 [gd_scene format=3 uid="uid://dndniilkom3fx"]
 
+[ext_resource type="PackedScene" uid="uid://bv5hna0vw8ey4" path="res://nodes/Icon.tscn" id="1_2fnss"]
 [ext_resource type="Script" uid="uid://dj0ftf3io77ib" path="res://scripts/populateToolbar.gd" id="1_de83n"]
 
 [node name="Toolbar" type="Control" unique_id=1074677494]
@@ -29,3 +30,11 @@ vertical_scroll_mode = 0
 [node name="HBoxContainer" type="HBoxContainer" parent="ScrollContainer" unique_id=363601170]
 layout_mode = 2
 mouse_filter = 2
+
+[node name="Container" parent="." unique_id=1314939844 instance=ExtResource("1_2fnss")]
+visible = false
+layout_mode = 0
+offset_left = -1.0
+offset_top = 96.0
+offset_right = 39.0
+offset_bottom = 136.0
