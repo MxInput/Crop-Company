@@ -22,5 +22,3 @@ func _input(event):
 		position.x -= pan_dis 
 	if event.is_action("move_right"):
 		position.x += pan_dis
-	pass
-	

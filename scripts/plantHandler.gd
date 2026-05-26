@@ -9,6 +9,8 @@ var plant_info = {
 		"stage2": { "sec": 20, "tile_id": 2},
 		"stage3": { "sec": 30, "tile_id": 0},
 		"stage4": {"tile_id": 1},
+		"price": 5,
+		"sell": 10,
 		"icon": load("res://tiles/toolbar/fruits/watermelon_icon.png")
 	},
 	"Carrot": {
@@ -16,6 +18,8 @@ var plant_info = {
 		"stage2": { "sec": 40, "tile_id": 6},
 		"stage3": { "sec": 50, "tile_id": 4},
 		"stage4": {"tile_id": 5},
+		"price": 5,
+		"sell": 10,
 		"icon": load("res://tiles/toolbar/fruits/carrot_icon.png")
 	},
 	"Pumpkin": {
@@ -23,6 +27,8 @@ var plant_info = {
 		"stage2": { "sec": 40, "tile_id": 8},
 		"stage3": { "sec": 50, "tile_id": 9},
 		"stage4": {"tile_id": 10},
+		"price": 5,
+		"sell": 10,
 		"icon": load("res://tiles/toolbar/fruits/pumpkin_icon.png")
 	},
 	"Butternut Squash": {
@@ -30,6 +36,8 @@ var plant_info = {
 		"stage2": { "sec": 40, "tile_id": 14},
 		"stage3": { "sec": 50, "tile_id": 12},
 		"stage4": {"tile_id": 13},
+		"price": 5,
+		"sell": 10,
 		"icon": load("res://tiles/toolbar/fruits/butternut_icon.png")
 	}
 }
@@ -55,15 +63,24 @@ func plant(plant_name) -> void:
 	var self_cell_pos = local_to_map(self_local_pos)
 	var self_tile_id = get_cell_source_id(self_cell_pos)
 
-	if (self_tile_id == -1):
-		if (tile_id == 1):
-			plant_data[cell_pos] = { "fruit_name" : plant_name, "stage" : 1, "time" : 0}
-			set_cell(cell_pos, plant_info[plant_name]["stage1"]["tile_id"], Vector2i(0, 0))
+	if PlayerVariables.player.buy(plant_info[plant_name]["price"]):
+		if (self_tile_id == -1):
+			if (tile_id == 1):
+				plant_data[cell_pos] = { "fruit_name" : plant_name, "stage" : 1, "time" : 0}
+				set_cell(cell_pos, plant_info[plant_name]["stage1"]["tile_id"], Vector2i(0, 0))
 		
 func _process(delta: float) -> void:
 	var mouse_pos = get_local_mouse_position()
 	var cell_pos = local_to_map(mouse_pos)
 	
+	if Input.is_action_pressed("click"):
+		if (plant_data.has(cell_pos)):
+			if plant_data[cell_pos]["stage"] == 4: 
+				PlayerVariables.player.sell(plant_info[plant_data[cell_pos]["fruit_name"]]["sell"])
+				plant_data.erase(cell_pos)
+				set_cell(cell_pos, -1, Vector2i(0,0))
+				terrain.set_cell(cell_pos, 0, Vector2i(0,0))
+				
 	if (plant_data.has(cell_pos)):
 		var timeLeft 
 			

@@ -1,23 +1,8 @@
 [gd_scene format=3 uid="uid://cba0025bwgh02"]
 
-[ext_resource type="Script" uid="uid://b07twj21m8mc2" path="res://nodes/displayDetails.gd" id="1_dwpnw"]
+[ext_resource type="Script" uid="uid://b07twj21m8mc2" path="res://scripts/displayDetails.gd" id="1_dwpnw"]
 [ext_resource type="Texture2D" uid="uid://b01enuukya4xn" path="res://UI/overview.png" id="1_f6fno"]
-
-[sub_resource type="FontFile" id="FontFile_dwpnw"]
-cache/0/variation_coordinates = {}
-cache/0/face_index = 0
-cache/0/embolden = 0.0
-cache/0/transform = Transform2D(1, 0, 0, 1, 0, 0)
-cache/0/spacing_top = 0
-cache/0/spacing_bottom = 0
-cache/0/spacing_space = 0
-cache/0/spacing_glyph = 0
-cache/0/baseline_offset = 0.0
-cache/0/16/0/ascent = 0.0
-cache/0/16/0/descent = 0.0
-cache/0/16/0/underline_position = 0.0
-cache/0/16/0/underline_thickness = 0.0
-cache/0/16/0/scale = 1.0
+[ext_resource type="FontFile" uid="uid://ci5gbe284cx6u" path="res://UI/Fonts/SuperBakery.ttf" id="3_k7f5j"]
 
 [node name="Overview" type="Control" unique_id=556799154]
 layout_mode = 3
@@ -36,26 +21,63 @@ offset_bottom = 40.0
 texture = ExtResource("1_f6fno")
 
 [node name="Stage" type="Label" parent="TextureRect" unique_id=9066054]
+z_index = 1
 layout_mode = 0
-offset_left = 8.0
-offset_top = 46.0
-offset_right = 215.0
-offset_bottom = 69.0
+offset_left = 13.0
+offset_top = 44.0
+offset_right = 220.0
+offset_bottom = 67.0
+theme_override_fonts/font = ExtResource("3_k7f5j")
+text = "Seed"
+
+[node name="Shadow" type="Label" parent="TextureRect/Stage" unique_id=1236907149]
+z_index = -1
+layout_mode = 0
+offset_top = 1.0
+offset_right = 207.0
+offset_bottom = 24.0
+theme_override_colors/font_color = Color(0.5803922, 0.5921569, 0.6627451, 1)
+theme_override_fonts/font = ExtResource("3_k7f5j")
 text = "Seed"
 
 [node name="Name" type="Label" parent="TextureRect" unique_id=342244826]
+z_index = 1
 layout_mode = 0
-offset_left = 17.0
-offset_top = 18.0
-offset_right = 224.0
-offset_bottom = 41.0
-theme_override_fonts/font = SubResource("FontFile_dwpnw")
+offset_left = 11.0
+offset_top = 15.0
+offset_right = 218.0
+offset_bottom = 43.0
+theme_override_fonts/font = ExtResource("3_k7f5j")
+theme_override_font_sizes/font_size = 22
+text = "Cabbage"
+
+[node name="Shadow" type="Label" parent="TextureRect/Name" unique_id=1715426624]
+z_index = -1
+layout_mode = 0
+offset_top = 1.0
+offset_right = 207.0
+offset_bottom = 29.0
+theme_override_colors/font_color = Color(0.5803922, 0.5921569, 0.6627451, 1)
+theme_override_fonts/font = ExtResource("3_k7f5j")
+theme_override_font_sizes/font_size = 22
 text = "Cabbage"
 
 [node name="Time" type="Label" parent="TextureRect" unique_id=1533893957]
+z_index = 1
 layout_mode = 0
-offset_left = 8.0
+offset_left = 10.0
 offset_top = 69.0
-offset_right = 215.0
+offset_right = 217.0
 offset_bottom = 92.0
+theme_override_fonts/font = ExtResource("3_k7f5j")
+text = "40 min till change"
+
+[node name="Shadow" type="Label" parent="TextureRect/Time" unique_id=2016628381]
+z_index = -1
+layout_mode = 0
+offset_top = 1.0
+offset_right = 207.0
+offset_bottom = 24.0
+theme_override_colors/font_color = Color(0.5803922, 0.5921569, 0.6627451, 1)
+theme_override_fonts/font = ExtResource("3_k7f5j")
 text = "40 min till change"

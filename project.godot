@@ -18,6 +18,8 @@ config/icon="res://icon.svg"
 [autoload]
 
 HoverVariables="*uid://cfgl82r88d183"
+PlayerVariables="*uid://ch0mpmr8anscv"
+SeasonVariables="*uid://balmymobudfur"
 
 [editor_plugins]
 

@@ -3,7 +3,6 @@ extends Control
 @onready var plants: TileMapLayer = get_node("/root/Game/Plants")
 @onready var container = get_child(0).get_child(0)
 
-# Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	var temp_fruit = preload("res://nodes/Icon.tscn")
 	
@@ -14,4 +13,3 @@ func _ready() -> void:
 		new_fruit.name = plant
 		new_fruit.get_child(0).texture = plant_info[plant]["icon"]
 		container.add_child(new_fruit)
-	pass # Replace with function body.

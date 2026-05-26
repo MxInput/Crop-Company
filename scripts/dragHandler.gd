@@ -17,15 +17,11 @@ func _process(_delta: float) -> void:
 			HoverVariables.dragging = get_parent().name
 	if Input.is_action_just_released("click"):
 		if HoverVariables.dragging == get_parent().name:
-			print("cancel")
 			plants.plant(self.get_parent().name)
 			dragged_obj.visible = false
 			HoverVariables.hovered_on = ""
 			HoverVariables.dragging = ""
-	pass
-	
+
 func _on_mouse_entered() -> void:
-	print("found")
 	if HoverVariables.dragging == "":
 		HoverVariables.hovered_on = get_parent().name
-	pass # Replace with function body.
