@@ -5,7 +5,8 @@ extends TileMapLayer
 
 @onready var tree_placement = get_child(0)
 @onready var tree_placement_sprite = tree_placement.get_child(0)
-@onready var tree_placement_area = tree_placement.get_child(1)
+@onready var plant_check = tree_placement.get_child(2)
+@onready var ground_check = tree_placement.get_child(1)
 
 @onready var able_to_place = preload("res://tiles/toolbar/trees/able.png")
 @onready var unable_to_place = preload("res://tiles/toolbar/trees/unable.png")
@@ -51,10 +52,10 @@ var plant_info = {
 
 var tree_info = {
 	"Apple": {
-		"stage1": { "sec": 30, "tile_id": 19},
-		"stage2": { "sec": 40, "tile_id": 8},
-		"stage3": { "sec": 50, "tile_id": 9},
-		"stage4": {"tile_id": 10},
+		"stage1": { "sec": 4, "tile_id": 19},
+		"stage2": { "sec": 4, "tile_id": 18},
+		"stage3": { "sec": 4, "tile_id": 16},
+		"stage4": {"tile_id": 17},
 		"icon": load("res://tiles/toolbar/trees/Apple_Icon.png")
 	}
 }
@@ -62,13 +63,19 @@ var tree_info = {
 var plant_data = {}
 	
 func move_placement():
+	tree_placement.visible = true
 	tree_placement.position = (get_local_mouse_position())
 	tree_placement_sprite.texture = able_to_place
 	
-	if tree_placement_area.has_overlapping_bodies:
-		for body in tree_placement_area.get_overlapping_bodies():
+	if plant_check.has_overlapping_bodies:
+		for body in plant_check.get_overlapping_bodies():
 			if body.name == name:
 				tree_placement_sprite.texture = unable_to_place
+			elif ground_check.has_overlapping_bodies:
+				for ground in ground_check.get_overlapping_bodies():
+					if ground.name == terrain.name:
+						tree_placement_sprite.texture = unable_to_place
+						
 	
 func plant(plant_name) -> void:
 	var local_pos = terrain.to_local(get_global_mouse_position())
@@ -78,12 +85,16 @@ func plant(plant_name) -> void:
 	var self_tile_id = get_cell_source_id(cell_pos)
 
 	if tree_info.get(plant_name):
-		print(plant_name)
+		if tree_placement_sprite.texture == able_to_place:
+			for x in 3:
+				for y in 4:
+					plant_data[cell_pos + Vector2i(x-1, y-2)] = { "fruit_name" : plant_name, "stage" : 1, "time" : 0, "type": "tree", "initial": cell_pos}
+					set_cell(cell_pos + Vector2i(x-1, y-2), tree_info[plant_name]["stage1"]["tile_id"], Vector2i(x, y))
 	else:
-		if PlayerVariables.player.buy(plant_info[plant_name]["price"]):
-			if (self_tile_id == -1):
-				if (tile_id == 1):
-					plant_data[cell_pos] = { "fruit_name" : plant_name, "stage" : 1, "time" : 0}
+		if (self_tile_id == -1):
+			if (tile_id == 1):
+				if PlayerVariables.player.buy(plant_info[plant_name]["price"]):
+					plant_data[cell_pos] = { "fruit_name" : plant_name, "stage" : 1, "time" : 0, "type": "crop"}
 					set_cell(cell_pos, plant_info[plant_name]["stage1"]["tile_id"], Vector2i(0, 0))
 		
 func _process(delta: float) -> void:
@@ -104,44 +115,90 @@ func _process(delta: float) -> void:
 	if (plant_data.has(cell_pos)):
 		var timeLeft 
 			
-		match plant_data[cell_pos]["stage"]: 
-			1:
-				var goal = plant_info[plant_data[cell_pos]["fruit_name"]]["stage1"]["sec"]
-				timeLeft = goal - plant_data[cell_pos]["time"]
-			2:
-				var goal = plant_info[plant_data[cell_pos]["fruit_name"]]["stage2"]["sec"]
-				timeLeft = goal - plant_data[cell_pos]["time"]
-			3:
-				var goal = plant_info[plant_data[cell_pos]["fruit_name"]]["stage3"]["sec"]
-				timeLeft = goal - plant_data[cell_pos]["time"]
-			_:
-				timeLeft = 0
+		if plant_data[cell_pos]["type"] == "crop":
+			match plant_data[cell_pos]["stage"]: 
+				1:
+					var goal = plant_info[plant_data[cell_pos]["fruit_name"]]["stage1"]["sec"]
+					timeLeft = goal - plant_data[cell_pos]["time"]
+				2:
+					var goal = plant_info[plant_data[cell_pos]["fruit_name"]]["stage2"]["sec"]
+					timeLeft = goal - plant_data[cell_pos]["time"]
+				3:
+					var goal = plant_info[plant_data[cell_pos]["fruit_name"]]["stage3"]["sec"]
+					timeLeft = goal - plant_data[cell_pos]["time"]
+				_:
+					timeLeft = 0
+		else:
+			match plant_data[cell_pos]["stage"]: 
+				1:
+					var goal = tree_info[plant_data[cell_pos]["fruit_name"]]["stage1"]["sec"]
+					timeLeft = goal - plant_data[cell_pos]["time"]
+				2:
+					var goal = tree_info[plant_data[cell_pos]["fruit_name"]]["stage2"]["sec"]
+					timeLeft = goal - plant_data[cell_pos]["time"]
+				3:
+					var goal = tree_info[plant_data[cell_pos]["fruit_name"]]["stage3"]["sec"]
+					timeLeft = goal - plant_data[cell_pos]["time"]
+				_:
+					timeLeft = 0
 		overview.display(str(plant_data[cell_pos]["stage"]), plant_data[cell_pos]["fruit_name"], str(ceil(timeLeft)))
 	else:
 		overview.visible = false
 		
 	for plant in plant_data:
 		var stage = plant_data[plant]["stage"]
-		if stage < 4:
-			plant_data[plant]["time"] += delta
-			match stage:
-				1:
-					var goal = plant_info[plant_data[plant]["fruit_name"]]["stage1"]["sec"]
-					if plant_data[plant]["time"] >= goal:
-						plant_data[plant]["stage"] += 1
-						plant_data[plant]["time"] = 0
-						set_cell(plant, plant_info[plant_data[plant]["fruit_name"]]["stage2"]["tile_id"], Vector2i(0, 0))
-				2:
-					var goal = plant_info[plant_data[plant]["fruit_name"]]["stage2"]["sec"]
-					if plant_data[plant]["time"] >= goal:
-						plant_data[plant]["stage"] += 1
-						plant_data[plant]["time"] = 0
-						set_cell(plant, plant_info[plant_data[plant]["fruit_name"]]["stage3"]["tile_id"], Vector2i(0, 0))
-				3:
-					var goal = plant_info[plant_data[plant]["fruit_name"]]["stage3"]["sec"]
-					if plant_data[plant]["time"] >= goal:
-						plant_data[plant]["stage"] += 1
-						plant_data[plant]["time"] = 0
-						set_cell(plant, plant_info[plant_data[plant]["fruit_name"]]["stage4"]["tile_id"], Vector2i(0, 0))
-				
+		var type = plant_data[plant]["type"]
+		if type == "crop":
+			if stage < 4:
+				plant_data[plant]["time"] += delta
+				match stage:
+					1:
+						var goal = plant_info[plant_data[plant]["fruit_name"]]["stage1"]["sec"]
+						if plant_data[plant]["time"] >= goal:
+							plant_data[plant]["stage"] += 1
+							plant_data[plant]["time"] = 0
+							set_cell(plant, plant_info[plant_data[plant]["fruit_name"]]["stage2"]["tile_id"], Vector2i(0, 0))
+					2:
+						var goal = plant_info[plant_data[plant]["fruit_name"]]["stage2"]["sec"]
+						if plant_data[plant]["time"] >= goal:
+							plant_data[plant]["stage"] += 1
+							plant_data[plant]["time"] = 0
+							set_cell(plant, plant_info[plant_data[plant]["fruit_name"]]["stage3"]["tile_id"], Vector2i(0, 0))
+					3:
+						var goal = plant_info[plant_data[plant]["fruit_name"]]["stage3"]["sec"]
+						if plant_data[plant]["time"] >= goal:
+							plant_data[plant]["stage"] += 1
+							plant_data[plant]["time"] = 0
+							set_cell(plant, plant_info[plant_data[plant]["fruit_name"]]["stage4"]["tile_id"], Vector2i(0, 0))
+		else:
+			if stage < 4:
+				plant_data[plant]["time"] += delta
+				match stage:
+					1:
+						var goal = tree_info[plant_data[plant]["fruit_name"]]["stage1"]["sec"]
+						var initial = plant_data[plant]["initial"]
+						if plant_data[plant]["time"] >= goal:
+							plant_data[plant]["stage"] += 1
+							plant_data[plant]["time"] = 0
+							for x in 3:
+								for y in 4:
+									set_cell(initial + Vector2i(x-1, y-2), tree_info[plant_data[plant]["fruit_name"]]["stage2"]["tile_id"], Vector2i(x, y))
+					2:
+						var goal = tree_info[plant_data[plant]["fruit_name"]]["stage2"]["sec"]
+						var initial = plant_data[plant]["initial"]
+						if plant_data[plant]["time"] >= goal:
+							plant_data[plant]["stage"] += 1
+							plant_data[plant]["time"] = 0
+							for x in 3:
+								for y in 4:
+									set_cell(initial + Vector2i(x-1, y-2), tree_info[plant_data[plant]["fruit_name"]]["stage3"]["tile_id"], Vector2i(x, y))
+					3:
+						var goal = tree_info[plant_data[plant]["fruit_name"]]["stage3"]["sec"]
+						var initial = plant_data[plant]["initial"]
+						if plant_data[plant]["time"] >= goal:
+							plant_data[plant]["stage"] += 1
+							plant_data[plant]["time"] = 0
+							for x in 3:
+								for y in 4:
+									set_cell(initial + Vector2i(x-1, y-2), tree_info[plant_data[plant]["fruit_name"]]["stage4"]["tile_id"], Vector2i(x, y))
 	
