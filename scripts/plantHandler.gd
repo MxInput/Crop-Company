@@ -1,6 +1,7 @@
 extends TileMapLayer
 
 @onready var terrain: TileMapLayer = get_node("/root/Game/Terrain")
+@onready var overview: Control = get_node("/root/Game/Overview")
 
 var plant_info = {
 	"Watermelon": {
@@ -25,10 +26,10 @@ var plant_info = {
 		"icon": load("res://tiles/toolbar/fruits/pumpkin_icon.png")
 	},
 	"Butternut Squash": {
-		"stage1": { "sec": 30, "tile_id": 11},
-		"stage2": { "sec": 40, "tile_id": 8},
-		"stage3": { "sec": 50, "tile_id": 9},
-		"stage4": {"tile_id": 10},
+		"stage1": { "sec": 30, "tile_id": 15},
+		"stage2": { "sec": 40, "tile_id": 14},
+		"stage3": { "sec": 50, "tile_id": 12},
+		"stage4": {"tile_id": 13},
 		"icon": load("res://tiles/toolbar/fruits/butternut_icon.png")
 	}
 }
@@ -64,29 +65,46 @@ func _process(delta: float) -> void:
 	var cell_pos = local_to_map(mouse_pos)
 	
 	if (plant_data.has(cell_pos)):
-		print(plant_data[cell_pos]["fruit_name"])
-	
+		var timeLeft 
+			
+		match plant_data[cell_pos]["stage"]: 
+			1:
+				var goal = plant_info[plant_data[cell_pos]["fruit_name"]]["stage1"]["sec"]
+				timeLeft = goal - plant_data[cell_pos]["time"]
+			2:
+				var goal = plant_info[plant_data[cell_pos]["fruit_name"]]["stage2"]["sec"]
+				timeLeft = goal - plant_data[cell_pos]["time"]
+			3:
+				var goal = plant_info[plant_data[cell_pos]["fruit_name"]]["stage3"]["sec"]
+				timeLeft = goal - plant_data[cell_pos]["time"]
+			_:
+				timeLeft = 0
+		overview.display(str(plant_data[cell_pos]["stage"]), plant_data[cell_pos]["fruit_name"], str(ceil(timeLeft)))
+	else:
+		overview.visible = false
+		
 	for plant in plant_data:
 		var stage = plant_data[plant]["stage"]
 		if stage < 4:
 			plant_data[plant]["time"] += delta
-			if stage == 1:
-				var goal = plant_info[plant_data[plant]["fruit_name"]]["stage1"]["sec"]
-				if plant_data[plant]["time"] >= goal:
-					plant_data[plant]["stage"] += 1
-					plant_data[plant]["time"] = 0
-					set_cell(plant, plant_info[plant_data[plant]["fruit_name"]]["stage2"]["tile_id"], Vector2i(0, 0))
-			elif stage == 2:
-				var goal = plant_info[plant_data[plant]["fruit_name"]]["stage2"]["sec"]
-				if plant_data[plant]["time"] >= goal:
-					plant_data[plant]["stage"] += 1
-					plant_data[plant]["time"] = 0
-					set_cell(plant, plant_info[plant_data[plant]["fruit_name"]]["stage3"]["tile_id"], Vector2i(0, 0))
-			elif stage == 3:
-				var goal = plant_info[plant_data[plant]["fruit_name"]]["stage3"]["sec"]
-				if plant_data[plant]["time"] >= goal:
-					plant_data[plant]["stage"] += 1
-					plant_data[plant]["time"] = 0
-					set_cell(plant, plant_info[plant_data[plant]["fruit_name"]]["stage4"]["tile_id"], Vector2i(0, 0))
+			match stage:
+				1:
+					var goal = plant_info[plant_data[plant]["fruit_name"]]["stage1"]["sec"]
+					if plant_data[plant]["time"] >= goal:
+						plant_data[plant]["stage"] += 1
+						plant_data[plant]["time"] = 0
+						set_cell(plant, plant_info[plant_data[plant]["fruit_name"]]["stage2"]["tile_id"], Vector2i(0, 0))
+				2:
+					var goal = plant_info[plant_data[plant]["fruit_name"]]["stage2"]["sec"]
+					if plant_data[plant]["time"] >= goal:
+						plant_data[plant]["stage"] += 1
+						plant_data[plant]["time"] = 0
+						set_cell(plant, plant_info[plant_data[plant]["fruit_name"]]["stage3"]["tile_id"], Vector2i(0, 0))
+				3:
+					var goal = plant_info[plant_data[plant]["fruit_name"]]["stage3"]["sec"]
+					if plant_data[plant]["time"] >= goal:
+						plant_data[plant]["stage"] += 1
+						plant_data[plant]["time"] = 0
+						set_cell(plant, plant_info[plant_data[plant]["fruit_name"]]["stage4"]["tile_id"], Vector2i(0, 0))
 				
 	

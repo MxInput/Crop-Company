@@ -5,9 +5,9 @@
 [ext_resource type="Script" uid="uid://c2tcl0ola05at" path="res://scripts/clickHandler.gd" id="3_g5j3c"]
 [ext_resource type="Texture2D" uid="uid://cou6sjg11ar6l" path="res://tiles/select.png" id="4_6hfer"]
 [ext_resource type="Script" uid="uid://cqj5kdjgmiq4h" path="res://scripts/cameraController.gd" id="5_flw6b"]
+[ext_resource type="PackedScene" uid="uid://cba0025bwgh02" path="res://nodes/Overview.tscn" id="6_14ebw"]
 [ext_resource type="PackedScene" uid="uid://dndniilkom3fx" path="res://nodes/Toolbar.tscn" id="6_iae2t"]
 [ext_resource type="Texture2D" uid="uid://cymecwa1s5t5i" path="res://tiles/plants/crops/watermelon/watermelon_almost.png" id="7_g42si"]
-[ext_resource type="Texture2D" uid="uid://cdqusjw0ts2qd" path="res://icon.svg" id="7_yuymb"]
 [ext_resource type="Texture2D" uid="uid://dk1vcvbxdj8tu" path="res://tiles/plants/crops/watermelon/watermelon_ready.png" id="8_j4xau"]
 [ext_resource type="Texture2D" uid="uid://dhl3bwmfjb3ea" path="res://tiles/plants/crops/pumpkin/pumpkin_ready.png" id="9_7vemi"]
 [ext_resource type="Texture2D" uid="uid://cs83cciiwcehj" path="res://tiles/plants/crops/watermelon/watermelon_sapling.png" id="9_k6djt"]
@@ -15,9 +15,13 @@
 [ext_resource type="Texture2D" uid="uid://cbbq06j4psv6a" path="res://tiles/plants/crops/pumpkin/pumpkin_seed.png" id="10_yuymb"]
 [ext_resource type="Script" uid="uid://g0h53se4mujf" path="res://scripts/plantHandler.gd" id="11_j4xau"]
 [ext_resource type="Texture2D" uid="uid://by0uqbuk2pjk5" path="res://tiles/plants/crops/carrot/carrot_almost.png" id="11_rqcqk"]
+[ext_resource type="Texture2D" uid="uid://dphfh7imetqrb" path="res://tiles/plants/crops/butternut/butternut_almost.png" id="12_14ebw"]
 [ext_resource type="Texture2D" uid="uid://e3plngysj0xc" path="res://tiles/plants/crops/carrot/carrot_ready.png" id="12_rge8o"]
 [ext_resource type="Texture2D" uid="uid://dxfekj7d4mfqi" path="res://tiles/plants/crops/carrot/carrot_sapling.png" id="13_ario3"]
+[ext_resource type="Texture2D" uid="uid://bi462f40acaci" path="res://tiles/plants/crops/butternut/butternut_ready.png" id="13_hl4dp"]
 [ext_resource type="Texture2D" uid="uid://0j4kdbokbnmn" path="res://tiles/plants/crops/carrot/carrot_seed.png" id="14_7vemi"]
+[ext_resource type="Texture2D" uid="uid://ccii25og6dgkq" path="res://tiles/plants/crops/butternut/butternut_sapling.png" id="14_d7d7s"]
+[ext_resource type="Texture2D" uid="uid://banmfg0nja3ri" path="res://tiles/plants/crops/butternut/butternut_seed.png" id="15_4teul"]
 [ext_resource type="Texture2D" uid="uid://c03cwuvp3sa58" path="res://tiles/plants/crops/pumpkin/pumpkin_sapling.png" id="15_yuymb"]
 [ext_resource type="Texture2D" uid="uid://csgos17oceag1" path="res://tiles/plants/crops/pumpkin/pumpkin_almost.png" id="18_5xfwu"]
 
@@ -53,6 +57,26 @@ texture_region_size = Vector2i(32, 32)
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_4teul"]
 texture = ExtResource("10_yuymb")
+texture_region_size = Vector2i(32, 32)
+0:0/0 = 0
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_65f1w"]
+texture = ExtResource("12_14ebw")
+texture_region_size = Vector2i(32, 32)
+0:0/0 = 0
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_5vka4"]
+texture = ExtResource("13_hl4dp")
+texture_region_size = Vector2i(32, 32)
+0:0/0 = 0
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_yl7r8"]
+texture = ExtResource("14_d7d7s")
+texture_region_size = Vector2i(32, 32)
+0:0/0 = 0
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_5jmek"]
+texture = ExtResource("15_4teul")
 texture_region_size = Vector2i(32, 32)
 0:0/0 = 0
 
@@ -110,6 +134,10 @@ sources/8 = SubResource("TileSetAtlasSource_hl4dp")
 sources/9 = SubResource("TileSetAtlasSource_mksf2")
 sources/10 = SubResource("TileSetAtlasSource_d7d7s")
 sources/11 = SubResource("TileSetAtlasSource_4teul")
+sources/12 = SubResource("TileSetAtlasSource_65f1w")
+sources/13 = SubResource("TileSetAtlasSource_5vka4")
+sources/14 = SubResource("TileSetAtlasSource_yl7r8")
+sources/15 = SubResource("TileSetAtlasSource_5jmek")
 
 [node name="Game" type="Node" unique_id=182748300]
 
@@ -131,16 +159,17 @@ limit_right = 1500
 limit_bottom = 1000
 script = ExtResource("5_flw6b")
 
+[node name="Overview" parent="." unique_id=556799154 instance=ExtResource("6_14ebw")]
+offset_left = -496.0
+offset_top = 9.0
+offset_right = -496.0
+offset_bottom = 9.0
+
 [node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=1557134395]
 
 [node name="Toolbar" parent="CanvasLayer" unique_id=1074677494 instance=ExtResource("6_iae2t")]
 offset_top = 504.0
 offset_bottom = 504.0
-
-[node name="TextureRect" type="TextureRect" parent="CanvasLayer" unique_id=963501238]
-offset_right = 40.0
-offset_bottom = 40.0
-texture = ExtResource("7_yuymb")
 
 [node name="Dragged" type="Node2D" parent="." unique_id=966772768]
 visible = false
