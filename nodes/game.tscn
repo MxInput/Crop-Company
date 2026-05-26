@@ -8,18 +8,20 @@
 [ext_resource type="PackedScene" uid="uid://cba0025bwgh02" path="res://nodes/Overview.tscn" id="6_14ebw"]
 [ext_resource type="PackedScene" uid="uid://dndniilkom3fx" path="res://nodes/Toolbar.tscn" id="6_iae2t"]
 [ext_resource type="Texture2D" uid="uid://cymecwa1s5t5i" path="res://tiles/plants/crops/watermelon/watermelon_almost.png" id="7_g42si"]
-[ext_resource type="Texture2D" uid="uid://cdqusjw0ts2qd" path="res://icon.svg" id="7_yuymb"]
 [ext_resource type="Script" uid="uid://djbcohifmxv4p" path="res://nodes/SeasonTeller.gd" id="8_d7d7s"]
-[ext_resource type="Script" uid="uid://df2bvro7bm717" path="res://nodes/CoinTeller.gd" id="8_hl4dp"]
 [ext_resource type="Texture2D" uid="uid://dk1vcvbxdj8tu" path="res://tiles/plants/crops/watermelon/watermelon_ready.png" id="8_j4xau"]
 [ext_resource type="Texture2D" uid="uid://dhl3bwmfjb3ea" path="res://tiles/plants/crops/pumpkin/pumpkin_ready.png" id="9_7vemi"]
 [ext_resource type="Texture2D" uid="uid://cs83cciiwcehj" path="res://tiles/plants/crops/watermelon/watermelon_sapling.png" id="9_k6djt"]
 [ext_resource type="Texture2D" uid="uid://835ev8cggm4a" path="res://tiles/plants/crops/watermelon/watermelon_seed.png" id="10_0sinr"]
+[ext_resource type="PackedScene" uid="uid://cgwqswi3itojf" path="res://nodes/Tool.tscn" id="10_4teul"]
 [ext_resource type="Texture2D" uid="uid://cbbq06j4psv6a" path="res://tiles/plants/crops/pumpkin/pumpkin_seed.png" id="10_yuymb"]
+[ext_resource type="Texture2D" uid="uid://dw4s2dffs3qes" path="res://UI/Tools/Shovel.png" id="11_5vka4"]
 [ext_resource type="Script" uid="uid://g0h53se4mujf" path="res://scripts/plantHandler.gd" id="11_j4xau"]
 [ext_resource type="Texture2D" uid="uid://by0uqbuk2pjk5" path="res://tiles/plants/crops/carrot/carrot_almost.png" id="11_rqcqk"]
 [ext_resource type="Texture2D" uid="uid://dphfh7imetqrb" path="res://tiles/plants/crops/butternut/butternut_almost.png" id="12_14ebw"]
 [ext_resource type="Texture2D" uid="uid://e3plngysj0xc" path="res://tiles/plants/crops/carrot/carrot_ready.png" id="12_rge8o"]
+[ext_resource type="Texture2D" uid="uid://d0guh1iwiukla" path="res://UI/Tools/Glove.png" id="12_yl7r8"]
+[ext_resource type="Texture2D" uid="uid://b20m8or21dmdj" path="res://UI/Tools/Hoe.png" id="13_5jmek"]
 [ext_resource type="Texture2D" uid="uid://dxfekj7d4mfqi" path="res://tiles/plants/crops/carrot/carrot_sapling.png" id="13_ario3"]
 [ext_resource type="Texture2D" uid="uid://bi462f40acaci" path="res://tiles/plants/crops/butternut/butternut_ready.png" id="13_hl4dp"]
 [ext_resource type="Texture2D" uid="uid://0j4kdbokbnmn" path="res://tiles/plants/crops/carrot/carrot_seed.png" id="14_7vemi"]
@@ -27,6 +29,7 @@
 [ext_resource type="Texture2D" uid="uid://banmfg0nja3ri" path="res://tiles/plants/crops/butternut/butternut_seed.png" id="15_4teul"]
 [ext_resource type="Texture2D" uid="uid://c03cwuvp3sa58" path="res://tiles/plants/crops/pumpkin/pumpkin_sapling.png" id="15_yuymb"]
 [ext_resource type="Texture2D" uid="uid://csgos17oceag1" path="res://tiles/plants/crops/pumpkin/pumpkin_almost.png" id="18_5xfwu"]
+[ext_resource type="PackedScene" uid="uid://djx588r5klrch" path="res://nodes/CoinTeller.tscn" id="27_4teul"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_6hfer"]
 texture = ExtResource("1_cpdmu")
@@ -171,6 +174,12 @@ offset_bottom = 9.0
 
 [node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=1557134395]
 
+[node name="TextureRect" parent="CanvasLayer" unique_id=88447049 instance=ExtResource("27_4teul")]
+offset_left = 3.0
+offset_top = 3.0
+offset_right = 259.0
+offset_bottom = 67.0
+
 [node name="Toolbar" parent="CanvasLayer" unique_id=1074677494 instance=ExtResource("6_iae2t")]
 offset_top = 504.0
 offset_bottom = 504.0
@@ -182,25 +191,29 @@ offset_bottom = 23.0
 text = "Fall"
 script = ExtResource("8_d7d7s")
 
-[node name="Coins" type="Label" parent="CanvasLayer" unique_id=864989915]
-offset_right = 40.0
-offset_bottom = 23.0
-script = ExtResource("8_hl4dp")
+[node name="Shovel" parent="CanvasLayer" unique_id=19308870 instance=ExtResource("10_4teul")]
+offset_left = 13.0
+offset_top = 258.0
+offset_right = 85.0
+offset_bottom = 330.0
+icon = ExtResource("11_5vka4")
+flat = true
 
-[node name="Button" type="Button" parent="CanvasLayer" unique_id=305452950]
-offset_left = 8.0
-offset_top = 84.0
-offset_right = 144.0
-offset_bottom = 220.0
-icon = ExtResource("7_yuymb")
+[node name="Glove" parent="CanvasLayer" unique_id=353776630 instance=ExtResource("10_4teul")]
+offset_left = 11.0
+offset_top = 90.0
+offset_right = 83.0
+offset_bottom = 162.0
+icon = ExtResource("12_yl7r8")
+flat = true
 
-[node name="Button" type="Button" parent="CanvasLayer/Button" unique_id=1277600409]
-layout_mode = 0
-offset_left = 4.0
-offset_top = 163.0
-offset_right = 140.0
-offset_bottom = 299.0
-icon = ExtResource("7_yuymb")
+[node name="Hoe" parent="CanvasLayer" unique_id=410722911 instance=ExtResource("10_4teul")]
+offset_left = 12.0
+offset_top = 174.0
+offset_right = 84.0
+offset_bottom = 246.0
+icon = ExtResource("13_5jmek")
+flat = true
 
 [node name="Dragged" type="Node2D" parent="." unique_id=966772768]
 visible = false

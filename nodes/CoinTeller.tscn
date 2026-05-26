@@ -1,0 +1,55 @@
+[gd_scene format=3 uid="uid://djx588r5klrch"]
+
+[ext_resource type="Texture2D" uid="uid://cseicgud6lfs3" path="res://UI/Coin/Coin_Bar.png" id="1_1cwsi"]
+[ext_resource type="FontFile" uid="uid://ci5gbe284cx6u" path="res://UI/Fonts/SuperBakery.ttf" id="2_jovdy"]
+[ext_resource type="Script" uid="uid://df2bvro7bm717" path="res://nodes/CoinTeller.gd" id="3_0wqy5"]
+[ext_resource type="Texture2D" uid="uid://dveyt6255dejb" path="res://UI/Coin/Coin.png" id="4_jul3e"]
+
+[node name="CoinTeller" type="TextureRect" unique_id=88447049]
+offset_left = 5.0
+offset_top = 9.0
+offset_right = 261.0
+offset_bottom = 73.0
+texture = ExtResource("1_1cwsi")
+
+[node name="Coins" type="Label" parent="." unique_id=309695276]
+z_index = 2
+layout_mode = 0
+offset_left = 58.0
+offset_top = 6.0
+offset_right = 157.0
+offset_bottom = 55.0
+theme_override_fonts/font = ExtResource("2_jovdy")
+theme_override_font_sizes/font_size = 40
+text = "COINS"
+script = ExtResource("3_0wqy5")
+
+[node name="Shadow" type="Label" parent="Coins" unique_id=488064932]
+z_index = -1
+layout_mode = 0
+offset_top = 2.0
+offset_right = 99.0
+offset_bottom = 51.0
+theme_override_colors/font_color = Color(0.58538264, 0.6093875, 0.7061206, 1)
+theme_override_fonts/font = ExtResource("2_jovdy")
+theme_override_font_sizes/font_size = 40
+text = "COINS"
+
+[node name="TextureRect" type="TextureRect" parent="." unique_id=1917182206]
+z_index = 2
+layout_mode = 0
+offset_left = -4.0
+offset_top = -2.0
+offset_right = 60.0
+offset_bottom = 62.0
+texture = ExtResource("4_jul3e")
+
+[node name="TextureRect" type="TextureRect" parent="TextureRect" unique_id=743171930]
+modulate = Color(0.23031479, 0.23031497, 0.23031488, 1)
+z_index = -1
+layout_mode = 0
+offset_left = -3.0
+offset_top = 4.0
+offset_right = 61.0
+offset_bottom = 68.0
+texture = ExtResource("4_jul3e")
