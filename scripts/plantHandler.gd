@@ -104,9 +104,15 @@ func _process(delta: float) -> void:
 	if Input.is_action_pressed("click"):
 		if (plant_data.has(cell_pos)):
 			if plant_data[cell_pos]["stage"] == 4:
-				PlayerVariables.player.sell(plant_info[plant_data[cell_pos]["fruit_name"]]["sell"])
+				if plant_data[cell_pos]["type"] == "crop":
+					PlayerVariables.player.sell(plant_info[plant_data[cell_pos]["fruit_name"]]["sell"])
+				else:
+					PlayerVariables.player.sell(tree_info[plant_data[cell_pos]["fruit_name"]]["sell"])
 			elif ToolVariables.current_tool == "Shovel":
-				PlayerVariables.player.sell(plant_info[plant_data[cell_pos]["fruit_name"]]["price"])
+				if plant_data[cell_pos]["type"] == "crop":
+					PlayerVariables.player.sell(plant_info[plant_data[cell_pos]["fruit_name"]]["price"])
+				else:
+					PlayerVariables.player.sell(tree_info[plant_data[cell_pos]["fruit_name"]]["price"])
 			if ToolVariables.current_tool == "Shovel" or plant_data[cell_pos]["stage"] == 4:
 				plant_data.erase(cell_pos)
 				set_cell(cell_pos, -1, Vector2i(0,0))

@@ -8,7 +8,6 @@
 [ext_resource type="PackedScene" uid="uid://cba0025bwgh02" path="res://nodes/Overview.tscn" id="6_14ebw"]
 [ext_resource type="PackedScene" uid="uid://dndniilkom3fx" path="res://nodes/Toolbar.tscn" id="6_iae2t"]
 [ext_resource type="Texture2D" uid="uid://cymecwa1s5t5i" path="res://tiles/plants/crops/watermelon/watermelon_almost.png" id="7_g42si"]
-[ext_resource type="Script" uid="uid://djbcohifmxv4p" path="res://nodes/SeasonTeller.gd" id="8_d7d7s"]
 [ext_resource type="Texture2D" uid="uid://dk1vcvbxdj8tu" path="res://tiles/plants/crops/watermelon/watermelon_ready.png" id="8_j4xau"]
 [ext_resource type="Texture2D" uid="uid://dhl3bwmfjb3ea" path="res://tiles/plants/crops/pumpkin/pumpkin_ready.png" id="9_7vemi"]
 [ext_resource type="Texture2D" uid="uid://cs83cciiwcehj" path="res://tiles/plants/crops/watermelon/watermelon_sapling.png" id="9_k6djt"]
@@ -38,6 +37,7 @@
 [ext_resource type="Texture2D" uid="uid://bqfe2hfct7eqg" path="res://tiles/plants/trees/apple/apple_sapling.png" id="27_njtgi"]
 [ext_resource type="Texture2D" uid="uid://bsd74p1ixttwb" path="res://tiles/plants/trees/apple/apple_seed.png" id="28_r25gb"]
 [ext_resource type="Texture2D" uid="uid://bd2wciqx2wil5" path="res://tiles/toolbar/trees/able.png" id="38_csyuo"]
+[ext_resource type="PackedScene" uid="uid://r2whf4s76sna" path="res://nodes/Clock.tscn" id="38_njtgi"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_6hfer"]
 texture = ExtResource("1_cpdmu")
@@ -333,13 +333,6 @@ offset_bottom = 67.0
 offset_top = 504.0
 offset_bottom = 504.0
 
-[node name="Season" type="Label" parent="CanvasLayer" unique_id=1004419344]
-offset_left = 153.0
-offset_right = 193.0
-offset_bottom = 23.0
-text = "Fall"
-script = ExtResource("8_d7d7s")
-
 [node name="Shovel" parent="CanvasLayer" unique_id=19308870 instance=ExtResource("10_4teul")]
 offset_left = 13.0
 offset_top = 258.0
@@ -369,6 +362,8 @@ icon = ExtResource("13_5jmek")
 flat = true
 norm = ExtResource("13_5jmek")
 selected = ExtResource("16_hw60i")
+
+[node name="Clock" parent="CanvasLayer" unique_id=1813403149 instance=ExtResource("38_njtgi")]
 
 [node name="Dragged" type="Node2D" parent="." unique_id=966772768]
 visible = false

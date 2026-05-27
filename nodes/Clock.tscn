@@ -1,0 +1,20 @@
+[gd_scene format=3 uid="uid://r2whf4s76sna"]
+
+[ext_resource type="Texture2D" uid="uid://daokho801td7n" path="res://UI/Clock/spring.png" id="1_rd1l1"]
+[ext_resource type="Script" uid="uid://djbcohifmxv4p" path="res://nodes/SeasonTeller.gd" id="2_28whe"]
+[ext_resource type="Texture2D" uid="uid://kh72ldvon8gs" path="res://UI/Clock/hand.png" id="2_sj7uw"]
+
+[node name="Clock" type="TextureRect" unique_id=1813403149]
+offset_left = 944.0
+offset_top = 16.0
+offset_right = 1136.0
+offset_bottom = 176.0
+texture = ExtResource("1_rd1l1")
+script = ExtResource("2_28whe")
+
+[node name="Hand" type="TextureRect" parent="." unique_id=1319914088]
+layout_mode = 0
+offset_right = 192.0
+offset_bottom = 160.0
+pivot_offset = Vector2(90, 75)
+texture = ExtResource("2_sj7uw")

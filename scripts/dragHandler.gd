@@ -36,3 +36,7 @@ func _process(_delta: float) -> void:
 func _on_mouse_entered() -> void:
 	if HoverVariables.dragging == "":
 		HoverVariables.hovered_on = get_parent().name
+		
+func _on_mouse_exited() -> void:
+	if HoverVariables.dragging == "" && HoverVariables.hovered_on == get_parent().name:
+		HoverVariables.hovered_on = ""

@@ -1,4 +1,6 @@
-extends Label
+extends TextureRect
+
+@onready var hand = get_child(0)
 
 func _process(delta: float) -> void:
-	text = "Season: " + SeasonVariables.season.name + " Time In: " + str(ceil(SeasonVariables.season.time_in))
+	hand.rotation = (2 * PI * (SeasonVariables.season.time_in/SeasonVariables.length))

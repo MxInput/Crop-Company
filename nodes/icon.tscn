@@ -32,3 +32,4 @@ position = Vector2(20, 20)
 shape = SubResource("RectangleShape2D_2tbuw")
 
 [connection signal="mouse_entered" from="Area2D" to="Area2D" method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="Area2D" to="Area2D" method="_on_mouse_exited"]
