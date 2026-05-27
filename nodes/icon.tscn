@@ -24,6 +24,8 @@ texture = ExtResource("2_aa4oc")
 stretch_mode = 2
 
 [node name="Area2D" type="Area2D" parent="." unique_id=655225060]
+visible = false
+collision_priority = 2.0
 priority = 2
 script = ExtResource("3_jamr2")
 

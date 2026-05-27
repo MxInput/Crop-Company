@@ -5,6 +5,7 @@
 [ext_resource type="FontFile" uid="uid://ci5gbe284cx6u" path="res://UI/Fonts/SuperBakery.ttf" id="3_k7f5j"]
 
 [node name="Overview" type="Control" unique_id=556799154]
+visible = false
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -19,6 +20,48 @@ layout_mode = 0
 offset_right = 40.0
 offset_bottom = 40.0
 texture = ExtResource("1_f6fno")
+
+[node name="Sell" type="Label" parent="TextureRect" unique_id=1022864842]
+visible = false
+z_index = 1
+layout_mode = 0
+offset_left = 12.0
+offset_top = 44.0
+offset_right = 219.0
+offset_bottom = 67.0
+theme_override_fonts/font = ExtResource("3_k7f5j")
+text = "Seed"
+
+[node name="Shadow" type="Label" parent="TextureRect/Sell" unique_id=205395989]
+z_index = -1
+layout_mode = 0
+offset_top = 1.0
+offset_right = 207.0
+offset_bottom = 24.0
+theme_override_colors/font_color = Color(0.5803922, 0.5921569, 0.6627451, 1)
+theme_override_fonts/font = ExtResource("3_k7f5j")
+text = "Seed"
+
+[node name="Price" type="Label" parent="TextureRect" unique_id=1792093448]
+visible = false
+z_index = 1
+layout_mode = 0
+offset_left = 9.0
+offset_top = 69.0
+offset_right = 216.0
+offset_bottom = 92.0
+theme_override_fonts/font = ExtResource("3_k7f5j")
+text = "40 min till change"
+
+[node name="Shadow" type="Label" parent="TextureRect/Price" unique_id=361536150]
+z_index = -1
+layout_mode = 0
+offset_top = 1.0
+offset_right = 207.0
+offset_bottom = 24.0
+theme_override_colors/font_color = Color(0.5803922, 0.5921569, 0.6627451, 1)
+theme_override_fonts/font = ExtResource("3_k7f5j")
+text = "40 min till change"
 
 [node name="Stage" type="Label" parent="TextureRect" unique_id=9066054]
 z_index = 1

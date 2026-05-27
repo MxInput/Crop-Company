@@ -36,6 +36,7 @@
 [ext_resource type="PackedScene" uid="uid://djx588r5klrch" path="res://nodes/CoinTeller.tscn" id="27_4teul"]
 [ext_resource type="Texture2D" uid="uid://bqfe2hfct7eqg" path="res://tiles/plants/trees/apple/apple_sapling.png" id="27_njtgi"]
 [ext_resource type="Texture2D" uid="uid://bsd74p1ixttwb" path="res://tiles/plants/trees/apple/apple_seed.png" id="28_r25gb"]
+[ext_resource type="Texture2D" uid="uid://ele6y6fbxkoj" path="res://tiles/plants/trees/apple/apple_harvest.png" id="30_njtgi"]
 [ext_resource type="Texture2D" uid="uid://bd2wciqx2wil5" path="res://tiles/toolbar/trees/able.png" id="38_csyuo"]
 [ext_resource type="PackedScene" uid="uid://r2whf4s76sna" path="res://nodes/Clock.tscn" id="38_njtgi"]
 
@@ -222,6 +223,34 @@ texture_region_size = Vector2i(32, 32)
 0:0/0 = 0
 0:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-16, -16, 16, -16, 16, 16, -16, 16)
 
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_r25gb"]
+texture = ExtResource("30_njtgi")
+texture_region_size = Vector2i(32, 32)
+0:0/0 = 0
+0:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-16, -16, 16, -16, 16, 16, -16, 16)
+1:0/0 = 0
+1:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-16, -16, 16, -16, 16, 16, -16, 16)
+2:0/0 = 0
+2:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-16, -16, 16, -16, 16, 16, -16, 16)
+0:1/0 = 0
+0:1/0/physics_layer_0/polygon_0/points = PackedVector2Array(-16, -16, 16, -16, 16, 16, -16, 16)
+1:1/0 = 0
+1:1/0/physics_layer_0/polygon_0/points = PackedVector2Array(-16, -16, 16, -16, 16, 16, -16, 16)
+2:1/0 = 0
+2:1/0/physics_layer_0/polygon_0/points = PackedVector2Array(-16, -16, 16, -16, 16, 16, -16, 16)
+0:2/0 = 0
+0:2/0/physics_layer_0/polygon_0/points = PackedVector2Array(-16, -16, 16, -16, 16, 16, -16, 16)
+1:2/0 = 0
+1:2/0/physics_layer_0/polygon_0/points = PackedVector2Array(-16, -16, 16, -16, 16, 16, -16, 16)
+2:2/0 = 0
+2:2/0/physics_layer_0/polygon_0/points = PackedVector2Array(-16, -16, 16, -16, 16, 16, -16, 16)
+0:3/0 = 0
+0:3/0/physics_layer_0/polygon_0/points = PackedVector2Array(-16, -16, 16, -16, 16, 16, -16, 16)
+1:3/0 = 0
+1:3/0/physics_layer_0/polygon_0/points = PackedVector2Array(-16, -16, 16, -16, 16, 16, -16, 16)
+2:3/0 = 0
+2:3/0/physics_layer_0/polygon_0/points = PackedVector2Array(-16, -16, 16, -16, 16, 16, -16, 16)
+
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_rge8o"]
 texture = ExtResource("10_0sinr")
 texture_region_size = Vector2i(32, 32)
@@ -287,6 +316,7 @@ sources/16 = SubResource("TileSetAtlasSource_ha0qq")
 sources/17 = SubResource("TileSetAtlasSource_q4avf")
 sources/18 = SubResource("TileSetAtlasSource_07fvy")
 sources/19 = SubResource("TileSetAtlasSource_8lwub")
+sources/20 = SubResource("TileSetAtlasSource_r25gb")
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_njtgi"]
 size = Vector2(85, 59)
@@ -315,7 +345,6 @@ limit_bottom = 1000
 script = ExtResource("5_flw6b")
 
 [node name="Overview" parent="." unique_id=556799154 instance=ExtResource("6_14ebw")]
-visible = false
 offset_left = -496.0
 offset_top = 9.0
 offset_right = -496.0
@@ -364,6 +393,7 @@ norm = ExtResource("13_5jmek")
 selected = ExtResource("16_hw60i")
 
 [node name="Clock" parent="CanvasLayer" unique_id=1813403149 instance=ExtResource("38_njtgi")]
+mouse_filter = 0
 
 [node name="Dragged" type="Node2D" parent="." unique_id=966772768]
 visible = false
