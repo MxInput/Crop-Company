@@ -36,12 +36,13 @@ func inventory(givenName : String):
 	nameTeller.get_child(0).text = nameTeller.text
 	
 	if (plants.plant_info.get(givenName)):
-		sellTeller.text = str(plants.plant_info[givenName]["sell"])
-		priceTeller.text = str(plants.plant_info[givenName]["price"])
+		sellTeller.text = "Sells for " + str(plants.plant_info[givenName]["sell"])
+		priceTeller.text = "Buy for " + str(plants.plant_info[givenName]["price"])
 	else:
-		sellTeller.text = str(plants.tree_info[givenName]["sell"])
-		priceTeller.text = str(plants.tree_info[givenName]["sell"])
-		
+		sellTeller.text = "Sells for " + str(plants.tree_info[givenName]["sell"])
+		priceTeller.text = "Buy for " + str(plants.tree_info[givenName]["sell"])
+	sellTeller.get_child(0).text = sellTeller.text
+	priceTeller.get_child(0).text = priceTeller.text
 	
 func display(stage : String, type : String, givenName : String, time : String) -> void:
 	plant_use = true

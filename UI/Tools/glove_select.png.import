@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://brbt8bf4yiwsp"
-path="res://.godot/imported/Shovel.png-4eca9a8f321d389199def858777321d3.ctex"
+uid="uid://brjye1n2nh42g"
+path="res://.godot/imported/glove_select.png-93f0a386c3254a1ec26fdd7a63cb5a86.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://UI/Fonts/Shovel.png"
-dest_files=["res://.godot/imported/Shovel.png-4eca9a8f321d389199def858777321d3.ctex"]
+source_file="res://UI/Tools/glove_select.png"
+dest_files=["res://.godot/imported/glove_select.png-93f0a386c3254a1ec26fdd7a63cb5a86.ctex"]
 
 [params]
 

@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cg3vat8gulbf"
-path="res://.godot/imported/Glove.png-1bb774fcc4666ddb38d4cf1f8f19c53e.ctex"
+uid="uid://cojay48k77cco"
+path="res://.godot/imported/soil_watered.png-a87fc613d372df7e3714b7b157e6543f.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://UI/Fonts/Glove.png"
-dest_files=["res://.godot/imported/Glove.png-1bb774fcc4666ddb38d4cf1f8f19c53e.ctex"]
+source_file="res://tiles/terrain/soil_watered.png"
+dest_files=["res://.godot/imported/soil_watered.png-a87fc613d372df7e3714b7b157e6543f.ctex"]
 
 [params]
 

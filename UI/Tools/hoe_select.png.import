@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://brbt8bf4yiwsp"
-path="res://.godot/imported/Shovel.png-d6d2614383bb78894bc2a6bb68ed3b7c.ctex"
+uid="uid://condapjcw7bnt"
+path="res://.godot/imported/hoe_select.png-54924633a1b6915e506ff520a9fc10bc.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://UI/Tools/Shovel.png"
-dest_files=["res://.godot/imported/Shovel.png-d6d2614383bb78894bc2a6bb68ed3b7c.ctex"]
+source_file="res://UI/Tools/hoe_select.png"
+dest_files=["res://.godot/imported/hoe_select.png-54924633a1b6915e506ff520a9fc10bc.ctex"]
 
 [params]
 

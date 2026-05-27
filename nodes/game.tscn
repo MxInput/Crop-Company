@@ -3,6 +3,7 @@
 [ext_resource type="Texture2D" uid="uid://cda2j88elnhvi" path="res://tiles/terrain/grass.png" id="1_cpdmu"]
 [ext_resource type="Texture2D" uid="uid://wjrxm7l580ou" path="res://tiles/terrain/soil.png" id="2_g5j3c"]
 [ext_resource type="Script" uid="uid://c2tcl0ola05at" path="res://scripts/clickHandler.gd" id="3_g5j3c"]
+[ext_resource type="Texture2D" uid="uid://cojay48k77cco" path="res://tiles/terrain/soil_watered.png" id="3_qjdkp"]
 [ext_resource type="Texture2D" uid="uid://cou6sjg11ar6l" path="res://tiles/select.png" id="4_6hfer"]
 [ext_resource type="Script" uid="uid://cqj5kdjgmiq4h" path="res://scripts/cameraController.gd" id="5_flw6b"]
 [ext_resource type="PackedScene" uid="uid://cba0025bwgh02" path="res://nodes/Overview.tscn" id="6_14ebw"]
@@ -12,24 +13,30 @@
 [ext_resource type="Texture2D" uid="uid://dhl3bwmfjb3ea" path="res://tiles/plants/crops/pumpkin/pumpkin_ready.png" id="9_7vemi"]
 [ext_resource type="Texture2D" uid="uid://cs83cciiwcehj" path="res://tiles/plants/crops/watermelon/watermelon_sapling.png" id="9_k6djt"]
 [ext_resource type="Texture2D" uid="uid://835ev8cggm4a" path="res://tiles/plants/crops/watermelon/watermelon_seed.png" id="10_0sinr"]
+[ext_resource type="Texture2D" uid="uid://bs5tig2hwfjev" path="res://UI/Tools/watering_can.png" id="10_0uvmu"]
 [ext_resource type="PackedScene" uid="uid://cgwqswi3itojf" path="res://nodes/Tool.tscn" id="10_4teul"]
 [ext_resource type="Texture2D" uid="uid://cbbq06j4psv6a" path="res://tiles/plants/crops/pumpkin/pumpkin_seed.png" id="10_yuymb"]
-[ext_resource type="Texture2D" uid="uid://brbt8bf4yiwsp" path="res://UI/Fonts/Shovel.png" id="11_5vka4"]
+[ext_resource type="Texture2D" uid="uid://brbt8bf4yiwsp" path="res://UI/Tools/Shovel.png" id="11_5vka4"]
 [ext_resource type="Script" uid="uid://g0h53se4mujf" path="res://scripts/plantHandler.gd" id="11_j4xau"]
+[ext_resource type="Texture2D" uid="uid://b6ipsdj4gvk2o" path="res://UI/Tools/watering_can_select.png" id="11_qjdkp"]
 [ext_resource type="Texture2D" uid="uid://by0uqbuk2pjk5" path="res://tiles/plants/crops/carrot/carrot_almost.png" id="11_rqcqk"]
 [ext_resource type="Texture2D" uid="uid://dphfh7imetqrb" path="res://tiles/plants/crops/butternut/butternut_almost.png" id="12_14ebw"]
-[ext_resource type="Texture2D" uid="uid://bp3gg18voh468" path="res://UI/Fonts/shovel_select.png" id="12_ge3ne"]
+[ext_resource type="Texture2D" uid="uid://bp3gg18voh468" path="res://UI/Tools/shovel_select.png" id="12_ge3ne"]
 [ext_resource type="Texture2D" uid="uid://e3plngysj0xc" path="res://tiles/plants/crops/carrot/carrot_ready.png" id="12_rge8o"]
-[ext_resource type="Texture2D" uid="uid://cg3vat8gulbf" path="res://UI/Fonts/Glove.png" id="12_yl7r8"]
-[ext_resource type="Texture2D" uid="uid://bs4d2dtob84qk" path="res://UI/Fonts/Hoe.png" id="13_5jmek"]
+[ext_resource type="Texture2D" uid="uid://c8bceqbc8i31" path="res://UI/Tools/pesticide.png" id="12_umco5"]
+[ext_resource type="Texture2D" uid="uid://cg3vat8gulbf" path="res://UI/Tools/Glove.png" id="12_yl7r8"]
+[ext_resource type="Texture2D" uid="uid://bs4d2dtob84qk" path="res://UI/Tools/Hoe.png" id="13_5jmek"]
 [ext_resource type="Texture2D" uid="uid://dxfekj7d4mfqi" path="res://tiles/plants/crops/carrot/carrot_sapling.png" id="13_ario3"]
 [ext_resource type="Texture2D" uid="uid://bi462f40acaci" path="res://tiles/plants/crops/butternut/butternut_ready.png" id="13_hl4dp"]
+[ext_resource type="Texture2D" uid="uid://dt578ki5gn56s" path="res://UI/Tools/pesticide_select.png" id="13_ibvi0"]
 [ext_resource type="Texture2D" uid="uid://0j4kdbokbnmn" path="res://tiles/plants/crops/carrot/carrot_seed.png" id="14_7vemi"]
 [ext_resource type="Texture2D" uid="uid://ccii25og6dgkq" path="res://tiles/plants/crops/butternut/butternut_sapling.png" id="14_d7d7s"]
-[ext_resource type="Texture2D" uid="uid://brjye1n2nh42g" path="res://UI/Fonts/glove_select.png" id="14_n81dx"]
+[ext_resource type="Texture2D" uid="uid://cr4wjrqasbgl4" path="res://UI/Tools/Fertilizer.png" id="14_mm03y"]
+[ext_resource type="Texture2D" uid="uid://brjye1n2nh42g" path="res://UI/Tools/glove_select.png" id="14_n81dx"]
 [ext_resource type="Texture2D" uid="uid://banmfg0nja3ri" path="res://tiles/plants/crops/butternut/butternut_seed.png" id="15_4teul"]
+[ext_resource type="Texture2D" uid="uid://dfnvdan7cxfdr" path="res://UI/Tools/fertilizer_select.png" id="15_8k4h7"]
 [ext_resource type="Texture2D" uid="uid://c03cwuvp3sa58" path="res://tiles/plants/crops/pumpkin/pumpkin_sapling.png" id="15_yuymb"]
-[ext_resource type="Texture2D" uid="uid://condapjcw7bnt" path="res://UI/Fonts/hoe_select.png" id="16_hw60i"]
+[ext_resource type="Texture2D" uid="uid://condapjcw7bnt" path="res://UI/Tools/hoe_select.png" id="16_hw60i"]
 [ext_resource type="Texture2D" uid="uid://csgos17oceag1" path="res://tiles/plants/crops/pumpkin/pumpkin_almost.png" id="18_5xfwu"]
 [ext_resource type="Texture2D" uid="uid://be2lm10afns1f" path="res://tiles/plants/trees/apple/apple_almost.png" id="25_apylq"]
 [ext_resource type="Texture2D" uid="uid://cmrrd6xqrptlx" path="res://tiles/plants/trees/apple/apple_final.png" id="26_csyuo"]
@@ -39,6 +46,7 @@
 [ext_resource type="Texture2D" uid="uid://ele6y6fbxkoj" path="res://tiles/plants/trees/apple/apple_harvest.png" id="30_njtgi"]
 [ext_resource type="Texture2D" uid="uid://bd2wciqx2wil5" path="res://tiles/toolbar/trees/able.png" id="38_csyuo"]
 [ext_resource type="PackedScene" uid="uid://r2whf4s76sna" path="res://nodes/Clock.tscn" id="38_njtgi"]
+[ext_resource type="Script" uid="uid://c78r4t6at3pfa" path="res://nodes/coinDisplay.gd" id="47_umco5"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_6hfer"]
 texture = ExtResource("1_cpdmu")
@@ -51,11 +59,17 @@ texture = ExtResource("2_g5j3c")
 texture_region_size = Vector2i(32, 32)
 0:0/0 = 0
 
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_umco5"]
+texture = ExtResource("3_qjdkp")
+texture_region_size = Vector2i(32, 32)
+0:0/0 = 0
+
 [sub_resource type="TileSet" id="TileSet_iae2t"]
 tile_size = Vector2i(32, 32)
 physics_layer_0/collision_layer = 1
 sources/0 = SubResource("TileSetAtlasSource_6hfer")
 sources/1 = SubResource("TileSetAtlasSource_flw6b")
+sources/2 = SubResource("TileSetAtlasSource_umco5")
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_61lfs"]
 texture = ExtResource("7_g42si")
@@ -351,6 +365,7 @@ offset_right = -496.0
 offset_bottom = 9.0
 
 [node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=1557134395]
+process_priority = -1
 
 [node name="TextureRect" parent="CanvasLayer" unique_id=88447049 instance=ExtResource("27_4teul")]
 offset_left = 3.0
@@ -362,7 +377,37 @@ offset_bottom = 67.0
 offset_top = 504.0
 offset_bottom = 504.0
 
-[node name="Shovel" parent="CanvasLayer" unique_id=19308870 instance=ExtResource("10_4teul")]
+[node name="WateringCan" parent="CanvasLayer" unique_id=19308870 instance=ExtResource("10_4teul")]
+offset_left = 6.0
+offset_top = 336.0
+offset_right = 78.0
+offset_bottom = 408.0
+icon = ExtResource("10_0uvmu")
+flat = true
+norm = ExtResource("10_0uvmu")
+selected = ExtResource("11_qjdkp")
+
+[node name="Pesticide" parent="CanvasLayer" unique_id=811083721 instance=ExtResource("10_4teul")]
+offset_left = -5.0
+offset_top = 415.0
+offset_right = 67.0
+offset_bottom = 487.0
+icon = ExtResource("12_umco5")
+flat = true
+norm = ExtResource("12_umco5")
+selected = ExtResource("13_ibvi0")
+
+[node name="Fertilizer" parent="CanvasLayer" unique_id=1494471093 instance=ExtResource("10_4teul")]
+offset_left = 1.0
+offset_top = 492.0
+offset_right = 73.0
+offset_bottom = 564.0
+icon = ExtResource("14_mm03y")
+flat = true
+norm = ExtResource("14_mm03y")
+selected = ExtResource("15_8k4h7")
+
+[node name="Shovel" parent="CanvasLayer" unique_id=1059308803 instance=ExtResource("10_4teul")]
 offset_left = 13.0
 offset_top = 258.0
 offset_right = 85.0
@@ -423,3 +468,6 @@ shape = SubResource("RectangleShape2D_njtgi")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Plants/TreePlacement/PlantCheck" unique_id=1471233569]
 position = Vector2(-0.5, 1)
 shape = SubResource("RectangleShape2D_csyuo")
+
+[node name="CoinDisplay" type="Node" parent="." unique_id=900060029]
+script = ExtResource("47_umco5")

@@ -12,6 +12,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+mouse_filter = 2
 script = ExtResource("1_dwpnw")
 
 [node name="TextureRect" type="TextureRect" parent="." unique_id=1307364758]
@@ -19,6 +20,7 @@ z_index = 2
 layout_mode = 0
 offset_right = 40.0
 offset_bottom = 40.0
+mouse_filter = 0
 texture = ExtResource("1_f6fno")
 
 [node name="Sell" type="Label" parent="TextureRect" unique_id=1022864842]
@@ -29,6 +31,7 @@ offset_left = 12.0
 offset_top = 44.0
 offset_right = 219.0
 offset_bottom = 67.0
+mouse_filter = 0
 theme_override_fonts/font = ExtResource("3_k7f5j")
 text = "Seed"
 
@@ -50,6 +53,7 @@ offset_left = 9.0
 offset_top = 69.0
 offset_right = 216.0
 offset_bottom = 92.0
+mouse_filter = 0
 theme_override_fonts/font = ExtResource("3_k7f5j")
 text = "40 min till change"
 
@@ -70,6 +74,7 @@ offset_left = 13.0
 offset_top = 44.0
 offset_right = 220.0
 offset_bottom = 67.0
+mouse_filter = 0
 theme_override_fonts/font = ExtResource("3_k7f5j")
 text = "Seed"
 
@@ -90,6 +95,7 @@ offset_left = 11.0
 offset_top = 15.0
 offset_right = 218.0
 offset_bottom = 43.0
+mouse_filter = 0
 theme_override_fonts/font = ExtResource("3_k7f5j")
 theme_override_font_sizes/font_size = 22
 text = "Cabbage"
@@ -112,6 +118,7 @@ offset_left = 10.0
 offset_top = 69.0
 offset_right = 217.0
 offset_bottom = 92.0
+mouse_filter = 0
 theme_override_fonts/font = ExtResource("3_k7f5j")
 text = "40 min till change"
 

@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://brjye1n2nh42g"
-path="res://.godot/imported/glove_select.png-a5f663d539af6934426eeec47eee515f.ctex"
+uid="uid://cr4wjrqasbgl4"
+path="res://.godot/imported/Fertilizer.png-f309ab5035a9ddba075b6f883417e0de.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://UI/Fonts/glove_select.png"
-dest_files=["res://.godot/imported/glove_select.png-a5f663d539af6934426eeec47eee515f.ctex"]
+source_file="res://UI/Tools/Fertilizer.png"
+dest_files=["res://.godot/imported/Fertilizer.png-f309ab5035a9ddba075b6f883417e0de.ctex"]
 
 [params]
 

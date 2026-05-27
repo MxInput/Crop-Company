@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bs4d2dtob84qk"
-path="res://.godot/imported/Hoe.png-5303949cb4b8496e9ba12b3654d94e67.ctex"
+uid="uid://dfnvdan7cxfdr"
+path="res://.godot/imported/fertilizer_select.png-f2ca4e7cb9ae05159cd248af28e7d580.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://UI/Fonts/Hoe.png"
-dest_files=["res://.godot/imported/Hoe.png-5303949cb4b8496e9ba12b3654d94e67.ctex"]
+source_file="res://UI/Tools/fertilizer_select.png"
+dest_files=["res://.godot/imported/fertilizer_select.png-f2ca4e7cb9ae05159cd248af28e7d580.ctex"]
 
 [params]
 

@@ -11,6 +11,8 @@ extends TileMapLayer
 @onready var able_to_place = preload("res://tiles/toolbar/trees/able.png")
 @onready var unable_to_place = preload("res://tiles/toolbar/trees/unable.png")
 
+@onready var coin_display : Node = get_node("/root/Game/CoinDisplay")
+
 var plant_info = {
 	"Watermelon": {
 		"stage1": { "sec": 10, "tile_id": 3},
@@ -90,6 +92,7 @@ func plant(plant_name) -> void:
 	if tree_info.get(plant_name):
 		if tree_placement_sprite.texture == able_to_place:
 			if PlayerVariables.player.buy(tree_info[plant_name]["price"]):
+				coin_display.new_instance(-tree_info[plant_name]["price"])
 				for x in 3:
 					for y in 4:
 						plant_data[cell_pos + Vector2i(x-1, y-2)] = { "fruit_name" : plant_name, "stage" : 1, "time" : 0, "type": "tree", "initial": cell_pos}
@@ -98,6 +101,7 @@ func plant(plant_name) -> void:
 		if (self_tile_id == -1):
 			if (tile_id == 1):
 				if PlayerVariables.player.buy(plant_info[plant_name]["price"]):
+					coin_display.new_instance(-plant_info[plant_name]["price"])
 					plant_data[cell_pos] = { "fruit_name" : plant_name, "stage" : 1, "time" : 0, "type": "crop"}
 					set_cell(cell_pos, plant_info[plant_name]["stage1"]["tile_id"], Vector2i(0, 0))
 		
@@ -181,7 +185,8 @@ func _process(delta: float) -> void:
 		var type = plant_data[plant]["type"]
 		if type == "crop":
 			if stage < 4:
-				plant_data[plant]["time"] += delta
+				if terrain.watered_tiles.get(plant):
+					plant_data[plant]["time"] += delta
 				match stage:
 					1:
 						var goal = plant_info[plant_data[plant]["fruit_name"]]["stage1"]["sec"]

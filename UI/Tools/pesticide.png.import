@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://brbt8bf4yiwsp"
-path="res://.godot/imported/Shovel.png-d6d2614383bb78894bc2a6bb68ed3b7c.ctex"
+uid="uid://c8bceqbc8i31"
+path="res://.godot/imported/pesticide.png-a48b4119939cec883f2d45fab3bee60b.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://UI/Tools/Shovel.png"
-dest_files=["res://.godot/imported/Shovel.png-d6d2614383bb78894bc2a6bb68ed3b7c.ctex"]
+source_file="res://UI/Tools/pesticide.png"
+dest_files=["res://.godot/imported/pesticide.png-a48b4119939cec883f2d45fab3bee60b.ctex"]
 
 [params]
 
