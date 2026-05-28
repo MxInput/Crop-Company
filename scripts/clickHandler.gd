@@ -2,10 +2,12 @@ extends TileMapLayer
 
 @onready var watered: TileMapLayer = get_node("/root/Game/Watered")
 @onready var plants: TileMapLayer = get_node("/root/Game/Plants")
+@onready var fertilized: TileMapLayer = get_node("/root/Game/Fertilized")
 
 @onready var select: Node2D = get_node("Select")
 
 var watered_tiles = {}
+var fertilized_tiles = {}
 
 func  _input(event: InputEvent) -> void:
 	if ToolVariables.current_tool == "Hoe":
@@ -43,6 +45,16 @@ func  _input(event: InputEvent) -> void:
 				watered_tiles.erase(cell_pos)
 				if watered.get_cell_source_id(cell_pos) != -1:
 					watered.erase_cell(cell_pos)
+	elif ToolVariables.current_tool == "Fertilizer":
+		var mouse_pos = get_local_mouse_position()
+		var cell_pos = local_to_map(mouse_pos)
+		var tile_id = (get_cell_source_id(cell_pos))
+		if event.is_action_pressed("click"):
+			if (plants.plant_data.get(cell_pos)):
+				if (!fertilized_tiles.get(cell_pos)):
+					if plants.plant_data[cell_pos]["type"] == "crop":
+						fertilized_tiles[cell_pos] = {"time": 0}
+						fertilized.set_cell(cell_pos, 0, Vector2i(0,0))
 		
 func _process(delta: float):
 	var mouse_pos = get_local_mouse_position()

@@ -108,6 +108,7 @@ func plant(plant_name) -> void:
 					set_cell(cell_pos, plant_info[plant_name]["stage1"]["tile_id"], Vector2i(0, 0))
 				
 func _process(delta: float) -> void:
+	print(plant_data)
 	var mouse_pos = get_local_mouse_position()
 	var cell_pos = local_to_map(mouse_pos)
 	
@@ -145,24 +146,28 @@ func _process(delta: float) -> void:
 					if plant_data[plant_data[cell_pos]["initial"]]["stage"] == 5:
 						PlayerVariables.player.sell(tree_info[plant_data[cell_pos]["fruit_name"]]["sell"])
 						coin_display.new_instance(tree_info[plant_data[cell_pos]["fruit_name"]]["sell"])	
-			if ToolVariables.current_tool == "Shovel" or plant_data[cell_pos]["stage"] >= 4 or plant_data[plant_data[cell_pos]["initial"]]["stage"] >= 4 :
-				if plant_data[cell_pos]["type"] == "crop":
+			if ToolVariables.current_tool == "Shovel" or plant_data[cell_pos]["stage"] >= 4:
+				if plant_data[cell_pos]["type"] == "crop": 
 					plant_data.erase(cell_pos)
-					set_cell(cell_pos, -1, Vector2i(0,0))
+					erase_cell(cell_pos)
 					terrain.set_cell(cell_pos, 0, Vector2i(0,0))
-				else:
-					if ToolVariables.current_tool == "Shovel":
+				elif plant_data[cell_pos]["type"] == "tree":
+					if plant_data[plant_data[cell_pos]["initial"]]["stage"] == 5 and ToolVariables.current_tool != "Shovel":
+						plant_data[plant_data[cell_pos]["initial"]]["stage"] -= 1
+						for x in 3:
+							for y in 4:
+								set_cell(plant_data[cell_pos]["initial"] + Vector2i(x-1, y-2), tree_info[plant_data[cell_pos]["fruit_name"]]["stage4"]["tile_id"], Vector2i(x, y))	
+					elif ToolVariables.current_tool == "Shovel":
 						var initial = plant_data[cell_pos]["initial"]
 						for x in 3:
 							for y in 4:
+								if terrain.watered_tiles.get(initial + Vector2i(x-1, y-2)):
+									terrain.watered_tiles.erase(initial + Vector2i(x-1, y-2))
+								terrain.set_cell(initial + Vector2i(x-1, y-2), 0, Vector2i(0,0))
+								if watered.get_cell_source_id(initial + Vector2i(x-1, y-2))	!= -1:
+									watered.erase_cell(initial + Vector2i(x-1, y-2))
 								erase_cell(initial + Vector2i(x-1, y-2))
 								plant_data.erase(initial + Vector2i(x-1, y-2))
-					else:
-						if plant_data[plant_data[cell_pos]["initial"]]["stage"] == 5:
-							plant_data[plant_data[cell_pos]["initial"]]["stage"] -= 1
-							for x in 3:
-								for y in 4:
-									set_cell(plant_data[cell_pos]["initial"] + Vector2i(x-1, y-2), tree_info[plant_data[cell_pos]["fruit_name"]]["stage4"]["tile_id"], Vector2i(x, y))	
 	if (plant_data.has(cell_pos)):
 		var timeLeft 
 			

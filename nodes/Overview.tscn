@@ -6,6 +6,7 @@
 
 [node name="Overview" type="Control" unique_id=556799154]
 visible = false
+z_index = 5
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
