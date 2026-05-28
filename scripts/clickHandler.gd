@@ -29,13 +29,15 @@ func  _input(event: InputEvent) -> void:
 			var mouse_pos = get_local_mouse_position()
 			var cell_pos = local_to_map(mouse_pos)
 			var tile_id = (get_cell_source_id(cell_pos))
-			if (tile_id == 1):
+			if (plants.plant_data.get(cell_pos)):
+				if (plants.plant_data[cell_pos]["type"] == "tree"):
+					var watered_tile = plants.plant_data[cell_pos]["initial"]
+					watered_tiles[watered_tile] = {"time": 0}
+				else:
+					watered_tiles[cell_pos] = {"time": 0}
+			elif (tile_id == 1 || tile_id == 2):
 				watered_tiles[cell_pos] = {"time": 0}
 				set_cell(cell_pos, 2, Vector2i(0, 0))
-			elif (plants.plant_data.get(cell_pos)):
-				print("here")
-				if (plants.plant_data[cell_pos]["type"] == "tree"):
-					watered_tiles[cell_pos] = {"time": 0}
 	elif ToolVariables.current_tool == "Shovel":
 		var mouse_pos = get_local_mouse_position()
 		var cell_pos = local_to_map(mouse_pos)
@@ -55,7 +57,13 @@ func  _input(event: InputEvent) -> void:
 					if plants.plant_data[cell_pos]["type"] == "crop":
 						fertilized_tiles[cell_pos] = {"time": 0}
 						fertilized.set_cell(cell_pos, 0, Vector2i(0,0))
-		
+					elif plants.plant_data[cell_pos]["type"] == "tree":
+						var initial = plants.plant_data[cell_pos]["initial"]
+						for x in 3:
+							for y in 4:
+								fertilized_tiles[initial + Vector2i(x-1, y-2)] = {"time": 0}
+								fertilized.set_cell(initial + Vector2i(x-1, y-2), 0, Vector2i(0,0))
+						
 func _process(delta: float):
 	var mouse_pos = get_local_mouse_position()
 	var cell_pos = local_to_map(mouse_pos)

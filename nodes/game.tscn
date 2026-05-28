@@ -49,6 +49,7 @@
 [ext_resource type="Script" uid="uid://c78r4t6at3pfa" path="res://nodes/coinDisplay.gd" id="47_umco5"]
 [ext_resource type="Texture2D" uid="uid://l8r5t424ihqi" path="res://tiles/watered.png" id="48_ibvi0"]
 [ext_resource type="Texture2D" uid="uid://b2fiwfux5m3yw" path="res://tiles/fertilized.png" id="49_mm03y"]
+[ext_resource type="Texture2D" uid="uid://bsv7p0t3hjdl" path="res://tiles/pests.png" id="50_8k4h7"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_6hfer"]
 texture = ExtResource("1_cpdmu")
@@ -358,6 +359,28 @@ texture_region_size = Vector2i(32, 32)
 tile_size = Vector2i(32, 32)
 sources/0 = SubResource("TileSetAtlasSource_8k4h7")
 
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_28t03"]
+texture = ExtResource("50_8k4h7")
+texture_region_size = Vector2i(32, 32)
+0:0/animation_columns = 12
+0:0/animation_frame_0/duration = 0.2
+0:0/animation_frame_1/duration = 0.05
+0:0/animation_frame_2/duration = 0.05
+0:0/animation_frame_3/duration = 0.05
+0:0/animation_frame_4/duration = 0.05
+0:0/animation_frame_5/duration = 0.05
+0:0/animation_frame_6/duration = 0.05
+0:0/animation_frame_7/duration = 0.05
+0:0/animation_frame_8/duration = 0.05
+0:0/animation_frame_9/duration = 0.05
+0:0/animation_frame_10/duration = 0.1
+0:0/animation_frame_11/duration = 0.1
+0:0/0 = 0
+
+[sub_resource type="TileSet" id="TileSet_003f7"]
+tile_size = Vector2i(32, 32)
+sources/0 = SubResource("TileSetAtlasSource_28t03")
+
 [node name="Game" type="Node" unique_id=182748300]
 
 [node name="Terrain" type="TileMapLayer" parent="." unique_id=1953695714]
@@ -499,3 +522,8 @@ tile_set = SubResource("TileSet_8k4h7")
 [node name="Fertilized" type="TileMapLayer" parent="." unique_id=1497383227]
 z_index = 3
 tile_set = SubResource("TileSet_28t03")
+
+[node name="Pests" type="TileMapLayer" parent="." unique_id=341925451]
+z_index = 2
+tile_map_data = PackedByteArray("AAD7/wAAAAAAAAAAAAA=")
+tile_set = SubResource("TileSet_003f7")

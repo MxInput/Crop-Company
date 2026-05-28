@@ -108,7 +108,6 @@ func plant(plant_name) -> void:
 					set_cell(cell_pos, plant_info[plant_name]["stage1"]["tile_id"], Vector2i(0, 0))
 				
 func _process(delta: float) -> void:
-	print(plant_data)
 	var mouse_pos = get_local_mouse_position()
 	var cell_pos = local_to_map(mouse_pos)
 	
