@@ -19,8 +19,7 @@ func _process(_delta: float) -> void:
 			overview.deactivate("toolbar")
 		if Input.is_action_pressed("click"):
 			if !plants.tree_info.get(get_parent().name):
-				var global_pos = get_global_mouse_position()
-				dragged_obj.global_position = global_pos - Vector2((572 / camera.zoom.x) - camera.position.x, (310 * camera.zoom.y) - camera.position.y)
+				dragged_obj.global_position = dragged_obj.get_global_mouse_position()
 					
 				dragged_obj.visible = true
 				dragged_obj.get_child(0).texture = self.get_parent().get_child(0).texture

@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://l8r5t424ihqi"
-path="res://.godot/imported/watered.png-0873f0b1d0dc533476f7e312b8ce8a25.ctex"
+uid="uid://b2fiwfux5m3yw"
+path="res://.godot/imported/fertilized.png-15512dfa4b136efdb333fc71a493a920.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://tiles/watered.png"
-dest_files=["res://.godot/imported/watered.png-0873f0b1d0dc533476f7e312b8ce8a25.ctex"]
+source_file="res://tiles/fertilized.png"
+dest_files=["res://.godot/imported/fertilized.png-15512dfa4b136efdb333fc71a493a920.ctex"]
 
 [params]
 
