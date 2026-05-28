@@ -33,7 +33,6 @@ func inventory(givenName : String):
 	global_position = get_global_mouse_position() + Vector2(-40, -150)
 	visible = true
 	nameTeller.text = givenName
-	nameTeller.get_child(0).text = nameTeller.text
 	
 	if (plants.plant_info.get(givenName)):
 		sellTeller.text = "Sells for " + str(plants.plant_info[givenName]["sell"])
@@ -41,8 +40,6 @@ func inventory(givenName : String):
 	else:
 		sellTeller.text = "Sells for " + str(plants.tree_info[givenName]["sell"])
 		priceTeller.text = "Buy for " + str(plants.tree_info[givenName]["sell"])
-	sellTeller.get_child(0).text = sellTeller.text
-	priceTeller.get_child(0).text = priceTeller.text
 	
 func display(stage : String, type : String, givenName : String, time : String) -> void:
 	plant_use = true
@@ -55,7 +52,7 @@ func display(stage : String, type : String, givenName : String, time : String) -
 	global_position = get_global_mouse_position() + Vector2(-40, -150)
 	visible = true
 	nameTeller.text = givenName
-	nameTeller.get_child(0).text = nameTeller.text
+	
 	if type == "crop":
 		stageTeller.text = "Stage " + stage + " / 4"
 		
@@ -70,6 +67,4 @@ func display(stage : String, type : String, givenName : String, time : String) -
 			timeTeller.text = "Ready to harvest"
 		else:
 			timeTeller.text = "Time until next stage: " + time
-	stageTeller.get_child(0).text = stageTeller.text
-	timeTeller.get_child(0).text = timeTeller.text
 	

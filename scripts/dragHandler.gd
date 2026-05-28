@@ -9,7 +9,7 @@ extends Area2D
 @onready var tree_placement: Node2D = get_node("/root/Game/Plants/TreePlacement")
 
 func _process(_delta: float) -> void:
-	if HoverVariables.hovered_on == "":
+	if HoverVariables.hovered_on == "": 
 		overview.deactivate("toolbar")
 		
 	if HoverVariables.hovered_on == get_parent().name:
@@ -20,7 +20,7 @@ func _process(_delta: float) -> void:
 		if Input.is_action_pressed("click"):
 			if !plants.tree_info.get(get_parent().name):
 				var global_pos = get_global_mouse_position()
-				dragged_obj.global_position = global_pos - Vector2(572 - camera.position.x, 310 - camera.position.y)
+				dragged_obj.global_position = global_pos - Vector2((572 / camera.zoom.x) - camera.position.x, (310 * camera.zoom.y) - camera.position.y)
 					
 				dragged_obj.visible = true
 				dragged_obj.get_child(0).texture = self.get_parent().get_child(0).texture

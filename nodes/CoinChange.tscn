@@ -1,5 +1,7 @@
 [gd_scene format=3 uid="uid://dcoemm5cr8slq"]
 
+[ext_resource type="FontFile" uid="uid://ci5gbe284cx6u" path="res://UI/Fonts/SuperBakery.ttf" id="1_gtww0"]
+
 [node name="CoinChange" type="Control" unique_id=29232712]
 layout_mode = 3
 anchors_preset = 15
@@ -10,6 +12,9 @@ grow_vertical = 2
 
 [node name="Label" type="Label" parent="." unique_id=605628269]
 layout_mode = 0
-offset_right = 40.0
-offset_bottom = 23.0
+offset_right = 80.0
+offset_bottom = 39.0
+theme_override_colors/font_shadow_color = Color(0.4288597, 0.050708726, 0, 1)
+theme_override_fonts/font = ExtResource("1_gtww0")
+theme_override_font_sizes/font_size = 34
 text = "+500"

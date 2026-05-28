@@ -114,18 +114,23 @@ func _process(delta: float) -> void:
 			if ToolVariables.current_tool == "Shovel":
 				if plant_data[cell_pos]["type"] == "crop":
 					PlayerVariables.player.sell(plant_info[plant_data[cell_pos]["fruit_name"]]["price"])
+					coin_display.new_instance(plant_info[plant_data[cell_pos]["fruit_name"]]["price"])			
 				else:
 					if plant_data[cell_pos]["stage"] == 5:
 						PlayerVariables.player.sell(tree_info[plant_data[cell_pos]["fruit_name"]]["sell"])
+						coin_display.new_instance(tree_info[plant_data[cell_pos]["fruit_name"]]["sell"])			
 					else:
 						PlayerVariables.player.sell(tree_info[plant_data[cell_pos]["fruit_name"]]["price"])
+						coin_display.new_instance(tree_info[plant_data[cell_pos]["fruit_name"]]["price"])	
 			else:
 				if plant_data[cell_pos]["type"] == "crop":
 					if plant_data[cell_pos]["stage"] == 4:
 						PlayerVariables.player.sell(plant_info[plant_data[cell_pos]["fruit_name"]]["sell"])
+						coin_display.new_instance(plant_info[plant_data[cell_pos]["fruit_name"]]["sell"])	
 				elif plant_data[cell_pos]["type"] == "tree":
 					if plant_data[cell_pos]["stage"] == 5:
-						PlayerVariables.player.sell(tree_info[plant_data[cell_pos]["fruit_name"]]["sell"])		
+						PlayerVariables.player.sell(tree_info[plant_data[cell_pos]["fruit_name"]]["sell"])
+						coin_display.new_instance(tree_info[plant_data[cell_pos]["fruit_name"]]["sell"])	
 			if ToolVariables.current_tool == "Shovel" or plant_data[cell_pos]["stage"] >= 4:
 				if plant_data[cell_pos]["type"] == "crop":
 					plant_data.erase(cell_pos)

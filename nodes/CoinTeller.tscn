@@ -19,21 +19,11 @@ offset_left = 64.0
 offset_top = 5.0
 offset_right = 163.0
 offset_bottom = 54.0
+theme_override_colors/font_shadow_color = Color(0.35751364, 0.32569867, 0.42008543, 1)
 theme_override_fonts/font = ExtResource("2_jovdy")
 theme_override_font_sizes/font_size = 40
 text = "COINS"
 script = ExtResource("3_0wqy5")
-
-[node name="Shadow" type="Label" parent="Coins" unique_id=488064932]
-z_index = -1
-layout_mode = 0
-offset_top = 2.0
-offset_right = 99.0
-offset_bottom = 51.0
-theme_override_colors/font_color = Color(0.58538264, 0.6093875, 0.7061206, 1)
-theme_override_fonts/font = ExtResource("2_jovdy")
-theme_override_font_sizes/font_size = 40
-text = "COINS"
 
 [node name="TextureRect" type="TextureRect" parent="." unique_id=1917182206]
 z_index = 2

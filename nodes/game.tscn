@@ -47,6 +47,7 @@
 [ext_resource type="Texture2D" uid="uid://bd2wciqx2wil5" path="res://tiles/toolbar/trees/able.png" id="38_csyuo"]
 [ext_resource type="PackedScene" uid="uid://r2whf4s76sna" path="res://nodes/Clock.tscn" id="38_njtgi"]
 [ext_resource type="Script" uid="uid://c78r4t6at3pfa" path="res://nodes/coinDisplay.gd" id="47_umco5"]
+[ext_resource type="Texture2D" uid="uid://od7uxmcg845o" path="res://tiles/watered.png" id="48_ibvi0"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_6hfer"]
 texture = ExtResource("1_cpdmu")
@@ -338,6 +339,16 @@ size = Vector2(85, 59)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_csyuo"]
 size = Vector2(83, 116)
 
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_mm03y"]
+texture = ExtResource("48_ibvi0")
+texture_region_size = Vector2i(32, 32)
+1:0/0 = 0
+0:0/0 = 0
+
+[sub_resource type="TileSet" id="TileSet_8k4h7"]
+tile_size = Vector2i(32, 32)
+sources/0 = SubResource("TileSetAtlasSource_mm03y")
+
 [node name="Game" type="Node" unique_id=182748300]
 
 [node name="Terrain" type="TileMapLayer" parent="." unique_id=1953695714]
@@ -471,3 +482,8 @@ shape = SubResource("RectangleShape2D_csyuo")
 
 [node name="CoinDisplay" type="Node" parent="." unique_id=900060029]
 script = ExtResource("47_umco5")
+
+[node name="TileMapLayer" type="TileMapLayer" parent="." unique_id=138098227]
+z_index = 3
+tile_map_data = PackedByteArray("AAAKAAkAAAAAAAAAAAA=")
+tile_set = SubResource("TileSet_8k4h7")
