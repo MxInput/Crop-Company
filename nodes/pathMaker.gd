@@ -1,0 +1,20 @@
+extends Node2D
+
+@onready var map: TileMapLayer = get_node("/root/Game/Terrain")
+@onready var plants: TileMapLayer = get_node("/root/Game/Plants")
+
+@onready var robot: CharacterBody2D = get_node("/root/Game/Robot")
+
+var a_star_grid : AStarGrid2D
+
+func _ready() -> void:
+	a_star_grid = AStarGrid2D.new()
+	a_star_grid.cell_size = map.tile_set.tile_size
+	a_star_grid.region = Rect2(Vector2.ZERO, ceil(get_viewport_rect().size/ a_star_grid.cell_size))
+	a_star_grid.update()
+
+func _process(delta: float) -> void:
+	for plant in plants.plant_data:
+		if !map.watered_tiles.get(plant):
+			if robot.finished:
+				robot.initialize(a_star_grid, plant)

@@ -1,65 +1,54 @@
 extends CharacterBody2D
 
+var grid : AStarGrid2D
+
+var current_cell : Vector2i
+var target_cell : Vector2i
+var move_points : Array
+
+var finished : bool = true
+var moving : bool = false
+var current_point : int = 0
+
+var SPEED : float = 50.0
+
 @onready var tiles: TileMapLayer = get_node("/root/Game/Terrain")
 
-var tiles_per_second: float = 1.0
-var prev_pos : Vector2 = Vector2.ZERO
+var astar_grid = AStarGrid2D.new()
 
-var remaining_move_ticks: int = 0
-
-var physics_ticks_per_move: int = 0
-
-var physics_velocity_fraction: float = 0.0
-
-var target 
-
-func _ready() -> void:
-	prev_pos = global_position
+func initialize(_grid : AStarGrid2D, _target : Vector2i):
+	grid = _grid
+	moving = false
+	current_cell = global_position / grid.cell_size
+	target_cell = _target
+	finished = false
 	
-	physics_ticks_per_move = roundi(Engine.physics_ticks_per_second / tiles_per_second)
-	
-	physics_velocity_fraction = Engine.physics_ticks_per_second / float(physics_ticks_per_move)
+func _process(delta: float) -> void:
+	if !finished:
+		if current_cell != target_cell:
+			if !moving:
+				move_points = grid.get_point_path(current_cell, target_cell)
+				start_moving()
+		else:
+			finished = true
+
+func start_moving():
+	if move_points.is_empty(): return
+	current_point = 0; moving = true
 	
 func _physics_process(delta: float) -> void:
-	if remaining_move_ticks == 0:
-		var direction : Vector2 = (Vector2(320, 128)-position).normalized()
-		var pos_tiles: Vector2 = tiles.to_local(global_position)
-		var map_pos: Vector2i = tiles.local_to_map(pos_tiles)
-
-		var map_direction: Vector2i = dir_to_map(direction)
-		print(direction)
-		if map_direction.x == 0 and map_direction.y == 0:
+	if !move_points.is_empty():
+		if current_point == move_points.size() - 1:
 			velocity = Vector2.ZERO
+			global_position = move_points[-1]
+			current_cell = global_position / grid.cell_size
+			moving = false
+			finished = true
 		else:
-			var next_map_pos: Vector2i = map_pos + map_direction
-			if is_walkable(next_map_pos):
-				var next_map_local_pos: Vector2 = tiles.map_to_local(next_map_pos)
-				var next_global_pos: Vector2 = tiles.to_global(next_map_local_pos)
-				velocity = (next_global_pos - global_position) * physics_velocity_fraction
-				remaining_move_ticks = physics_ticks_per_move
-			else:
-				velocity = Vector2.ZERO
-
-	prev_pos = global_position
-	if remaining_move_ticks > 0:
-		move_and_slide()
-		remaining_move_ticks -= 1
+			var dir = (move_points[current_point + 1] - move_points[current_point]).normalized()
+			velocity = dir * SPEED
+			move_and_slide()
+			if (move_points[current_point + 1] - global_position).length() < 4:
+				current_cell = global_position / grid.cell_size
+				current_point += 1
 		
-func _process(_p_delta: float) -> void:
-	var weight: float = Engine.get_physics_interpolation_fraction()
-	get_child(0).global_position = lerp(prev_pos, global_position, weight)
-	
-func dir_to_map(given_dir : Vector2) -> Vector2i:
-	if is_equal_approx(abs(given_dir.x), abs(given_dir.y)):
-		return Vector2.ZERO
-	elif abs(given_dir.x) > abs(given_dir.y):
-		return Vector2(roundf(given_dir.x), 0)
-	else:
-		return Vector2(0, roundf(given_dir.y))
-	
-func is_walkable(given_map_pos : Vector2i) -> bool:
-	var tile_data: TileData = tiles.get_cell_tile_data(given_map_pos)
-	if not tile_data:
-		return false
-
-	return tile_data.get_collision_polygons_count(0) == 1

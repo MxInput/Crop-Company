@@ -142,7 +142,14 @@ func _process(delta: float) -> void:
 							watered.set_cell(plant_data[cell_pos]["initial"] + Vector2i(x-1, y-2), 0, Vector2i(0, 0))
 							if !terrain.watered_tiles.get(plant_data[cell_pos]["initial"] + Vector2i(x-1, y-2)):
 								terrain.watered_tiles[plant_data[cell_pos]["initial"] + Vector2i(x-1, y-2)] = {"time": terrain.watered_tiles[watered_tile]["time"] }
-								
+		elif !plant_data.get(watered_tile):
+				terrain.watered_tiles.erase(watered_tile)
+				watered.erase_cell(watered_tile)
+		if plant_data.get(watered_tile):
+			if plant_data[watered_tile]["type"] == "tree":
+				if terrain.watered_tiles.get(plant_data[watered_tile]["initial"]):
+					if terrain.watered_tiles[watered_tile]["time"] != terrain.watered_tiles[plant_data[watered_tile]["initial"]]["time"]:
+						terrain.watered_tiles[watered_tile]["time"] = terrain.watered_tiles[plant_data[watered_tile]["initial"]]["time"]
 	if Input.is_action_pressed("click"):
 		if (plant_data.has(cell_pos)):
 			if ToolVariables.current_tool == "Shovel":

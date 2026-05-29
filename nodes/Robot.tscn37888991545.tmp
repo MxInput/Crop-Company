@@ -1,0 +1,20 @@
+[gd_scene format=3 uid="uid://bhq5oggr0myv"]
+
+[ext_resource type="Texture2D" uid="uid://bxblhcj4noyt5" path="res://tiles/bots/robotemp.png" id="1_jabm3"]
+[ext_resource type="Script" uid="uid://chjoh50witbxh" path="res://nodes/Robot.gd" id="1_qs5bx"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_qs5bx"]
+radius = 14.0
+height = 28.0
+
+[node name="CharacterBody2D" type="CharacterBody2D" unique_id=613094548]
+motion_mode = 1
+script = ExtResource("1_qs5bx")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1106177919]
+position = Vector2(-49, -48)
+texture = ExtResource("1_jabm3")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=2053435447]
+position = Vector2(-49, -48)
+shape = SubResource("CapsuleShape2D_qs5bx")

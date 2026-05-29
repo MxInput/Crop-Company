@@ -61,6 +61,7 @@
 [ext_resource type="Texture2D" uid="uid://l8r5t424ihqi" path="res://tiles/watered.png" id="48_ibvi0"]
 [ext_resource type="Texture2D" uid="uid://b2fiwfux5m3yw" path="res://tiles/fertilized.png" id="49_mm03y"]
 [ext_resource type="Texture2D" uid="uid://bsv7p0t3hjdl" path="res://tiles/pests.png" id="50_8k4h7"]
+[ext_resource type="Script" uid="uid://fbvn78vgomyd" path="res://nodes/pathMaker.gd" id="62_wlrtx"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_6hfer"]
 texture = ExtResource("1_cpdmu")
@@ -831,3 +832,6 @@ tile_set = SubResource("TileSet_003f7")
 [node name="Barrier" type="TileMapLayer" parent="." unique_id=257227273]
 
 [node name="Robot" parent="." unique_id=842537626 instance=ExtResource("6_ra8g4")]
+
+[node name="Paths" type="Node2D" parent="." unique_id=156886163]
+script = ExtResource("62_wlrtx")
