@@ -832,6 +832,7 @@ tile_set = SubResource("TileSet_003f7")
 [node name="Barrier" type="TileMapLayer" parent="." unique_id=257227273]
 
 [node name="Robot" parent="." unique_id=842537626 instance=ExtResource("6_ra8g4")]
+position = Vector2(64, 64)
 
 [node name="Paths" type="Node2D" parent="." unique_id=156886163]
 script = ExtResource("62_wlrtx")

@@ -6,14 +6,17 @@ extends Node2D
 @onready var robot: CharacterBody2D = get_node("/root/Game/Robot")
 
 var a_star_grid : AStarGrid2D
-
+	
 func _ready() -> void:
 	a_star_grid = AStarGrid2D.new()
-	a_star_grid.cell_size = map.tile_set.tile_size
-	a_star_grid.region = Rect2(Vector2.ZERO, ceil(get_viewport_rect().size/ a_star_grid.cell_size))
+	a_star_grid.default_compute_heuristic = AStarGrid2D.HEURISTIC_MANHATTAN
+	a_star_grid.default_estimate_heuristic = AStarGrid2D.HEURISTIC_MANHATTAN
+	a_star_grid.cell_size = map.tile_set.tile_size 
+	a_star_grid.region = map.get_used_rect() 
 	a_star_grid.update()
 
 func _process(delta: float) -> void:
+	#print(map.local_to_map(map.to_local(get_global_mouse_position())), get_global_mouse_position())
 	for plant in plants.plant_data:
 		if !map.watered_tiles.get(plant):
 			if robot.finished:

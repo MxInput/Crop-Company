@@ -10,7 +10,7 @@ var finished : bool = true
 var moving : bool = false
 var current_point : int = 0
 
-var SPEED : float = 50.0
+var SPEED : float = 16.0
 
 @onready var tiles: TileMapLayer = get_node("/root/Game/Terrain")
 
@@ -19,7 +19,7 @@ var astar_grid = AStarGrid2D.new()
 func initialize(_grid : AStarGrid2D, _target : Vector2i):
 	grid = _grid
 	moving = false
-	current_cell = global_position / grid.cell_size
+	current_cell = tiles.local_to_map(to_local(global_position))
 	target_cell = _target
 	finished = false
 	
@@ -28,6 +28,7 @@ func _process(delta: float) -> void:
 		if current_cell != target_cell:
 			if !moving:
 				move_points = grid.get_point_path(current_cell, target_cell)
+				
 				start_moving()
 		else:
 			finished = true
@@ -41,14 +42,18 @@ func _physics_process(delta: float) -> void:
 		if current_point == move_points.size() - 1:
 			velocity = Vector2.ZERO
 			global_position = move_points[-1]
-			current_cell = global_position / grid.cell_size
+			current_cell = tiles.local_to_map(tiles.to_local(global_position))
 			moving = false
 			finished = true
 		else:
 			var dir = (move_points[current_point + 1] - move_points[current_point]).normalized()
 			velocity = dir * SPEED
+
 			move_and_slide()
+			
+			print(global_position)
+			print(move_points[current_point + 1])
 			if (move_points[current_point + 1] - global_position).length() < 4:
-				current_cell = global_position / grid.cell_size
+				current_cell = tiles.local_to_map(tiles.to_local(global_position))
 				current_point += 1
 		
