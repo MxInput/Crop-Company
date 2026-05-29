@@ -19,7 +19,7 @@ var astar_grid = AStarGrid2D.new()
 func initialize(_grid : AStarGrid2D, _target : Vector2i):
 	grid = _grid
 	moving = false
-	current_cell = tiles.local_to_map(to_local(global_position))
+	current_cell = tiles.local_to_map(tiles.to_local(global_position))
 	target_cell = _target
 	finished = false
 	
@@ -28,7 +28,7 @@ func _process(delta: float) -> void:
 		if current_cell != target_cell:
 			if !moving:
 				move_points = grid.get_point_path(current_cell, target_cell)
-				
+				move_points = (move_points as Array).map(func (p): return p + grid.cell_size/2.0)
 				start_moving()
 		else:
 			finished = true
@@ -42,18 +42,15 @@ func _physics_process(delta: float) -> void:
 		if current_point == move_points.size() - 1:
 			velocity = Vector2.ZERO
 			global_position = move_points[-1]
-			current_cell = tiles.local_to_map(tiles.to_local(global_position))
+			current_cell = tiles.local_to_map(to_local(global_position))
 			moving = false
 			finished = true
 		else:
 			var dir = (move_points[current_point + 1] - move_points[current_point]).normalized()
-			velocity = dir * SPEED
-
-			move_and_slide()
 			
-			print(global_position)
-			print(move_points[current_point + 1])
+			velocity = dir * SPEED
+			move_and_slide()
 			if (move_points[current_point + 1] - global_position).length() < 4:
-				current_cell = tiles.local_to_map(tiles.to_local(global_position))
+				current_cell = tiles.local_to_map(to_local(global_position))
 				current_point += 1
 		

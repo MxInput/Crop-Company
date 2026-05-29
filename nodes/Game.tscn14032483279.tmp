@@ -604,8 +604,7 @@ texture_region_size = Vector2i(32, 32)
 
 [sub_resource type="TileSet" id="TileSet_ario3"]
 tile_size = Vector2i(32, 32)
-physics_layer_0/collision_layer = 2
-physics_layer_0/collision_mask = 2
+physics_layer_0/collision_layer = 1
 sources/0 = SubResource("TileSetAtlasSource_61lfs")
 sources/1 = SubResource("TileSetAtlasSource_w8xfb")
 sources/2 = SubResource("TileSetAtlasSource_rqcqk")
@@ -804,16 +803,12 @@ z_index = 4
 texture = ExtResource("38_csyuo")
 
 [node name="GroundCheck" type="Area2D" parent="Plants/TreePlacement" unique_id=108389649]
-collision_layer = 3
-collision_mask = 3
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Plants/TreePlacement/GroundCheck" unique_id=1414965963]
 position = Vector2(0.5, 29.5)
 shape = SubResource("RectangleShape2D_njtgi")
 
 [node name="PlantCheck" type="Area2D" parent="Plants/TreePlacement" unique_id=420772973]
-collision_layer = 3
-collision_mask = 3
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Plants/TreePlacement/PlantCheck" unique_id=1471233569]
 position = Vector2(-0.5, 1)
@@ -837,7 +832,7 @@ tile_set = SubResource("TileSet_003f7")
 [node name="Barrier" type="TileMapLayer" parent="." unique_id=257227273]
 
 [node name="Robot" parent="." unique_id=842537626 instance=ExtResource("6_ra8g4")]
-position = Vector2(-16, -16)
+position = Vector2(64, 64)
 collision_layer = 254
 collision_mask = 254
 

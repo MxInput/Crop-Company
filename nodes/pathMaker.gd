@@ -16,7 +16,6 @@ func _ready() -> void:
 	a_star_grid.update()
 
 func _process(delta: float) -> void:
-	#print(map.local_to_map(map.to_local(get_global_mouse_position())), get_global_mouse_position())
 	for plant in plants.plant_data:
 		if !map.watered_tiles.get(plant):
 			if robot.finished:
