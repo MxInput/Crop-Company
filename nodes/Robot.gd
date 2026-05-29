@@ -22,12 +22,12 @@ func _ready() -> void:
 	
 func _physics_process(delta: float) -> void:
 	if remaining_move_ticks == 0:
-		var direction : Vector2 = (target.position-position).normalized()
-		
+		var direction : Vector2 = (Vector2(320, 128)-position).normalized()
 		var pos_tiles: Vector2 = tiles.to_local(global_position)
 		var map_pos: Vector2i = tiles.local_to_map(pos_tiles)
 
 		var map_direction: Vector2i = dir_to_map(direction)
+		print(direction)
 		if map_direction.x == 0 and map_direction.y == 0:
 			velocity = Vector2.ZERO
 		else:
@@ -40,11 +40,15 @@ func _physics_process(delta: float) -> void:
 			else:
 				velocity = Vector2.ZERO
 
-		prev_pos = global_position
-		if remaining_move_ticks > 0:
-			move_and_slide()
-			remaining_move_ticks -= 1
+	prev_pos = global_position
+	if remaining_move_ticks > 0:
+		move_and_slide()
+		remaining_move_ticks -= 1
 		
+func _process(_p_delta: float) -> void:
+	var weight: float = Engine.get_physics_interpolation_fraction()
+	get_child(0).global_position = lerp(prev_pos, global_position, weight)
+	
 func dir_to_map(given_dir : Vector2) -> Vector2i:
 	if is_equal_approx(abs(given_dir.x), abs(given_dir.y)):
 		return Vector2.ZERO
@@ -58,4 +62,4 @@ func is_walkable(given_map_pos : Vector2i) -> bool:
 	if not tile_data:
 		return false
 
-	return tile_data.get_collision_polygons_count(0) < 1
+	return tile_data.get_collision_polygons_count(0) == 1

@@ -17,18 +17,18 @@ extends TileMapLayer
 
 var plant_info = {
 	"Watermelon": {
-		"stage1": { "sec": 10, "tile_id": 3},
-		"stage2": { "sec": 20, "tile_id": 2},
-		"stage3": { "sec": 30, "tile_id": 0},
+		"stage1": { "sec": 20, "tile_id": 3},
+		"stage2": { "sec": 30, "tile_id": 2},
+		"stage3": { "sec": 40, "tile_id": 0},
 		"stage4": {"tile_id": 1},
-		"price": 5,
-		"sell": 10,
+		"price": 12,
+		"sell": 30,
 		"icon": load("res://tiles/toolbar/fruits/watermelon_icon.png")
 	},
 	"Carrot": {
-		"stage1": { "sec": 30, "tile_id": 7},
-		"stage2": { "sec": 40, "tile_id": 6},
-		"stage3": { "sec": 50, "tile_id": 4},
+		"stage1": { "sec": 10, "tile_id": 7},
+		"stage2": { "sec": 20, "tile_id": 6},
+		"stage3": { "sec": 30, "tile_id": 4},
 		"stage4": {"tile_id": 5},
 		"price": 5,
 		"sell": 10,
@@ -39,50 +39,50 @@ var plant_info = {
 		"stage2": { "sec": 40, "tile_id": 8},
 		"stage3": { "sec": 50, "tile_id": 9},
 		"stage4": {"tile_id": 10},
-		"price": 5,
-		"sell": 10,
+		"price": 30,
+		"sell": 50,
 		"icon": load("res://tiles/toolbar/fruits/pumpkin_icon.png")
 	},
 	"Butternut Squash": {
-		"stage1": { "sec": 30, "tile_id": 15},
-		"stage2": { "sec": 40, "tile_id": 14},
-		"stage3": { "sec": 50, "tile_id": 12},
+		"stage1": { "sec": 25, "tile_id": 15},
+		"stage2": { "sec": 30, "tile_id": 14},
+		"stage3": { "sec": 35, "tile_id": 12},
 		"stage4": {"tile_id": 13},
-		"price": 5,
-		"sell": 10,
+		"price": 18,
+		"sell": 28,
 		"icon": load("res://tiles/toolbar/fruits/butternut_icon.png")
 	}
 }
 
 var tree_info = {
 	"Apple": {
-		"stage1": { "sec": 4, "tile_id": 19},
-		"stage2": { "sec": 4, "tile_id": 18},
-		"stage3": { "sec": 4, "tile_id": 16},
-		"stage4": {"sec": 4, "tile_id": 17},
+		"stage1": { "sec": 10, "tile_id": 19},
+		"stage2": { "sec": 10, "tile_id": 18},
+		"stage3": { "sec": 10, "tile_id": 16},
+		"stage4": {"sec": 5, "tile_id": 17},
 		"stage5": {"tile_id": 20},
-		"price": 5,
+		"price": 50,
 		"sell": 10,
 		"icon": load("res://tiles/toolbar/trees/Apple_Icon.png")
 	},
 	"Grapefruit": {
-		"stage1": { "sec": 4, "tile_id": 30},
-		"stage2": { "sec": 4, "tile_id": 29},
-		"stage3": { "sec": 4, "tile_id": 26},
-		"stage4": {"sec": 4, "tile_id": 27},
+		"stage1": { "sec": 20, "tile_id": 30},
+		"stage2": { "sec": 20, "tile_id": 29},
+		"stage3": { "sec": 20, "tile_id": 26},
+		"stage4": {"sec": 10, "tile_id": 27},
 		"stage5": {"tile_id": 28},
-		"price": 5,
-		"sell": 10,
+		"price": 100,
+		"sell": 20,
 		"icon": load("res://tiles/toolbar/trees/grapefruit_icon.png")
 	},
 	"Banana": {
-		"stage1": { "sec": 4, "tile_id": 25},
-		"stage2": { "sec": 4, "tile_id": 24},
-		"stage3": { "sec": 4, "tile_id": 21},
-		"stage4": {"sec": 4, "tile_id": 22},
+		"stage1": { "sec": 16, "tile_id": 25},
+		"stage2": { "sec": 16, "tile_id": 24},
+		"stage3": { "sec": 16, "tile_id": 21},
+		"stage4": {"sec": 8, "tile_id": 22},
 		"stage5": {"tile_id": 23},
-		"price": 5,
-		"sell": 10,
+		"price": 75,
+		"sell": 15,
 		"icon": load("res://tiles/toolbar/trees/banana_icon.png")
 	}
 }
@@ -226,71 +226,71 @@ func _process(delta: float) -> void:
 	else:
 		overview.deactivate("plants")
 		
-	for plant in plant_data:
-		var stage = plant_data[plant]["stage"]
-		var type = plant_data[plant]["type"]
+	for found_plant in plant_data:
+		var stage = plant_data[found_plant]["stage"]
+		var type = plant_data[found_plant]["type"]
 		if type == "crop":
 			if stage < 4:
-				if terrain.watered_tiles.get(plant):
-					plant_data[plant]["time"] += delta
+				if terrain.watered_tiles.get(found_plant):
+					plant_data[found_plant]["time"] += delta
 				match stage:
 					1:
-						var goal = plant_info[plant_data[plant]["fruit_name"]]["stage1"]["sec"]
-						if plant_data[plant]["time"] >= goal:
-							plant_data[plant]["stage"] += 1
-							plant_data[plant]["time"] = 0
-							set_cell(plant, plant_info[plant_data[plant]["fruit_name"]]["stage2"]["tile_id"], Vector2i(0, 0))
+						var goal = plant_info[plant_data[found_plant]["fruit_name"]]["stage1"]["sec"]
+						if plant_data[found_plant]["time"] >= goal:
+							plant_data[found_plant]["stage"] += 1
+							plant_data[found_plant]["time"] = 0
+							set_cell(found_plant, plant_info[plant_data[found_plant]["fruit_name"]]["stage2"]["tile_id"], Vector2i(0, 0))
 					2:
-						var goal = plant_info[plant_data[plant]["fruit_name"]]["stage2"]["sec"]
-						if plant_data[plant]["time"] >= goal:
-							plant_data[plant]["stage"] += 1
-							plant_data[plant]["time"] = 0
-							set_cell(plant, plant_info[plant_data[plant]["fruit_name"]]["stage3"]["tile_id"], Vector2i(0, 0))
+						var goal = plant_info[plant_data[found_plant]["fruit_name"]]["stage2"]["sec"]
+						if plant_data[found_plant]["time"] >= goal:
+							plant_data[found_plant]["stage"] += 1
+							plant_data[found_plant]["time"] = 0
+							set_cell(found_plant, plant_info[plant_data[found_plant]["fruit_name"]]["stage3"]["tile_id"], Vector2i(0, 0))
 					3:
-						var goal = plant_info[plant_data[plant]["fruit_name"]]["stage3"]["sec"]
-						if plant_data[plant]["time"] >= goal:
-							plant_data[plant]["stage"] += 1
-							plant_data[plant]["time"] = 0
-							set_cell(plant, plant_info[plant_data[plant]["fruit_name"]]["stage4"]["tile_id"], Vector2i(0, 0))
+						var goal = plant_info[plant_data[found_plant]["fruit_name"]]["stage3"]["sec"]
+						if plant_data[found_plant]["time"] >= goal:
+							plant_data[found_plant]["stage"] += 1
+							plant_data[found_plant]["time"] = 0
+							set_cell(found_plant, plant_info[plant_data[found_plant]["fruit_name"]]["stage4"]["tile_id"], Vector2i(0, 0))
 		else:
 			if stage < 5:
-				if terrain.watered_tiles.get(plant):
-					if plant_data[plant]["initial"] == plant:
-						plant_data[plant]["time"] += delta
+				if terrain.watered_tiles.get(found_plant):
+					if plant_data[found_plant]["initial"] == found_plant:
+						plant_data[found_plant]["time"] += delta
 				match stage:
 					1:
-						var goal = tree_info[plant_data[plant]["fruit_name"]]["stage1"]["sec"]
-						var initial = plant_data[plant]["initial"]
+						var goal = tree_info[plant_data[found_plant]["fruit_name"]]["stage1"]["sec"]
+						var initial = plant_data[found_plant]["initial"]
 						if plant_data[initial]["time"] >= goal:
-							plant_data[plant]["stage"] += 1
+							plant_data[found_plant]["stage"] += 1
 							plant_data[initial]["time"] = 0
 							for x in 3:
 								for y in 4:
-									set_cell(initial + Vector2i(x-1, y-2), tree_info[plant_data[plant]["fruit_name"]]["stage2"]["tile_id"], Vector2i(x, y))
+									set_cell(initial + Vector2i(x-1, y-2), tree_info[plant_data[found_plant]["fruit_name"]]["stage2"]["tile_id"], Vector2i(x, y))
 					2:
-						var goal = tree_info[plant_data[plant]["fruit_name"]]["stage2"]["sec"]
-						var initial = plant_data[plant]["initial"]
+						var goal = tree_info[plant_data[found_plant]["fruit_name"]]["stage2"]["sec"]
+						var initial = plant_data[found_plant]["initial"]
 						if plant_data[initial]["time"] >= goal:
-							plant_data[plant]["stage"] += 1
+							plant_data[found_plant]["stage"] += 1
 							plant_data[initial]["time"] = 0
 							for x in 3:
 								for y in 4:
-									set_cell(initial + Vector2i(x-1, y-2), tree_info[plant_data[plant]["fruit_name"]]["stage3"]["tile_id"], Vector2i(x, y))
+									set_cell(initial + Vector2i(x-1, y-2), tree_info[plant_data[found_plant]["fruit_name"]]["stage3"]["tile_id"], Vector2i(x, y))
 					3:
-						var goal = tree_info[plant_data[plant]["fruit_name"]]["stage3"]["sec"]
-						var initial = plant_data[plant]["initial"]
+						var goal = tree_info[plant_data[found_plant]["fruit_name"]]["stage3"]["sec"]
+						var initial = plant_data[found_plant]["initial"]
 						if plant_data[initial]["time"] >= goal:
-							plant_data[plant]["stage"] += 1
+							plant_data[found_plant]["stage"] += 1
 							plant_data[initial]["time"] = 0
 							for x in 3:
 								for y in 4:
-									set_cell(initial + Vector2i(x-1, y-2), tree_info[plant_data[plant]["fruit_name"]]["stage4"]["tile_id"], Vector2i(x, y))
+									set_cell(initial + Vector2i(x-1, y-2), tree_info[plant_data[found_plant]["fruit_name"]]["stage4"]["tile_id"], Vector2i(x, y))
 					4:
-						var goal = tree_info[plant_data[plant]["fruit_name"]]["stage4"]["sec"]
-						var initial = plant_data[plant]["initial"]
+						var goal = tree_info[plant_data[found_plant]["fruit_name"]]["stage4"]["sec"]
+						var initial = plant_data[found_plant]["initial"]
 						if plant_data[initial]["time"] >= goal:
-							plant_data[plant]["stage"] += 1
+							plant_data[found_plant]["stage"] += 1
 							plant_data[initial]["time"] = 0
 							for x in 3:
 								for y in 4:
-									set_cell(initial + Vector2i(x-1, y-2), tree_info[plant_data[plant]["fruit_name"]]["stage5"]["tile_id"], Vector2i(x, y))
+									set_cell(initial + Vector2i(x-1, y-2), tree_info[plant_data[found_plant]["fruit_name"]]["stage5"]["tile_id"], Vector2i(x, y))

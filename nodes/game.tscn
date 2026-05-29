@@ -8,6 +8,7 @@
 [ext_resource type="Script" uid="uid://cqj5kdjgmiq4h" path="res://scripts/cameraController.gd" id="5_flw6b"]
 [ext_resource type="PackedScene" uid="uid://cba0025bwgh02" path="res://nodes/Overview.tscn" id="6_14ebw"]
 [ext_resource type="PackedScene" uid="uid://dndniilkom3fx" path="res://nodes/Toolbar.tscn" id="6_iae2t"]
+[ext_resource type="PackedScene" uid="uid://bhq5oggr0myv" path="res://nodes/Robot.tscn" id="6_ra8g4"]
 [ext_resource type="Texture2D" uid="uid://cymecwa1s5t5i" path="res://tiles/plants/crops/watermelon/watermelon_almost.png" id="7_g42si"]
 [ext_resource type="Texture2D" uid="uid://dk1vcvbxdj8tu" path="res://tiles/plants/crops/watermelon/watermelon_ready.png" id="8_j4xau"]
 [ext_resource type="Texture2D" uid="uid://dhl3bwmfjb3ea" path="res://tiles/plants/crops/pumpkin/pumpkin_ready.png" id="9_7vemi"]
@@ -826,3 +827,7 @@ tile_set = SubResource("TileSet_28t03")
 [node name="Pests" type="TileMapLayer" parent="." unique_id=341925451]
 z_index = 2
 tile_set = SubResource("TileSet_003f7")
+
+[node name="Barrier" type="TileMapLayer" parent="." unique_id=257227273]
+
+[node name="Robot" parent="." unique_id=842537626 instance=ExtResource("6_ra8g4")]

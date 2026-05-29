@@ -7,16 +7,14 @@
 radius = 14.0
 height = 28.0
 
-[node name="Robot" type="Node2D" unique_id=842537626]
-
-[node name="CharacterBody2D" type="CharacterBody2D" parent="." unique_id=1362932278]
+[node name="CharacterBody2D" type="CharacterBody2D" unique_id=613094548]
 motion_mode = 1
 script = ExtResource("1_qs5bx")
 
-[node name="Sprite2D" type="Sprite2D" parent="CharacterBody2D" unique_id=1635633695]
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1106177919]
 position = Vector2(-49, -48)
 texture = ExtResource("1_jabm3")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="CharacterBody2D" unique_id=1746521361]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=2053435447]
 position = Vector2(-49, -48)
 shape = SubResource("CapsuleShape2D_qs5bx")
