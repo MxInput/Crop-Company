@@ -47,6 +47,17 @@ func  _input(event: InputEvent) -> void:
 				watered_tiles.erase(cell_pos)
 				if watered.get_cell_source_id(cell_pos) != -1:
 					watered.erase_cell(cell_pos)
+			if fertilized_tiles.get(cell_pos):
+				if plants.plant_data[cell_pos]["type"] == "crop":
+					fertilized.erase_cell(cell_pos)
+					fertilized_tiles.erase(cell_pos)
+				else:
+					for x in 3:
+						for y in 4:
+							var initial = plants.plant_data[cell_pos]["initial"]
+							
+							fertilized_tiles.erase(initial + Vector2i(x-1, y-2))
+							fertilized.erase_cell(initial + Vector2i(x-1, y-2))
 	elif ToolVariables.current_tool == "Fertilizer":
 		var mouse_pos = get_local_mouse_position()
 		var cell_pos = local_to_map(mouse_pos)

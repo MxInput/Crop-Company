@@ -64,6 +64,26 @@ var tree_info = {
 		"price": 5,
 		"sell": 10,
 		"icon": load("res://tiles/toolbar/trees/Apple_Icon.png")
+	},
+	"Grapefruit": {
+		"stage1": { "sec": 4, "tile_id": 30},
+		"stage2": { "sec": 4, "tile_id": 29},
+		"stage3": { "sec": 4, "tile_id": 26},
+		"stage4": {"sec": 4, "tile_id": 27},
+		"stage5": {"tile_id": 28},
+		"price": 5,
+		"sell": 10,
+		"icon": load("res://tiles/toolbar/trees/grapefruit_icon.png")
+	},
+	"Banana": {
+		"stage1": { "sec": 4, "tile_id": 25},
+		"stage2": { "sec": 4, "tile_id": 24},
+		"stage3": { "sec": 4, "tile_id": 21},
+		"stage4": {"sec": 4, "tile_id": 22},
+		"stage5": {"tile_id": 23},
+		"price": 5,
+		"sell": 10,
+		"icon": load("res://tiles/toolbar/trees/banana_icon.png")
 	}
 }
 
@@ -101,7 +121,7 @@ func plant(plant_name) -> void:
 						set_cell(cell_pos + Vector2i(x-1, y-2), tree_info[plant_name]["stage1"]["tile_id"], Vector2i(x, y))
 	else:
 		if (self_tile_id == -1):
-			if (tile_id == 1):
+			if (tile_id == 1 || tile_id == 2):
 				if PlayerVariables.player.buy(plant_info[plant_name]["price"]):
 					coin_display.new_instance(-plant_info[plant_name]["price"])
 					plant_data[cell_pos] = { "fruit_name" : plant_name, "stage" : 1, "time" : 0, "type": "crop"}
@@ -145,16 +165,16 @@ func _process(delta: float) -> void:
 					if plant_data[plant_data[cell_pos]["initial"]]["stage"] == 5:
 						PlayerVariables.player.sell(tree_info[plant_data[cell_pos]["fruit_name"]]["sell"])
 						coin_display.new_instance(tree_info[plant_data[cell_pos]["fruit_name"]]["sell"])	
-			if ToolVariables.current_tool == "Shovel" or plant_data[cell_pos]["stage"] >= 4:
+			if ToolVariables.current_tool == "Shovel" or plant_data[cell_pos]["stage"] >= 4 or plant_data[cell_pos].has("initial"):
 				if plant_data[cell_pos]["type"] == "crop": 
 					plant_data.erase(cell_pos)
 					erase_cell(cell_pos)
 					terrain.set_cell(cell_pos, 0, Vector2i(0,0))
 				elif plant_data[cell_pos]["type"] == "tree":
 					if plant_data[plant_data[cell_pos]["initial"]]["stage"] == 5 and ToolVariables.current_tool != "Shovel":
-						plant_data[plant_data[cell_pos]["initial"]]["stage"] -= 1
 						for x in 3:
 							for y in 4:
+								plant_data[plant_data[cell_pos]["initial"] + Vector2i(x-1, y-2)]["stage"] -= 1
 								set_cell(plant_data[cell_pos]["initial"] + Vector2i(x-1, y-2), tree_info[plant_data[cell_pos]["fruit_name"]]["stage4"]["tile_id"], Vector2i(x, y))	
 					elif ToolVariables.current_tool == "Shovel":
 						var initial = plant_data[cell_pos]["initial"]
@@ -184,7 +204,7 @@ func _process(delta: float) -> void:
 				_:
 					timeLeft = 0
 		else:
-			match plant_data[cell_pos]["stage"]: 
+			match plant_data[plant_data[cell_pos]["initial"]]["stage"]: 
 				1:
 					var goal = tree_info[plant_data[cell_pos]["fruit_name"]]["stage1"]["sec"]
 					timeLeft = goal - plant_data[plant_data[cell_pos]["initial"]]["time"]
