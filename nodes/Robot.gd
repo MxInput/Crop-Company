@@ -39,10 +39,12 @@ func start_moving():
 	
 func _physics_process(delta: float) -> void:
 	if !move_points.is_empty():
-		if current_point == move_points.size() - 1:
+		if current_point == move_points.size() - 2:
 			velocity = Vector2.ZERO
-			global_position = move_points[-1]
-			current_cell = tiles.local_to_map(to_local(global_position))
+			global_position = move_points[-2]
+			current_cell = tiles.local_to_map(tiles.to_local(global_position))
+			if !tiles.watered_tiles.get(target_cell):
+				print("watered")
 			moving = false
 			finished = true
 		else:
@@ -51,6 +53,6 @@ func _physics_process(delta: float) -> void:
 			velocity = dir * SPEED
 			move_and_slide()
 			if (move_points[current_point + 1] - global_position).length() < 4:
-				current_cell = tiles.local_to_map(to_local(global_position))
+				current_cell = tiles.local_to_map(tiles.to_local(global_position))
 				current_point += 1
 		

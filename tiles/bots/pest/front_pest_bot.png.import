@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bxblhcj4noyt5"
-path="res://.godot/imported/robotemp.png-6b9538331b73c7c7970084d9bfeb8e81.ctex"
+uid="uid://do5o71w3g0mdh"
+path="res://.godot/imported/front_pest_bot.png-bd80a8b81c40d7bfbad4978122995a0b.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://tiles/bots/robotemp.png"
-dest_files=["res://.godot/imported/robotemp.png-6b9538331b73c7c7970084d9bfeb8e81.ctex"]
+source_file="res://tiles/bots/pest/front_pest_bot.png"
+dest_files=["res://.godot/imported/front_pest_bot.png-bd80a8b81c40d7bfbad4978122995a0b.ctex"]
 
 [params]
 
