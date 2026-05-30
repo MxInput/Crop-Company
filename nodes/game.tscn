@@ -836,7 +836,12 @@ tile_set = SubResource("TileSet_003f7")
 
 [node name="Barrier" type="TileMapLayer" parent="." unique_id=257227273]
 
-[node name="Robot" parent="." unique_id=842537626 instance=ExtResource("6_ra8g4")]
+[node name="WaterBot2" parent="." unique_id=613094548 groups=["Water_Robots"] instance=ExtResource("6_ra8g4")]
+position = Vector2(-144, 19)
+collision_layer = 254
+collision_mask = 254
+
+[node name="WaterBot" parent="." unique_id=842537626 groups=["Water_Robots"] instance=ExtResource("6_ra8g4")]
 position = Vector2(-16, -16)
 collision_layer = 254
 collision_mask = 254

@@ -10,9 +10,13 @@ var finished : bool = true
 var moving : bool = false
 var current_point : int = 0
 
-var SPEED : float = 16.0
+var SPEED : float = 50.0
+
+@onready var animated_sprite = get_child(1)
 
 @onready var tiles: TileMapLayer = get_node("/root/Game/Terrain")
+@onready var plants: TileMapLayer = get_node("/root/Game/Plants")
+@onready var watered: TileMapLayer = get_node("/root/Game/Watered")
 
 var astar_grid = AStarGrid2D.new()
 
@@ -44,15 +48,36 @@ func _physics_process(delta: float) -> void:
 			global_position = move_points[-2]
 			current_cell = tiles.local_to_map(tiles.to_local(global_position))
 			if !tiles.watered_tiles.get(target_cell):
-				print("watered")
+				if plants.plant_data.get(target_cell):
+					tiles.watered_tiles[target_cell] = {"time": 0}
+					watered.set_cell(target_cell, 0, Vector2i(0,0))
 			moving = false
 			finished = true
+			move_points.clear()
+			current_point = 0
+			target_cell = Vector2i.ZERO
 		else:
 			var dir = (move_points[current_point + 1] - move_points[current_point]).normalized()
 			
+			var sides = [Vector2.from_angle(PI/4), Vector2.from_angle(3 * PI/4), Vector2.from_angle(5 * PI/4), Vector2.from_angle(7 * PI/4)]
+		
+			match dir:
+				Vector2.UP:
+					animated_sprite.play("back")
+				Vector2.DOWN:
+					animated_sprite.play("front")
+				Vector2.LEFT:
+					animated_sprite.play("left")
+				Vector2.RIGHT:
+					animated_sprite.play("right")
+
+			if (dir - sides[0]).length() < 0.01 or (dir - sides[3]).length() < 0.01:
+				animated_sprite.play("right")
+			elif (dir - sides[1]).length() < 0.01 or (dir - sides[2]).length() < 0.01:
+				animated_sprite.play("left")
+				
 			velocity = dir * SPEED
 			move_and_slide()
 			if (move_points[current_point + 1] - global_position).length() < 4:
 				current_cell = tiles.local_to_map(tiles.to_local(global_position))
 				current_point += 1
-		

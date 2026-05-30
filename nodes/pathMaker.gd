@@ -3,7 +3,9 @@ extends Node2D
 @onready var map: TileMapLayer = get_node("/root/Game/Terrain")
 @onready var plants: TileMapLayer = get_node("/root/Game/Plants")
 
-@onready var robot: CharacterBody2D = get_node("/root/Game/Robot")
+@onready var robots = get_tree().get_nodes_in_group("Water_Robots")
+
+var targeted = []
 
 var a_star_grid : AStarGrid2D
 	
@@ -17,6 +19,9 @@ func _ready() -> void:
 
 func _process(delta: float) -> void:
 	for plant in plants.plant_data:
-		if !map.watered_tiles.get(plant):
-			if robot.finished:
-				robot.initialize(a_star_grid, plant)
+		if !map.watered_tiles.get(plant) && targeted.find(plant) == -1:
+			for robot in robots:
+				if robot.finished:
+					targeted.append(plant)
+					robot.initialize(a_star_grid, plant)
+					break
