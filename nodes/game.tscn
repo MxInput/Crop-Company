@@ -59,8 +59,12 @@
 [ext_resource type="Script" uid="uid://c78r4t6at3pfa" path="res://scripts/coinDisplay.gd" id="47_umco5"]
 [ext_resource type="Texture2D" uid="uid://yln13m8fu1y7" path="res://tiles/plants/trees/grapefruit/grapefruit_seed.png" id="48_h2djo"]
 [ext_resource type="Texture2D" uid="uid://l8r5t424ihqi" path="res://tiles/watered.png" id="48_ibvi0"]
+[ext_resource type="Texture2D" uid="uid://ceggjurbtmk5x" path="res://tiles/plants/crops/tomato/tomato_almost.png" id="49_6rchb"]
 [ext_resource type="Texture2D" uid="uid://b2fiwfux5m3yw" path="res://tiles/fertilized.png" id="49_mm03y"]
+[ext_resource type="Texture2D" uid="uid://bvapakqs4snki" path="res://tiles/plants/crops/tomato/tomato_ready.png" id="50_5jfld"]
 [ext_resource type="Texture2D" uid="uid://bsv7p0t3hjdl" path="res://tiles/pests.png" id="50_8k4h7"]
+[ext_resource type="Texture2D" uid="uid://g66xddj2l7q8" path="res://tiles/plants/crops/tomato/tomato_sapling.png" id="51_ftvgp"]
+[ext_resource type="Texture2D" uid="uid://dv8mmc4y55rgp" path="res://tiles/plants/crops/tomato/tomato_seed.png" id="52_h2djo"]
 [ext_resource type="Script" uid="uid://fbvn78vgomyd" path="res://scripts/pathMaker.gd" id="62_wlrtx"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_6hfer"]
@@ -566,6 +570,30 @@ texture_region_size = Vector2i(32, 32)
 2:1/0 = 0
 2:1/0/physics_layer_0/polygon_0/points = PackedVector2Array(-16, -16, 16, -16, 16, 16, -16, 16)
 
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_37phw"]
+texture = ExtResource("49_6rchb")
+texture_region_size = Vector2i(32, 32)
+0:0/0 = 0
+0:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-16, -16, 16, -16, 16, 16, -16, 16)
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_8p5x7"]
+texture = ExtResource("50_5jfld")
+texture_region_size = Vector2i(32, 32)
+0:0/0 = 0
+0:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-16, -16, 16, -16, 16, 16, -16, 16)
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_tb1r5"]
+texture = ExtResource("51_ftvgp")
+texture_region_size = Vector2i(32, 32)
+0:0/0 = 0
+0:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-16, -16, 16, -16, 16, 16, -16, 16)
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_5pyk1"]
+texture = ExtResource("52_h2djo")
+texture_region_size = Vector2i(32, 32)
+0:0/0 = 0
+0:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-16, -16, 16, -16, 16, 16, -16, 16)
+
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_5xfwu"]
 texture = ExtResource("11_rqcqk")
 texture_region_size = Vector2i(32, 32)
@@ -637,6 +665,10 @@ sources/27 = SubResource("TileSetAtlasSource_sknth")
 sources/28 = SubResource("TileSetAtlasSource_dj8g6")
 sources/29 = SubResource("TileSetAtlasSource_8wk8e")
 sources/30 = SubResource("TileSetAtlasSource_n2jxr")
+sources/31 = SubResource("TileSetAtlasSource_37phw")
+sources/32 = SubResource("TileSetAtlasSource_8p5x7")
+sources/33 = SubResource("TileSetAtlasSource_tb1r5")
+sources/34 = SubResource("TileSetAtlasSource_5pyk1")
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_njtgi"]
 size = Vector2(85, 59)

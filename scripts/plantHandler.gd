@@ -51,6 +51,15 @@ var plant_info = {
 		"price": 18,
 		"sell": 28,
 		"icon": load("res://tiles/toolbar/fruits/butternut_icon.png")
+	},
+	"Tomato": {
+		"stage1": { "sec": 25, "tile_id": 34},
+		"stage2": { "sec": 30, "tile_id": 33},
+		"stage3": { "sec": 35, "tile_id": 31},
+		"stage4": {"tile_id": 32},
+		"price": 18,
+		"sell": 28,
+		"icon": load("res://tiles/toolbar/fruits/tomato_icon.png")
 	}
 }
 

@@ -30,7 +30,9 @@ func initialize(_grid : AStarGrid2D, _target : Vector2i):
 	finished = false
 	
 func _process(delta: float) -> void:
-	if !plants.plant_data.get(target_cell) or tiles.watered_tiles.get(target_cell):
+	print(target_cell)
+	if !plants.plant_data.has(target_cell) or tiles.watered_tiles.has(target_cell):
+		print(tiles.watered_tiles.has(target_cell))
 		velocity = Vector2.ZERO
 		current_cell = tiles.local_to_map(tiles.to_local(global_position))
 		moving = false
@@ -40,11 +42,14 @@ func _process(delta: float) -> void:
 		target_cell = Vector2i.ZERO
 			
 	if !finished:
+		print("cuz")
 		if current_cell != target_cell:
+			print("blood")
 			if !moving:
 				move_points = grid.get_point_path(current_cell, target_cell)
 				move_points = (move_points as Array).map(func (p): return p + grid.cell_size/2.0)
 				start_moving()
+				print(move_points)
 
 		else:
 			finished = true
@@ -59,9 +64,9 @@ func _physics_process(delta: float) -> void:
 			velocity = Vector2.ZERO
 			global_position = move_points[-2]
 			current_cell = tiles.local_to_map(tiles.to_local(global_position))
-			if (plants.tree_info.get(plants.plant_data[target_cell]["fruit_name"])):
-				if !tiles.watered_tiles.get(target_cell):
-					if plants.plant_data.get(target_cell):
+			if (plants.tree_info.has(plants.plant_data[target_cell]["fruit_name"])):
+				if !tiles.watered_tiles.has(target_cell):
+					if plants.plant_data.has(target_cell):
 						for x in 3:
 							for y in 4:						
 								paths_node.targeted.erase(target_cell)
@@ -70,8 +75,8 @@ func _physics_process(delta: float) -> void:
 								watered.set_cell(target_cell + Vector2i(x-1, y-2), 0, Vector2i.ZERO)
 			else:
 				paths_node.targeted.erase(target_cell)
-				if !tiles.watered_tiles.get(target_cell):
-					if plants.plant_data.get(target_cell):
+				if !tiles.watered_tiles.has(target_cell):
+					if plants.plant_data.has(target_cell):
 						tiles.watered_tiles[target_cell] = {"time": 0}
 						watered.set_cell(target_cell, 0, Vector2i(0,0))
 			moving = false
@@ -109,8 +114,8 @@ func _physics_process(delta: float) -> void:
 		if current_cell == target_cell || tiles.get_surrounding_cells(current_cell).has(target_cell):
 			velocity = Vector2.ZERO
 			if (plants.plant_data.has(target_cell)):
-				if (plants.tree_info.get(plants.plant_data[target_cell]["fruit_name"])):
-					if !tiles.watered_tiles.get(target_cell):	
+				if (plants.tree_info.has(plants.plant_data[target_cell]["fruit_name"])):
+					if !tiles.watered_tiles.has(target_cell):	
 						for x in 3:
 							for y in 4:						
 								paths_node.targeted.erase(target_cell)
@@ -124,8 +129,8 @@ func _physics_process(delta: float) -> void:
 				else:
 					paths_node.targeted.erase(target_cell)
 					
-					if !tiles.watered_tiles.get(target_cell):
-						if plants.plant_data.get(target_cell):
+					if !tiles.watered_tiles.has(target_cell):
+						if plants.plant_data.has(target_cell):
 							tiles.watered_tiles[target_cell] = {"time": 0}
 							watered.set_cell(target_cell, 0, Vector2i(0,0))
 				moving = false

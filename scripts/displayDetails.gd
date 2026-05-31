@@ -2,12 +2,13 @@ extends Control
 
 @onready var plants : TileMapLayer = get_node("/root/Game/Plants")
 
-@onready var stageTeller = get_child(0).get_child(2)
-@onready var nameTeller = get_child(0).get_child(3)
-@onready var timeTeller = get_child(0).get_child(4)
+@onready var stageTeller = get_child(0).get_child(3)
+@onready var nameTeller = get_child(0).get_child(4)
+@onready var timeTeller = get_child(0).get_child(5)
 
-@onready var sellTeller = get_child(0).get_child(0)
-@onready var priceTeller = get_child(0).get_child(1)
+@onready var sellTeller = get_child(0).get_child(1)
+@onready var priceTeller = get_child(0).get_child(2)
+@onready var growthTeller = get_child(0).get_child(0)
 
 var plant_use = false
 var toolbar_use = false
@@ -29,6 +30,7 @@ func inventory(givenName : String):
 	timeTeller.visible = false
 	sellTeller.visible = true
 	priceTeller.visible = true
+	growthTeller.visible = true
 
 	global_position = get_global_mouse_position() + Vector2(-40, -150)
 	visible = true
@@ -37,9 +39,14 @@ func inventory(givenName : String):
 	if (plants.plant_info.get(givenName)):
 		sellTeller.text = "Sells for " + str(plants.plant_info[givenName]["sell"])
 		priceTeller.text = "Buy for " + str(plants.plant_info[givenName]["price"])
+		var time_to_grow = plants.plant_info[givenName]["stage1"]["sec"] + plants.plant_info[givenName]["stage2"]["sec"] + plants.plant_info[givenName]["stage3"]["sec"]
+		growthTeller.text = "Takes " + str(time_to_grow) + " seconds to grow"
 	else:
-		sellTeller.text = "Sells for " + str(plants.tree_info[givenName]["sell"])
-		priceTeller.text = "Buy for " + str(plants.tree_info[givenName]["sell"])
+		var time_to_grow = plants.tree_info[givenName]["stage1"]["sec"] + plants.tree_info[givenName]["stage2"]["sec"] + plants.tree_info[givenName]["stage3"]["sec"]
+		var time_to_harvest = plants.tree_info[givenName]["stage4"]["sec"]
+		growthTeller.text = "Takes " + str(time_to_grow) + " seconds to reach stage 4 and " + str(time_to_harvest) + " to reach stage 5."
+		sellTeller.text = "Each harvest sells for " + str(plants.tree_info[givenName]["sell"])
+		priceTeller.text = "Buy for " + str(plants.tree_info[givenName]["price"])
 	
 func display(stage : String, type : String, givenName : String, time : String) -> void:
 	plant_use = true
@@ -48,6 +55,7 @@ func display(stage : String, type : String, givenName : String, time : String) -
 	timeTeller.visible = true
 	sellTeller.visible = false
 	priceTeller.visible = false
+	growthTeller.visible = false
 	
 	global_position = get_global_mouse_position() + Vector2(-40, -150)
 	visible = true
