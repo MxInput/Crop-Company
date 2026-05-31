@@ -56,12 +56,12 @@
 [ext_resource type="Texture2D" uid="uid://dokdffdlgps43" path="res://tiles/plants/trees/grapefruit/grapefruit_final.png" id="44_6rchb"]
 [ext_resource type="Texture2D" uid="uid://dpstfy4ju137j" path="res://tiles/plants/trees/grapefruit/grapefruit_harvest.png" id="45_5jfld"]
 [ext_resource type="Texture2D" uid="uid://d02vtse01haeq" path="res://tiles/plants/trees/grapefruit/grapefruit_sapling.png" id="46_ftvgp"]
-[ext_resource type="Script" uid="uid://c78r4t6at3pfa" path="res://nodes/coinDisplay.gd" id="47_umco5"]
+[ext_resource type="Script" uid="uid://c78r4t6at3pfa" path="res://scripts/coinDisplay.gd" id="47_umco5"]
 [ext_resource type="Texture2D" uid="uid://yln13m8fu1y7" path="res://tiles/plants/trees/grapefruit/grapefruit_seed.png" id="48_h2djo"]
 [ext_resource type="Texture2D" uid="uid://l8r5t424ihqi" path="res://tiles/watered.png" id="48_ibvi0"]
 [ext_resource type="Texture2D" uid="uid://b2fiwfux5m3yw" path="res://tiles/fertilized.png" id="49_mm03y"]
 [ext_resource type="Texture2D" uid="uid://bsv7p0t3hjdl" path="res://tiles/pests.png" id="50_8k4h7"]
-[ext_resource type="Script" uid="uid://fbvn78vgomyd" path="res://nodes/pathMaker.gd" id="62_wlrtx"]
+[ext_resource type="Script" uid="uid://fbvn78vgomyd" path="res://scripts/pathMaker.gd" id="62_wlrtx"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_6hfer"]
 texture = ExtResource("1_cpdmu")

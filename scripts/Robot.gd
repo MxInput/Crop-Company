@@ -56,7 +56,6 @@ func start_moving():
 func _physics_process(delta: float) -> void:
 	if !move_points.is_empty():
 		if current_point == move_points.size() - 2:
-			paths_node.targeted.erase(target_cell)
 			velocity = Vector2.ZERO
 			global_position = move_points[-2]
 			current_cell = tiles.local_to_map(tiles.to_local(global_position))
@@ -64,12 +63,13 @@ func _physics_process(delta: float) -> void:
 				if !tiles.watered_tiles.get(target_cell):
 					if plants.plant_data.get(target_cell):
 						for x in 3:
-							for y in 4:
-								var initial = plants.plant_data[target_cell]["initial"]
+							for y in 4:						
+								paths_node.targeted.erase(target_cell)
 								
-								tiles.watered_tiles[initial + Vector2i(x-1, y-2)] = {"time": 0}
-								watered.set_cell(initial + Vector2i(x-1, y-2), 0, Vector2i.ZERO)
+								tiles.watered_tiles[target_cell + Vector2i(x-1, y-2)] = {"time": 0}
+								watered.set_cell(target_cell + Vector2i(x-1, y-2), 0, Vector2i.ZERO)
 			else:
+				paths_node.targeted.erase(target_cell)
 				if !tiles.watered_tiles.get(target_cell):
 					if plants.plant_data.get(target_cell):
 						tiles.watered_tiles[target_cell] = {"time": 0}
@@ -93,7 +93,7 @@ func _physics_process(delta: float) -> void:
 					animated_sprite.play("left")
 				Vector2.RIGHT:
 					animated_sprite.play("right")
-
+					
 			if (dir - sides[0]).length() < 0.01 or (dir - sides[3]).length() < 0.01:
 				animated_sprite.play("right")
 			elif (dir - sides[1]).length() < 0.01 or (dir - sides[2]).length() < 0.01:
@@ -106,20 +106,24 @@ func _physics_process(delta: float) -> void:
 				current_cell = tiles.local_to_map(tiles.to_local(global_position))
 				current_point += 1
 	else:
-		if current_cell == target_cell:
-			paths_node.targeted.erase(target_cell)
+		if current_cell == target_cell || tiles.get_surrounding_cells(current_cell).has(target_cell):
 			velocity = Vector2.ZERO
 			if (plants.plant_data.has(target_cell)):
 				if (plants.tree_info.get(plants.plant_data[target_cell]["fruit_name"])):
-					if !tiles.watered_tiles.get(target_cell):
-						if plants.plant_data.get(target_cell):
-							for x in 3:
-								for y in 4:
-									var initial = plants.plant_data[target_cell]["initial"]
-									
-									tiles.watered_tiles[initial + Vector2i(x-1, y-2)] = {"time": 0}
-									watered.set_cell(initial + Vector2i(x-1, y-2), 0, Vector2i.ZERO)
+					if !tiles.watered_tiles.get(target_cell):	
+						for x in 3:
+							for y in 4:						
+								paths_node.targeted.erase(target_cell)
+								
+								tiles.watered_tiles[target_cell + Vector2i(x-1, y-2)] = {"time": 0}
+								watered.set_cell(target_cell + Vector2i(x-1, y-2), 0, Vector2i.ZERO)
+					else:
+						for x in 3:
+							for y in 4:
+								paths_node.targeted.erase(target_cell)
 				else:
+					paths_node.targeted.erase(target_cell)
+					
 					if !tiles.watered_tiles.get(target_cell):
 						if plants.plant_data.get(target_cell):
 							tiles.watered_tiles[target_cell] = {"time": 0}
@@ -128,4 +132,7 @@ func _physics_process(delta: float) -> void:
 				finished = true
 				current_point = 0
 				target_cell = Vector2i.ZERO
+			else:
+				paths_node.targeted.erase(target_cell)
+			
 			

@@ -90,6 +90,13 @@ func _process(delta: float):
 			if watered.get_cell_source_id(watered_tile) != -1:
 				watered.erase_cell(watered_tile)
 			watered_tiles.erase(watered_tile)
+			
+	for fertilized_tile in fertilized_tiles:
+		fertilized_tiles[fertilized_tile]["time"] += delta
+		if fertilized_tiles[fertilized_tile]["time"] >= 60:
+			if fertilized.get_cell_source_id(fertilized_tile) != -1:
+				fertilized.erase_cell(fertilized_tile)
+			fertilized_tiles.erase(fertilized_tile)
 		
 func highlight (cell_pos: Vector2i):
 	select.position = map_to_local(cell_pos)

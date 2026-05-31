@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://bhq5oggr0myv"]
 
-[ext_resource type="Script" uid="uid://chjoh50witbxh" path="res://nodes/Robot.gd" id="1_qs5bx"]
+[ext_resource type="Script" uid="uid://chjoh50witbxh" path="res://scripts/Robot.gd" id="1_qs5bx"]
 [ext_resource type="Texture2D" uid="uid://dct71rlaws6gx" path="res://tiles/bots/water/back_water_bot.png" id="2_1gh81"]
 [ext_resource type="Texture2D" uid="uid://l0q64destf32" path="res://tiles/bots/water/front_water_bot.png" id="3_qpmjp"]
 [ext_resource type="Texture2D" uid="uid://sa0wwenwhcbg" path="res://tiles/bots/water/left_water_bot.png" id="4_l41wv"]
@@ -129,4 +129,5 @@ shape = SubResource("CapsuleShape2D_qs5bx")
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=486803117]
 sprite_frames = SubResource("SpriteFrames_atrkh")
 animation = &"right"
-frame_progress = 0.44848076
+autoplay = "right"
+frame_progress = 0.70515496

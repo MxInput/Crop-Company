@@ -16,10 +16,9 @@ func _ready() -> void:
 	a_star_grid.update()
 	a_star_grid.diagonal_mode = AStarGrid2D.DIAGONAL_MODE_ONLY_IF_NO_OBSTACLES
 
-func _process(delta: float) -> void:
-	
+func _process(_delta: float) -> void:
 	for plant in plants.plant_data:	
-		if !map.watered_tiles.get(plant) && targeted.find(plant) == -1:
+		if !map.watered_tiles.get(plant) && targeted.find(plant) == -1:	
 			for robot in robots:
 				if robot.finished:
 					if plants.tree_info.get(plants.plant_data[plant]["fruit_name"]):

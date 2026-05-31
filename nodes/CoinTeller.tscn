@@ -2,7 +2,7 @@
 
 [ext_resource type="Texture2D" uid="uid://cseicgud6lfs3" path="res://UI/Coin/Coin_Bar.png" id="1_1cwsi"]
 [ext_resource type="FontFile" uid="uid://ci5gbe284cx6u" path="res://UI/Fonts/SuperBakery.ttf" id="2_jovdy"]
-[ext_resource type="Script" uid="uid://df2bvro7bm717" path="res://nodes/CoinTeller.gd" id="3_0wqy5"]
+[ext_resource type="Script" uid="uid://df2bvro7bm717" path="res://scripts/CoinTeller.gd" id="3_0wqy5"]
 [ext_resource type="Texture2D" uid="uid://dveyt6255dejb" path="res://UI/Coin/Coin.png" id="4_jul3e"]
 
 [node name="CoinTeller" type="TextureRect" unique_id=88447049]
