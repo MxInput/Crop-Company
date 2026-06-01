@@ -750,38 +750,33 @@ offset_left = 3.0
 offset_top = 3.0
 offset_right = 259.0
 offset_bottom = 67.0
+mouse_filter = 0
 
 [node name="Toolbar" parent="CanvasLayer" unique_id=1074677494 instance=ExtResource("6_iae2t")]
 offset_top = 504.0
 offset_bottom = 504.0
 
 [node name="WateringCan" parent="CanvasLayer" unique_id=19308870 instance=ExtResource("10_4teul")]
-offset_left = 6.0
-offset_top = 336.0
-offset_right = 78.0
-offset_bottom = 408.0
-icon = ExtResource("10_0uvmu")
-flat = true
+offset_left = 13.0
+offset_top = 342.0
+offset_right = 85.0
+offset_bottom = 414.0
 norm = ExtResource("10_0uvmu")
 selected = ExtResource("11_qjdkp")
 
 [node name="Pesticide" parent="CanvasLayer" unique_id=811083721 instance=ExtResource("10_4teul")]
-offset_left = -5.0
-offset_top = 415.0
-offset_right = 67.0
-offset_bottom = 487.0
-icon = ExtResource("12_umco5")
-flat = true
+offset_left = 13.0
+offset_top = 426.0
+offset_right = 85.0
+offset_bottom = 498.0
 norm = ExtResource("12_umco5")
 selected = ExtResource("13_ibvi0")
 
 [node name="Fertilizer" parent="CanvasLayer" unique_id=1494471093 instance=ExtResource("10_4teul")]
-offset_left = 1.0
-offset_top = 492.0
-offset_right = 73.0
-offset_bottom = 564.0
-icon = ExtResource("14_mm03y")
-flat = true
+offset_left = 13.0
+offset_top = 510.0
+offset_right = 85.0
+offset_bottom = 582.0
 norm = ExtResource("14_mm03y")
 selected = ExtResource("15_8k4h7")
 
@@ -790,8 +785,6 @@ offset_left = 13.0
 offset_top = 258.0
 offset_right = 85.0
 offset_bottom = 330.0
-icon = ExtResource("11_5vka4")
-flat = true
 norm = ExtResource("11_5vka4")
 selected = ExtResource("12_ge3ne")
 
@@ -800,8 +793,7 @@ offset_left = 11.0
 offset_top = 90.0
 offset_right = 83.0
 offset_bottom = 162.0
-icon = ExtResource("12_yl7r8")
-flat = true
+mouse_force_pass_scroll_events = false
 norm = ExtResource("12_yl7r8")
 selected = ExtResource("14_n81dx")
 
@@ -810,8 +802,6 @@ offset_left = 12.0
 offset_top = 174.0
 offset_right = 84.0
 offset_bottom = 246.0
-icon = ExtResource("13_5jmek")
-flat = true
 norm = ExtResource("13_5jmek")
 selected = ExtResource("16_hw60i")
 

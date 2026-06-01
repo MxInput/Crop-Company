@@ -65,7 +65,17 @@ func  _input(event: InputEvent) -> void:
 							fertilized.erase_cell(initial + Vector2i(x-1, y-2))
 							if plants.accounted_fertilized_tiles.has(initial + Vector2i(x-1, y-2)):
 								plants.accounted_fertilized_tiles.erase(initial + Vector2i(x-1, y-2))
-								
+			if infected_tiles.has(cell_pos):
+				if plants.plant_data[cell_pos]["type"] == "crop":
+					infected.erase_cell(cell_pos)
+					infected_tiles.erase(cell_pos)
+				else:
+					for x in 3:
+						for y in 4:
+							var initial = plants.plant_data[cell_pos]["initial"]
+							
+							infected_tiles.erase(initial + Vector2i(x-1, y-2))
+							infected.erase_cell(initial + Vector2i(x-1, y-2))
 	elif ToolVariables.current_tool == "Fertilizer":
 		var mouse_pos = get_local_mouse_position()
 		var cell_pos = local_to_map(mouse_pos)
@@ -126,17 +136,18 @@ func _process(delta: float):
 		timers[timer]["timer"].timeout.connect(func ():
 			if timers.has(timer):
 				var rand = randi_range(1, 100000)
-				if plants.plant_data[timer]["type"] == "crop":
-					if rand > 90000:
-						infected_tiles.append(timer)
-						infected.set_cell(timer, 0, Vector2i(0,0))
-				else:
-					if rand > 90000:
-						for x in 3:
-							for y in 4:
-								var initial = timer
-								infected_tiles.append(initial + Vector2i(x-1, y-2))
-								infected.set_cell(initial + Vector2i(x-1, y-2), 0, Vector2i(0, 0))
+				if plants.plant_data.has(timer):
+					if plants.plant_data[timer]["type"] == "crop":
+						if rand > 90000:
+							infected_tiles.append(timer)
+							infected.set_cell(timer, 0, Vector2i(0,0))
+					else:
+						if rand > 90000:
+							for x in 3:
+								for y in 4:
+									var initial = timer
+									infected_tiles.append(initial + Vector2i(x-1, y-2))
+									infected.set_cell(initial + Vector2i(x-1, y-2), 0, Vector2i(0, 0))
 				timers.erase(timer)
 		)
 			

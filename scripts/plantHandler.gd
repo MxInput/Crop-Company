@@ -122,7 +122,7 @@ func plant(plant_name) -> void:
 
 	var self_tile_id = get_cell_source_id(cell_pos)
 
-	if tree_info.get(plant_name):
+	if tree_info.has(plant_name):
 		if tree_placement_sprite.texture == able_to_place:
 			if PlayerVariables.player.buy(tree_info[plant_name]["price"]):
 				coin_display.new_instance(-tree_info[plant_name]["price"])
@@ -173,21 +173,21 @@ func _process(delta: float) -> void:
 						plant_data[fertilized_tile]["time"] = plant_data[fertilized_tile]["time"] + floor(time_left * 1 / 4)
 	for watered_tile in terrain.watered_tiles:
 		if watered.get_cell_source_id(watered_tile) == -1:
-			if plant_data.get(watered_tile):
+			if plant_data.has(watered_tile):
 				if plant_data[watered_tile]["type"] == "crop":
 					watered.set_cell(watered_tile, 0, Vector2i(0, 0))
 				else:
 					for x in 3:
 						for y in 4:
 							watered.set_cell(plant_data[cell_pos]["initial"] + Vector2i(x-1, y-2), 0, Vector2i(0, 0))
-							if !terrain.watered_tiles.get(plant_data[cell_pos]["initial"] + Vector2i(x-1, y-2)):
+							if !terrain.watered_tiles.has(plant_data[cell_pos]["initial"] + Vector2i(x-1, y-2)):
 								terrain.watered_tiles[plant_data[cell_pos]["initial"] + Vector2i(x-1, y-2)] = {"time": terrain.watered_tiles[watered_tile]["time"] }
-		elif !plant_data.get(watered_tile):
+		elif !plant_data.has(watered_tile):
 				terrain.watered_tiles.erase(watered_tile)
 				watered.erase_cell(watered_tile)
-		if plant_data.get(watered_tile):
+		if plant_data.has(watered_tile):
 			if plant_data[watered_tile]["type"] == "tree":
-				if terrain.watered_tiles.get(plant_data[watered_tile]["initial"]):
+				if terrain.watered_tiles.has(plant_data[watered_tile]["initial"]):
 					if terrain.watered_tiles[watered_tile]["time"] != terrain.watered_tiles[plant_data[watered_tile]["initial"]]["time"]:
 						terrain.watered_tiles[watered_tile]["time"] = terrain.watered_tiles[plant_data[watered_tile]["initial"]]["time"]
 	if Input.is_action_pressed("click"):
@@ -227,7 +227,7 @@ func _process(delta: float) -> void:
 						var initial = plant_data[cell_pos]["initial"]
 						for x in 3:
 							for y in 4:
-								if terrain.watered_tiles.get(initial + Vector2i(x-1, y-2)):
+								if terrain.watered_tiles.has(initial + Vector2i(x-1, y-2)):
 									terrain.watered_tiles.erase(initial + Vector2i(x-1, y-2))
 								terrain.set_cell(initial + Vector2i(x-1, y-2), 0, Vector2i(0,0))
 								if watered.get_cell_source_id(initial + Vector2i(x-1, y-2))	!= -1:
@@ -278,7 +278,7 @@ func _process(delta: float) -> void:
 		var type = plant_data[found_plant]["type"]
 		if type == "crop":
 			if stage < 4:
-				if terrain.watered_tiles.get(found_plant):
+				if terrain.watered_tiles.has(found_plant) && !terrain.infected_tiles.has(found_plant):
 					plant_data[found_plant]["time"] += delta
 				match stage:
 					1:
@@ -301,7 +301,7 @@ func _process(delta: float) -> void:
 							set_cell(found_plant, plant_info[plant_data[found_plant]["fruit_name"]]["stage4"]["tile_id"], Vector2i(0, 0))
 		else:
 			if stage < 5:
-				if terrain.watered_tiles.get(found_plant):
+				if terrain.watered_tiles.has(found_plant) && !terrain.infected_tiles.has(found_plant):
 					if plant_data[found_plant]["initial"] == found_plant:
 						plant_data[found_plant]["time"] += delta
 				match stage:

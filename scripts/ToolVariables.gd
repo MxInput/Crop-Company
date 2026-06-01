@@ -12,8 +12,7 @@ var current_tool
 @onready var tools = [glove, shovel, hoe, pesticide, watering_can, fertilizer]
 
 func _ready() -> void:
-	current_tool = "Hoe"
-	hoe.select()
+	change_tool("Hoe")
 
 func change_tool(tool : String):
 	current_tool = tool
