@@ -5,7 +5,6 @@
 [ext_resource type="FontFile" uid="uid://ci5gbe284cx6u" path="res://UI/Fonts/SuperBakery.ttf" id="3_k7f5j"]
 
 [node name="Overview" type="Control" unique_id=556799154]
-visible = false
 z_index = 5
 layout_mode = 3
 anchors_preset = 15
@@ -25,43 +24,44 @@ mouse_filter = 0
 texture = ExtResource("1_f6fno")
 
 [node name="Growth" type="Label" parent="TextureRect" unique_id=1066722801]
-visible = false
 z_index = 1
 layout_mode = 0
-offset_left = 11.0
-offset_top = 77.0
-offset_right = 218.0
-offset_bottom = 118.0
+offset_left = 10.0
+offset_top = 64.0
+offset_right = 216.0
+offset_bottom = 105.0
 mouse_filter = 0
 theme_override_colors/font_shadow_color = Color(0.35686275, 0.3254902, 0.41960785, 1)
+theme_override_constants/line_spacing = 1
 theme_override_fonts/font = ExtResource("3_k7f5j")
 theme_override_font_sizes/font_size = 14
 text = "DO THIS aaaaaaaa aaaaaaaaa aaaaaaaaaaaaa aaaaaaaaa"
-autowrap_mode = 2
+vertical_alignment = 1
+autowrap_mode = 3
 
 [node name="Sell" type="Label" parent="TextureRect" unique_id=1022864842]
-visible = false
 z_index = 1
 layout_mode = 0
-offset_left = 11.0
-offset_top = 32.0
-offset_right = 218.0
-offset_bottom = 55.0
+offset_left = 10.0
+offset_top = 29.0
+offset_right = 216.0
+offset_bottom = 52.0
 mouse_filter = 0
-theme_override_colors/font_shadow_color = Color(0.35686275, 0.3254902, 0.41960785, 1)
+theme_override_colors/font_color = Color(0.62352943, 0.91764706, 0.6862745, 1)
+theme_override_colors/font_shadow_color = Color(0.21549541, 0.458879, 0.3708319, 1)
 theme_override_fonts/font = ExtResource("3_k7f5j")
 text = "Seed"
 
 [node name="Price" type="Label" parent="TextureRect" unique_id=1792093448]
-visible = false
 z_index = 1
 layout_mode = 0
 offset_left = 10.0
-offset_top = 55.0
-offset_right = 217.0
-offset_bottom = 78.0
+offset_top = 49.0
+offset_right = 212.0
+offset_bottom = 72.0
 mouse_filter = 0
-theme_override_colors/font_shadow_color = Color(0.35686275, 0.3254902, 0.41960785, 1)
+theme_override_colors/font_color = Color(1, 0.9187369, 0.44796598, 1)
+theme_override_colors/font_shadow_color = Color(0.61689526, 0.5360658, 0.47535205, 1)
 theme_override_fonts/font = ExtResource("3_k7f5j")
 text = "40 min till change"
 
@@ -81,14 +81,15 @@ text = "Seed"
 [node name="Name" type="Label" parent="TextureRect" unique_id=342244826]
 z_index = 1
 layout_mode = 0
-offset_left = 8.0
-offset_top = 8.0
-offset_right = 215.0
-offset_bottom = 36.0
+offset_left = 9.0
+offset_top = 6.0
+offset_right = 214.0
+offset_bottom = 31.0
 mouse_filter = 0
-theme_override_colors/font_shadow_color = Color(0.35686275, 0.3254902, 0.41960785, 1)
+theme_override_colors/font_color = Color(0.6910976, 0.8845029, 0.9897843, 1)
+theme_override_colors/font_shadow_color = Color(0.2710262, 0.487777, 0.91229606, 1)
 theme_override_fonts/font = ExtResource("3_k7f5j")
-theme_override_font_sizes/font_size = 22
+theme_override_font_sizes/font_size = 20
 text = "Cabbage"
 
 [node name="Time" type="Label" parent="TextureRect" unique_id=1533893957]
@@ -103,3 +104,18 @@ mouse_filter = 0
 theme_override_colors/font_shadow_color = Color(0.35686275, 0.3254902, 0.41960785, 1)
 theme_override_fonts/font = ExtResource("3_k7f5j")
 text = "40 min till change"
+
+[node name="Season" type="Label" parent="TextureRect" unique_id=1477617176]
+z_index = 1
+layout_mode = 0
+offset_left = 9.0
+offset_top = 103.0
+offset_right = 219.0
+offset_bottom = 121.0
+mouse_filter = 0
+theme_override_colors/font_color = Color(0.87956303, 0.6066351, 0.6801424, 1)
+theme_override_colors/font_shadow_color = Color(0.8498588, 0.3097488, 0.4200039, 1)
+theme_override_fonts/font = ExtResource("3_k7f5j")
+theme_override_font_sizes/font_size = 12
+text = "Seed"
+autowrap_mode = 3

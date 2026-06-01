@@ -868,3 +868,5 @@ position = Vector2(-16, -16)
 
 [node name="Paths" type="Node2D" parent="." unique_id=156886163]
 script = ExtResource("62_wlrtx")
+
+[node name="Quests" type="Node2D" parent="." unique_id=313668459]

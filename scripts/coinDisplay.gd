@@ -6,6 +6,19 @@ extends Node
 
 var coin_changes = []
 
+func tell_warning(words : String):
+	var instance = coin_change.instantiate()
+	canvas_layer.add_child(instance)
+	
+	instance.global_position += Vector2(50, 50)
+	instance.get_child(0).text =words
+	
+	var dec_color = Color(0.622, 0.195, 0.225, 1.0)
+	
+	instance.get_child(0).set("theme_override_colors/font_color",dec_color) 
+	
+	coin_changes.append(instance)
+	
 func new_instance(amount : float):
 	var instance = coin_change.instantiate()
 	canvas_layer.add_child(instance)

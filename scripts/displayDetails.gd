@@ -5,6 +5,7 @@ extends Control
 @onready var stageTeller = get_child(0).get_child(3)
 @onready var nameTeller = get_child(0).get_child(4)
 @onready var timeTeller = get_child(0).get_child(5)
+@onready var seasonTeller = get_child(0).get_child(6)
 
 @onready var sellTeller = get_child(0).get_child(1)
 @onready var priceTeller = get_child(0).get_child(2)
@@ -41,13 +42,32 @@ func inventory(givenName : String):
 		priceTeller.text = "Buy for " + str(plants.plant_info[givenName]["price"])
 		var time_to_grow = plants.plant_info[givenName]["stage1"]["sec"] + plants.plant_info[givenName]["stage2"]["sec"] + plants.plant_info[givenName]["stage3"]["sec"]
 		growthTeller.text = "Takes " + str(time_to_grow) + " seconds to grow"
+
+		var seasons = ""
+		
+		for found_season in plants.plant_info[givenName]["seasons"]:
+			if seasons == "":
+				seasons += found_season
+			else:
+				seasons += ", " + found_season
+			
+		seasonTeller.text = seasons
 	else:
 		var time_to_grow = plants.tree_info[givenName]["stage1"]["sec"] + plants.tree_info[givenName]["stage2"]["sec"] + plants.tree_info[givenName]["stage3"]["sec"]
 		var time_to_harvest = plants.tree_info[givenName]["stage4"]["sec"]
-		growthTeller.text = "Takes " + str(time_to_grow) + " seconds to reach stage 4 and " + str(time_to_harvest) + " to reach stage 5."
+		growthTeller.text = "Reach stage 4 in " + str(time_to_grow) + " seconds and harvest after " + str(time_to_harvest) + " seconds."
 		sellTeller.text = "Each harvest sells for " + str(plants.tree_info[givenName]["sell"])
 		priceTeller.text = "Buy for " + str(plants.tree_info[givenName]["price"])
-	
+		var seasons = ""
+		
+		for found_season in plants.tree_info[givenName]["seasons"]:
+			if seasons == "":
+				seasons += found_season
+			else:
+				seasons += ", " + found_season
+			
+		seasonTeller.text = seasons
+				
 func display(stage : String, type : String, givenName : String, time : String) -> void:
 	plant_use = true
 	
@@ -59,10 +79,21 @@ func display(stage : String, type : String, givenName : String, time : String) -
 	
 	global_position = get_global_mouse_position() + Vector2(-40, -150)
 	visible = true
-	nameTeller.text = givenName
+	nameTeller.text = givenName	
 	
 	if type == "crop":
 		stageTeller.text = "Stage " + stage + " / 4"
+		
+		if plants.tree_info.has(givenName):
+			if plants.tree_info[givenName]["seasons"].has(SeasonVariables.season.name):
+				seasonTeller.text = "In season"
+			else:
+				seasonTeller.text = "Out of season"
+		else:
+			if plants.plant_info[givenName]["seasons"].has(SeasonVariables.season.name):
+				seasonTeller.text = "In season"
+			else:
+				seasonTeller.text = "Out of season"
 		
 		if stage == "4":
 			timeTeller.text = "Ready to harvest"

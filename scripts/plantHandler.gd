@@ -25,6 +25,7 @@ var plant_info = {
 		"stage4": {"tile_id": 1},
 		"price": 12,
 		"sell": 30,
+		"seasons": ["Summer"],
 		"icon": load("res://tiles/toolbar/fruits/watermelon_icon.png")
 	},
 	"Carrot": {
@@ -34,6 +35,7 @@ var plant_info = {
 		"stage4": {"tile_id": 5},
 		"price": 5,
 		"sell": 10,
+		"seasons": ["Spring", "Summer", "Fall", "Winter"],
 		"icon": load("res://tiles/toolbar/fruits/carrot_icon.png")
 	},
 	"Pumpkin": {
@@ -43,6 +45,7 @@ var plant_info = {
 		"stage4": {"tile_id": 10},
 		"price": 30,
 		"sell": 50,
+		"seasons": ["Fall"],
 		"icon": load("res://tiles/toolbar/fruits/pumpkin_icon.png")
 	},
 	"Butternut Squash": {
@@ -52,6 +55,7 @@ var plant_info = {
 		"stage4": {"tile_id": 13},
 		"price": 18,
 		"sell": 28,
+		"seasons": ["Fall"],
 		"icon": load("res://tiles/toolbar/fruits/butternut_icon.png")
 	},
 	"Tomato": {
@@ -61,6 +65,7 @@ var plant_info = {
 		"stage4": {"tile_id": 32},
 		"price": 18,
 		"sell": 28,
+		"seasons": ["Summer"],
 		"icon": load("res://tiles/toolbar/fruits/tomato_icon.png")
 	}
 }
@@ -74,6 +79,7 @@ var tree_info = {
 		"stage5": {"tile_id": 20},
 		"price": 50,
 		"sell": 10,
+		"seasons": ["Summer", "Fall"],
 		"icon": load("res://tiles/toolbar/trees/Apple_Icon.png")
 	},
 	"Grapefruit": {
@@ -84,6 +90,7 @@ var tree_info = {
 		"stage5": {"tile_id": 28},
 		"price": 100,
 		"sell": 20,
+		"seasons": ["Spring", "Winter"],
 		"icon": load("res://tiles/toolbar/trees/grapefruit_icon.png")
 	},
 	"Banana": {
@@ -94,6 +101,7 @@ var tree_info = {
 		"stage5": {"tile_id": 23},
 		"price": 75,
 		"sell": 15,
+		"seasons": ["Spring", "Summer", "Fall", "Winter"],
 		"icon": load("res://tiles/toolbar/trees/banana_icon.png")
 	}
 }
@@ -124,20 +132,31 @@ func plant(plant_name) -> void:
 
 	if tree_info.has(plant_name):
 		if tree_placement_sprite.texture == able_to_place:
-			if PlayerVariables.player.buy(tree_info[plant_name]["price"]):
-				coin_display.new_instance(-tree_info[plant_name]["price"])
-				for x in 3:
-					for y in 4:
-						plant_data[cell_pos + Vector2i(x-1, y-2)] = { "fruit_name" : plant_name, "stage" : 1, "time" : 0, "type": "tree", "initial": cell_pos}
-						set_cell(cell_pos + Vector2i(x-1, y-2), tree_info[plant_name]["stage1"]["tile_id"], Vector2i(x, y))
+			if tree_info[plant_name]["seasons"].has(SeasonVariables.season.name):
+				if PlayerVariables.player.buy(tree_info[plant_name]["price"]):
+					coin_display.new_instance(-tree_info[plant_name]["price"])
+					for x in 3:
+						for y in 4:
+							plant_data[cell_pos + Vector2i(x-1, y-2)] = { "fruit_name" : plant_name, "stage" : 1, "time" : 0, "type": "tree", "initial": cell_pos}
+							set_cell(cell_pos + Vector2i(x-1, y-2), tree_info[plant_name]["stage1"]["tile_id"], Vector2i(x, y))
+				else:
+					coin_display.tell_warning("Not enough coins")
+			else:
+				coin_display.tell_warning("Can't grow this season")
 	else:
 		if (self_tile_id == -1):
 			if (tile_id == 1 || tile_id == 2):
-				if PlayerVariables.player.buy(plant_info[plant_name]["price"]):
-					coin_display.new_instance(-plant_info[plant_name]["price"])
-					plant_data[cell_pos] = { "fruit_name" : plant_name, "stage" : 1, "time" : 0, "type": "crop"}
-					set_cell(cell_pos, plant_info[plant_name]["stage1"]["tile_id"], Vector2i(0, 0))
-				
+				if plant_info[plant_name]["seasons"].has(SeasonVariables.season.name):
+					if PlayerVariables.player.buy(plant_info[plant_name]["price"]):
+						coin_display.new_instance(-plant_info[plant_name]["price"])
+						plant_data[cell_pos] = { "fruit_name" : plant_name, "stage" : 1, "time" : 0, "type": "crop"}
+						set_cell(cell_pos, plant_info[plant_name]["stage1"]["tile_id"], Vector2i(0, 0))
+					else:
+						coin_display.tell_warning("Not enough coins")
+				else:
+					coin_display.tell_warning("Can't grow this season")
+
+					
 func _process(delta: float) -> void:
 	var mouse_pos = get_local_mouse_position()
 	var cell_pos = local_to_map(mouse_pos)
@@ -278,8 +297,9 @@ func _process(delta: float) -> void:
 		var type = plant_data[found_plant]["type"]
 		if type == "crop":
 			if stage < 4:
-				if terrain.watered_tiles.has(found_plant) && !terrain.infected_tiles.has(found_plant):
-					plant_data[found_plant]["time"] += delta
+				if plant_info[plant_data[found_plant]["fruit_name"]]["seasons"].has(SeasonVariables.season.name):
+					if terrain.watered_tiles.has(found_plant) && !terrain.infected_tiles.has(found_plant):
+						plant_data[found_plant]["time"] += delta
 				match stage:
 					1:
 						var goal = plant_info[plant_data[found_plant]["fruit_name"]]["stage1"]["sec"]
@@ -301,9 +321,10 @@ func _process(delta: float) -> void:
 							set_cell(found_plant, plant_info[plant_data[found_plant]["fruit_name"]]["stage4"]["tile_id"], Vector2i(0, 0))
 		else:
 			if stage < 5:
-				if terrain.watered_tiles.has(found_plant) && !terrain.infected_tiles.has(found_plant):
-					if plant_data[found_plant]["initial"] == found_plant:
-						plant_data[found_plant]["time"] += delta
+				if tree_info[plant_data[found_plant]["fruit_name"]]["seasons"].has(SeasonVariables.season.name):
+					if terrain.watered_tiles.has(found_plant) && !terrain.infected_tiles.has(found_plant):
+						if plant_data[found_plant]["initial"] == found_plant:
+							plant_data[found_plant]["time"] += delta
 				match stage:
 					1:
 						var goal = tree_info[plant_data[found_plant]["fruit_name"]]["stage1"]["sec"]
