@@ -65,7 +65,6 @@
 [ext_resource type="Texture2D" uid="uid://g66xddj2l7q8" path="res://tiles/plants/crops/tomato/tomato_sapling.png" id="51_ftvgp"]
 [ext_resource type="Texture2D" uid="uid://dv8mmc4y55rgp" path="res://tiles/plants/crops/tomato/tomato_seed.png" id="52_h2djo"]
 [ext_resource type="Script" uid="uid://fbvn78vgomyd" path="res://scripts/pathMaker.gd" id="62_wlrtx"]
-[ext_resource type="PackedScene" uid="uid://bmr0sdmfgof52" path="res://nodes/PestBot.tscn" id="66_6rchb"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_6hfer"]
 texture = ExtResource("1_cpdmu")
@@ -862,6 +861,3 @@ tile_set = SubResource("TileSet_003f7")
 script = ExtResource("62_wlrtx")
 
 [node name="Quests" type="Node2D" parent="." unique_id=313668459]
-
-[node name="PestBot" parent="." unique_id=152696932 instance=ExtResource("66_6rchb")]
-position = Vector2(16, 16)

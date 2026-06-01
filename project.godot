@@ -30,6 +30,8 @@ enabled=PackedStringArray("res://addons/godot_super-wakatime/plugin.cfg")
 
 Water_Robots=""
 pestBot=""
+fertillBots=""
+pickupBot=""
 
 [input]
 

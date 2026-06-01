@@ -4,10 +4,14 @@ extends Node2D
 @onready var plants: TileMapLayer = get_node("/root/Game/Plants")
 
 @onready var robots = get_tree().get_nodes_in_group("Water_Robots")
+@onready var fertillBots = get_tree().get_nodes_in_group("fertillBots")
 @onready var pestBots = get_tree().get_nodes_in_group("pestBot")
+@onready var pickupBots = get_tree().get_nodes_in_group("pickupBot")
 
 var targeted = []
 var pests_targeted = []
+var fertilizer_targeted = []
+var pickup_targeted = []
 
 var a_star_grid : AStarGrid2D
 	
@@ -20,6 +24,24 @@ func _ready() -> void:
 
 func _process(_delta: float) -> void:
 	for plant in plants.plant_data:	
+		if plants.tree_info.get(plants.plant_data[plant]["fruit_name"]):
+			if plants.plant_data[plant]["stage"] == 5:
+				for robot in pickupBots:
+					if robot.finished:
+						if pickup_targeted.find(plants.plant_data[plant]["initial"]) == -1: 
+							pickup_targeted.append(plants.plant_data[plant]["initial"])
+							robot.initialize(a_star_grid, plants.plant_data[plant]["initial"])
+						break
+		else:
+			if plants.plant_data[plant]["stage"] == 4:
+				for robot in pickupBots:
+					if robot.finished:
+						if pickup_targeted.find(plant) == -1: 
+							pickup_targeted.append(plant)
+							robot.initialize(a_star_grid, plant)
+						break
+				
+				
 		if !map.watered_tiles.has(plant) && targeted.find(plant) == -1:	
 			for robot in robots:
 				if robot.finished:
@@ -30,6 +52,18 @@ func _process(_delta: float) -> void:
 								robot.initialize(a_star_grid, plants.plant_data[plant]["initial"])
 					else:
 						targeted.append(plant)
+						robot.initialize(a_star_grid, plant)
+					break
+		if !map.fertilized_tiles.has(plant) && fertilizer_targeted.find(plant) == -1:	
+			for robot in fertillBots:
+				if robot.finished:
+					if plants.tree_info.get(plants.plant_data[plant]["fruit_name"]):
+						if !map.fertilized_tiles.has(plants.plant_data[plant]["initial"]):
+							if fertilizer_targeted.find(plants.plant_data[plant]["initial"]) == -1: 
+								fertilizer_targeted.append(plants.plant_data[plant]["initial"])
+								robot.initialize(a_star_grid, plants.plant_data[plant]["initial"])
+					else:
+						fertilizer_targeted.append(plant)
 						robot.initialize(a_star_grid, plant)
 					break
 		if map.infected_tiles.has(plant) && !pests_targeted.has(plant):

@@ -80,8 +80,6 @@ func _physics_process(_delta: float) -> void:
 			target_cell = Vector2i.ZERO
 		else:
 			var dir = (move_points[current_point + 1] - global_position).normalized()
-
-			var sides = [Vector2.from_angle(PI/4), Vector2.from_angle(3 * PI/4), Vector2.from_angle(5 * PI/4), Vector2.from_angle(7 * PI/4)]
 			
 			if not dir.is_zero_approx():
 				var angle = dir.angle()
@@ -121,9 +119,8 @@ func _physics_process(_delta: float) -> void:
 					paths_node.targeted.erase(target_cell)
 					
 					if !tiles.watered_tiles.has(target_cell):
-						if plants.plant_data.has(target_cell):
-							tiles.watered_tiles[target_cell] = {"time": 0}
-							watered.set_cell(target_cell, 0, Vector2i(0,0))
+						tiles.watered_tiles[target_cell] = {"time": 0}
+						watered.set_cell(target_cell, 0, Vector2i(0,0))
 				moving = false
 				finished = true
 				current_point = 0

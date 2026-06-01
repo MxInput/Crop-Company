@@ -16,7 +16,7 @@ var SPEED : float = 50.0
 
 @onready var tiles: TileMapLayer = get_node("/root/Game/Terrain")
 @onready var plants: TileMapLayer = get_node("/root/Game/Plants")
-@onready var infested: TileMapLayer = get_node("/root/Game/Pests")
+@onready var fertilized: TileMapLayer = get_node("/root/Game/Fertilized")
 
 @onready var paths_node: Node2D = get_node("/root/Game/Paths")
 
@@ -30,7 +30,7 @@ func initialize(_grid : AStarGrid2D, _target : Vector2i):
 	finished = false
 	
 func _process(_delta: float) -> void:
-	if !plants.plant_data.has(target_cell) or !tiles.infected_tiles.has(target_cell):
+	if !plants.plant_data.has(target_cell) or tiles.fertilized_tiles.has(target_cell):
 		velocity = Vector2.ZERO
 		current_cell = tiles.local_to_map(tiles.to_local(global_position))
 		moving = false
@@ -59,20 +59,20 @@ func _physics_process(_delta: float) -> void:
 			global_position = move_points[-2]
 			current_cell = tiles.local_to_map(tiles.to_local(global_position))
 			if (plants.tree_info.has(plants.plant_data[target_cell]["fruit_name"])):
-				if tiles.infected_tiles.has(target_cell):
+				if !tiles.fertilized_tiles.has(target_cell):
 					if plants.plant_data.has(target_cell):
 						for x in 3:
 							for y in 4:						
-								paths_node.pests_targeted.erase(target_cell)
+								paths_node.fertilizer_targeted.erase(target_cell)
 								
-								tiles.infected_tiles.erase(target_cell + Vector2i(x-1, y-2))
-								infested.erase_cell(target_cell + Vector2i(x-1, y-2))
+								tiles.fertilized_tiles[target_cell + Vector2i(x-1, y-2)] = {"time": 0}
+								fertilized.set_cell(target_cell + Vector2i(x-1, y-2), 0, Vector2i.ZERO)
 			else:
-				paths_node.pests_targeted.erase(target_cell)
-				if tiles.infected_tiles.has(target_cell):
+				paths_node.fertilizer_targeted.erase(target_cell)
+				if !tiles.fertilized_tiles.has(target_cell):
 					if plants.plant_data.has(target_cell):
-						tiles.infected_tiles.erase(target_cell)
-						infested.erase_cell(target_cell)
+						tiles.fertilized_tiles[target_cell] = {"time": 0}
+						fertilized.set_cell(target_cell, 0, Vector2i(0,0))
 			moving = false
 			finished = true
 			move_points.clear()
@@ -106,24 +106,24 @@ func _physics_process(_delta: float) -> void:
 			velocity = Vector2.ZERO
 			if (plants.plant_data.has(target_cell)):
 				if (plants.tree_info.has(plants.plant_data[target_cell]["fruit_name"])):
-					if tiles.infected_tiles.has(target_cell):	
+					if !tiles.fertilized_tiles.has(target_cell):	
 						for x in 3:
 							for y in 4:						
-								paths_node.pests_targeted.erase(target_cell)
+								paths_node.fertilizer_targeted.erase(target_cell)
 								
-								tiles.infected_tiles.erase(target_cell + Vector2i(x-1, y-2))
-								infested.erase_cell(target_cell + Vector2i(x-1, y-2))
+								tiles.fertilized_tiles[target_cell + Vector2i(x-1, y-2)] = {"time": 0}
+								fertilized.set_cell(target_cell + Vector2i(x-1, y-2), 0, Vector2i.ZERO)
 					else:
-						paths_node.pests_targeted.erase(target_cell)
+						paths_node.fertilizer_targeted.erase(target_cell)
 				else:
-					paths_node.pests_targeted.erase(target_cell)
+					paths_node.fertilizer_targeted.erase(target_cell)
 					
-					if tiles.infected_tiles.has(target_cell):
-						tiles.infected_tiles.erase(target_cell)
-						infested.erase_cell(target_cell)
+					if !tiles.fertilized_tiles.has(target_cell):
+						tiles.fertilized_tiles[target_cell] = {"time": 0}
+						fertilized.set_cell(target_cell, 0, Vector2i(0,0))
 				moving = false
 				finished = true
 				current_point = 0
 				target_cell = Vector2i.ZERO
 			else:
-				paths_node.pests_targeted.erase(target_cell)
+				paths_node.fertilizer_targeted.erase(target_cell)

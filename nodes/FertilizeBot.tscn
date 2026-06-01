@@ -1,9 +1,14 @@
 [gd_scene format=3 uid="uid://bi5p7660b6on8"]
 
 [ext_resource type="Texture2D" uid="uid://dqkelr26qgn80" path="res://tiles/bots/fertilizer/back_fertilizer_bot.png" id="1_vbkg1"]
+[ext_resource type="Script" uid="uid://b8woy2gecp065" path="res://nodes/fertilizeBot.gd" id="1_ynw22"]
 [ext_resource type="Texture2D" uid="uid://djp2wg7f3ffd6" path="res://tiles/bots/fertilizer/front_fertilizer_bot.png" id="2_77m7n"]
 [ext_resource type="Texture2D" uid="uid://cdebkma52qw3c" path="res://tiles/bots/fertilizer/left_fertilizer_bot.png" id="3_ntdr0"]
 [ext_resource type="Texture2D" uid="uid://cto6v4051fxtk" path="res://tiles/bots/fertilizer/right_fertilizer_bot.png" id="4_vcuma"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_vbkg1"]
+radius = 14.0
+height = 28.0
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_gph3q"]
 atlas = ExtResource("1_vbkg1")
@@ -140,18 +145,18 @@ animations = [{
 "speed": 5.0
 }]
 
-[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_vbkg1"]
-radius = 14.0
-height = 28.0
-
-[node name="CharacterBody2D" type="CharacterBody2D" unique_id=2048383215]
+[node name="FertilizerBot" type="CharacterBody2D" unique_id=2048383215 groups=["fertillBots"]]
 collision_layer = 0
 collision_mask = 0
-
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=13020120]
-sprite_frames = SubResource("SpriteFrames_ca6yy")
-animation = &"back"
-frame_progress = 0.11882811
+motion_mode = 1
+script = ExtResource("1_ynw22")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1657054185]
 shape = SubResource("CapsuleShape2D_vbkg1")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=13020120]
+z_index = 6
+sprite_frames = SubResource("SpriteFrames_ca6yy")
+animation = &"front"
+autoplay = "front"
+frame_progress = 0.48627517
