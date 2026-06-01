@@ -23,7 +23,6 @@ func _process(_delta: float) -> void:
 				if robot.finished:
 					if plants.tree_info.get(plants.plant_data[plant]["fruit_name"]):
 						if targeted.find(plants.plant_data[plant]["initial"]) == -1: 
-							print("thus")
 							targeted.append(plants.plant_data[plant]["initial"])
 							robot.initialize(a_star_grid, plants.plant_data[plant]["initial"])
 					else:

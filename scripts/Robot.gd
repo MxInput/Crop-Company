@@ -30,9 +30,7 @@ func initialize(_grid : AStarGrid2D, _target : Vector2i):
 	finished = false
 	
 func _process(delta: float) -> void:
-	print(target_cell)
 	if !plants.plant_data.has(target_cell) or tiles.watered_tiles.has(target_cell):
-		print(tiles.watered_tiles.has(target_cell))
 		velocity = Vector2.ZERO
 		current_cell = tiles.local_to_map(tiles.to_local(global_position))
 		moving = false
@@ -42,9 +40,7 @@ func _process(delta: float) -> void:
 		target_cell = Vector2i.ZERO
 			
 	if !finished:
-		print("cuz")
 		if current_cell != target_cell:
-			print("blood")
 			if !moving:
 				move_points = grid.get_point_path(current_cell, target_cell)
 				move_points = (move_points as Array).map(func (p): return p + grid.cell_size/2.0)

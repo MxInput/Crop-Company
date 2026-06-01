@@ -10,6 +10,8 @@ extends TileMapLayer
 @onready var plant_check = tree_placement.get_child(2)
 @onready var ground_check = tree_placement.get_child(1)
 
+var accounted_fertilized_tiles = []
+
 @onready var able_to_place = preload("res://tiles/toolbar/trees/able.png")
 @onready var unable_to_place = preload("res://tiles/toolbar/trees/unable.png")
 
@@ -140,6 +142,35 @@ func _process(delta: float) -> void:
 	var mouse_pos = get_local_mouse_position()
 	var cell_pos = local_to_map(mouse_pos)
 	
+	for fertilized_tile in terrain.fertilized_tiles:
+		if !accounted_fertilized_tiles.has(fertilized_tile):
+			accounted_fertilized_tiles.append(fertilized_tile)
+			var goal = 0
+			if plant_info.has(plant_data[fertilized_tile]["fruit_name"]):
+				match plant_data[fertilized_tile]["stage"]:
+					1:
+						goal = plant_info[plant_data[fertilized_tile]["fruit_name"]]["stage1"]["sec"]
+					2:
+						goal = plant_info[plant_data[fertilized_tile]["fruit_name"]]["stage2"]["sec"]
+					3:
+						goal = plant_info[plant_data[fertilized_tile]["fruit_name"]]["stage3"]["sec"]
+				if goal != 0:
+					var time_left = goal - plant_data[fertilized_tile]["time"]
+					plant_data[fertilized_tile]["time"] = plant_data[fertilized_tile]["time"] + floor(time_left * 1 / 4)
+			else:
+				if fertilized_tile == plant_data[fertilized_tile]["initial"]:
+					match plant_data[fertilized_tile]["stage"]:
+						1:
+							goal = tree_info[plant_data[fertilized_tile]["fruit_name"]]["stage1"]["sec"]
+						2:
+							goal = tree_info[plant_data[fertilized_tile]["fruit_name"]]["stage2"]["sec"]
+						3:
+							goal = tree_info[plant_data[fertilized_tile]["fruit_name"]]["stage3"]["sec"]
+						4:
+							goal = tree_info[plant_data[fertilized_tile]["fruit_name"]]["stage3"]["sec"]
+					if goal != 0:
+						var time_left = goal - plant_data[fertilized_tile]["time"]
+						plant_data[fertilized_tile]["time"] = plant_data[fertilized_tile]["time"] + floor(time_left * 1 / 4)
 	for watered_tile in terrain.watered_tiles:
 		if watered.get_cell_source_id(watered_tile) == -1:
 			if plant_data.get(watered_tile):

@@ -3,11 +3,14 @@ extends TileMapLayer
 @onready var watered: TileMapLayer = get_node("/root/Game/Watered")
 @onready var plants: TileMapLayer = get_node("/root/Game/Plants")
 @onready var fertilized: TileMapLayer = get_node("/root/Game/Fertilized")
+@onready var infected: TileMapLayer = get_node("/root/Game/Pests")
 
 @onready var select: Node2D = get_node("Select")
 
 var watered_tiles = {}
 var fertilized_tiles = {}
+var infected_tiles = []
+var timers = {}
 
 func  _input(event: InputEvent) -> void:
 	if ToolVariables.current_tool == "Hoe":
@@ -51,6 +54,8 @@ func  _input(event: InputEvent) -> void:
 				if plants.plant_data[cell_pos]["type"] == "crop":
 					fertilized.erase_cell(cell_pos)
 					fertilized_tiles.erase(cell_pos)
+					if plants.accounted_fertilized_tiles.has(cell_pos):
+						plants.accounted_fertilized_tiles.erase(cell_pos)
 				else:
 					for x in 3:
 						for y in 4:
@@ -58,6 +63,9 @@ func  _input(event: InputEvent) -> void:
 							
 							fertilized_tiles.erase(initial + Vector2i(x-1, y-2))
 							fertilized.erase_cell(initial + Vector2i(x-1, y-2))
+							if plants.accounted_fertilized_tiles.has(initial + Vector2i(x-1, y-2)):
+								plants.accounted_fertilized_tiles.erase(initial + Vector2i(x-1, y-2))
+								
 	elif ToolVariables.current_tool == "Fertilizer":
 		var mouse_pos = get_local_mouse_position()
 		var cell_pos = local_to_map(mouse_pos)
@@ -93,10 +101,45 @@ func _process(delta: float):
 			
 	for fertilized_tile in fertilized_tiles:
 		fertilized_tiles[fertilized_tile]["time"] += delta
-		if fertilized_tiles[fertilized_tile]["time"] >= 60:
+		if fertilized_tiles[fertilized_tile]["time"] >= 30:
 			if fertilized.get_cell_source_id(fertilized_tile) != -1:
 				fertilized.erase_cell(fertilized_tile)
 			fertilized_tiles.erase(fertilized_tile)
+			if plants.accounted_fertilized_tiles.has(fertilized_tile):
+				plants.accounted_fertilized_tiles.erase(fertilized_tile)
+				
+	for plant in plants.plant_data:
+		if !infected_tiles.has(plant):
+			if !timers.has(plant):
+				if plants.plant_data[plant]["type"] == "crop":
+					var created_timer = get_tree().create_timer(15)
+				
+					timers[plant] = {"timer": created_timer}
+				else:
+					if plants.plant_data[plant]["initial"] == plant:
+						var created_timer = get_tree().create_timer(15)
+					
+						timers[plant] = {"timer": created_timer}
+			
+	
+	for timer in timers:
+		timers[timer]["timer"].timeout.connect(func ():
+			if timers.has(timer):
+				var rand = randi_range(1, 100000)
+				if plants.plant_data[timer]["type"] == "crop":
+					if rand > 90000:
+						infected_tiles.append(timer)
+						infected.set_cell(timer, 0, Vector2i(0,0))
+				else:
+					if rand > 90000:
+						for x in 3:
+							for y in 4:
+								var initial = timer
+								infected_tiles.append(initial + Vector2i(x-1, y-2))
+								infected.set_cell(initial + Vector2i(x-1, y-2), 0, Vector2i(0, 0))
+				timers.erase(timer)
+		)
+			
 		
 func highlight (cell_pos: Vector2i):
 	select.position = map_to_local(cell_pos)
