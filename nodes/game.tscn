@@ -8,7 +8,6 @@
 [ext_resource type="Script" uid="uid://cqj5kdjgmiq4h" path="res://scripts/cameraController.gd" id="5_flw6b"]
 [ext_resource type="PackedScene" uid="uid://cba0025bwgh02" path="res://nodes/Overview.tscn" id="6_14ebw"]
 [ext_resource type="PackedScene" uid="uid://dndniilkom3fx" path="res://nodes/Toolbar.tscn" id="6_iae2t"]
-[ext_resource type="PackedScene" uid="uid://bhq5oggr0myv" path="res://nodes/Robot.tscn" id="6_ra8g4"]
 [ext_resource type="Texture2D" uid="uid://cymecwa1s5t5i" path="res://tiles/plants/crops/watermelon/watermelon_almost.png" id="7_g42si"]
 [ext_resource type="Texture2D" uid="uid://dk1vcvbxdj8tu" path="res://tiles/plants/crops/watermelon/watermelon_ready.png" id="8_j4xau"]
 [ext_resource type="Texture2D" uid="uid://dhl3bwmfjb3ea" path="res://tiles/plants/crops/pumpkin/pumpkin_ready.png" id="9_7vemi"]
@@ -66,6 +65,7 @@
 [ext_resource type="Texture2D" uid="uid://g66xddj2l7q8" path="res://tiles/plants/crops/tomato/tomato_sapling.png" id="51_ftvgp"]
 [ext_resource type="Texture2D" uid="uid://dv8mmc4y55rgp" path="res://tiles/plants/crops/tomato/tomato_seed.png" id="52_h2djo"]
 [ext_resource type="Script" uid="uid://fbvn78vgomyd" path="res://scripts/pathMaker.gd" id="62_wlrtx"]
+[ext_resource type="PackedScene" uid="uid://bmr0sdmfgof52" path="res://nodes/PestBot.tscn" id="66_6rchb"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_6hfer"]
 texture = ExtResource("1_cpdmu")
@@ -820,7 +820,7 @@ script = ExtResource("11_j4xau")
 
 [node name="TreePlacement" type="Node2D" parent="Plants" unique_id=350434989]
 visible = false
-z_index = 4
+z_index = 7
 
 [node name="Sprite2D" type="Sprite2D" parent="Plants/TreePlacement" unique_id=1660608726]
 texture = ExtResource("38_csyuo")
@@ -858,15 +858,10 @@ tile_set = SubResource("TileSet_003f7")
 
 [node name="Barrier" type="TileMapLayer" parent="." unique_id=257227273]
 
-[node name="WaterBot2" parent="." unique_id=613094548 groups=["Water_Robots"] instance=ExtResource("6_ra8g4")]
-z_index = 6
-position = Vector2(-144, 19)
-
-[node name="WaterBot" parent="." unique_id=842537626 groups=["Water_Robots"] instance=ExtResource("6_ra8g4")]
-z_index = 6
-position = Vector2(-16, -16)
-
 [node name="Paths" type="Node2D" parent="." unique_id=156886163]
 script = ExtResource("62_wlrtx")
 
 [node name="Quests" type="Node2D" parent="." unique_id=313668459]
+
+[node name="PestBot" parent="." unique_id=152696932 instance=ExtResource("66_6rchb")]
+position = Vector2(16, 16)

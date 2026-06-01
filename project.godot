@@ -26,6 +26,11 @@ ToolVariables="*uid://d5wf1ou7kh1o"
 
 enabled=PackedStringArray("res://addons/godot_super-wakatime/plugin.cfg")
 
+[global_group]
+
+Water_Robots=""
+pestBot=""
+
 [input]
 
 move_up={
