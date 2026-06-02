@@ -7,26 +7,63 @@ extends TileMapLayer
 
 @onready var select: Node2D = get_node("Select")
 
+@export var one_select : CompressedTexture2D
+@export var nine_select : CompressedTexture2D
+
 var watered_tiles = {}
 var fertilized_tiles = {}
 var infected_tiles = []
 var timers = {}
 
+var num_spaces = 1
+
+func change_select_to_one():
+	select.get_child(0).texture = one_select
+
+func change_select_to_nine():
+	select.get_child(0).texture = nine_select
+	
 func  _input(event: InputEvent) -> void:
 	if ToolVariables.current_tool == "Hoe":
+		if event.is_action_pressed("scroll_up") or event.is_action_pressed("scroll_down"):				
+			if HoverVariables.hovered_on == "" && HoverVariables.dragging == "":
+				match num_spaces:
+					1:
+						num_spaces = 9
+						change_select_to_nine()
+					9:
+						num_spaces = 1
+						change_select_to_one()
+					
 		if event.is_action_pressed("click"):
 			var mouse_pos = get_local_mouse_position()
 			var cell_pos = local_to_map(mouse_pos)
 			var tile_id = (get_cell_source_id(cell_pos))
-			if (tile_id == 0):
-				set_cell(cell_pos, 1, Vector2i(0, 0))
-			elif (tile_id == 1):
-				set_cell(cell_pos, 0, Vector2i(0, 0))
-			elif (tile_id == 2):
-				set_cell(cell_pos, 0, Vector2i(0, 0))
-				watered_tiles.erase(cell_pos)
-				if watered.get_cell_source_id(cell_pos) != -1:
-					watered.erase_cell(cell_pos)
+			if num_spaces == 1:
+				if (tile_id == 0):
+					set_cell(cell_pos, 1, Vector2i(0, 0))
+				elif (tile_id == 1):
+					set_cell(cell_pos, 0, Vector2i(0, 0))
+				elif (tile_id == 2):
+					set_cell(cell_pos, 0, Vector2i(0, 0))
+					watered_tiles.erase(cell_pos)
+					if watered.get_cell_source_id(cell_pos) != -1:
+						watered.erase_cell(cell_pos)
+			else:
+				var all_towed = true
+				for x in 3:
+					for y in 3:		
+						var current = cell_pos + Vector2i(x-1, y-1)
+						if (get_cell_source_id(current) == 0):
+							all_towed = false
+							set_cell(current, 1, Vector2i(0, 0))
+				if all_towed:
+					for x in 3:
+						for y in 3:		
+							var current = cell_pos + Vector2i(x-1, y-1)
+							if (get_cell_source_id(current) == 2):
+								watered_tiles.erase(current)
+							set_cell(current, 0, Vector2i(0, 0))
 	elif ToolVariables.current_tool == "WateringCan":
 		if event.is_action_pressed("click"):
 			var mouse_pos = get_local_mouse_position()
@@ -79,7 +116,6 @@ func  _input(event: InputEvent) -> void:
 	elif ToolVariables.current_tool == "Fertilizer":
 		var mouse_pos = get_local_mouse_position()
 		var cell_pos = local_to_map(mouse_pos)
-		var tile_id = (get_cell_source_id(cell_pos))
 		if event.is_action_pressed("click"):
 			if (plants.plant_data.get(cell_pos)):
 				if (!fertilized_tiles.get(cell_pos)):

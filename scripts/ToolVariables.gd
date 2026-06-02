@@ -11,10 +11,16 @@ var current_tool
 
 @onready var tools = [glove, shovel, hoe, pesticide, watering_can, fertilizer]
 
+@onready var terrain: TileMapLayer = get_node("/root/Game/Terrain")
+
 func _ready() -> void:
-	change_tool("Hoe")
+	change_tool("Glove")
 
 func change_tool(tool : String):
+	if current_tool != null:
+		terrain.num_spaces = 1
+		terrain.change_select_to_one()
+
 	current_tool = tool
 
 	for foundTool in tools:

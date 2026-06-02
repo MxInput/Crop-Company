@@ -125,7 +125,7 @@ func move_placement():
 						tree_placement_sprite.texture = unable_to_place
 						
 	
-func plant(plant_name) -> void:
+func plant(plant_name, tile_size) -> void:
 	var local_pos = terrain.to_local(get_global_mouse_position())
 	var cell_pos = terrain.local_to_map(local_pos)
 	var tile_id = (terrain.get_cell_source_id(cell_pos))
@@ -149,12 +149,24 @@ func plant(plant_name) -> void:
 		if (self_tile_id == -1):
 			if (tile_id == 1 || tile_id == 2):
 				if plant_info[plant_name]["seasons"].has(SeasonVariables.season.name):
-					if PlayerVariables.player.buy(plant_info[plant_name]["price"]):
-						coin_display.new_instance(-plant_info[plant_name]["price"])
-						plant_data[cell_pos] = { "fruit_name" : plant_name, "stage" : 1, "time" : 0, "type": "crop"}
-						set_cell(cell_pos, plant_info[plant_name]["stage1"]["tile_id"], Vector2i(0, 0))
+					if tile_size == 1:
+						if PlayerVariables.player.buy(plant_info[plant_name]["price"]):
+							coin_display.new_instance(-plant_info[plant_name]["price"])
+							plant_data[cell_pos] = { "fruit_name" : plant_name, "stage" : 1, "time" : 0, "type": "crop"}
+							set_cell(cell_pos, plant_info[plant_name]["stage1"]["tile_id"], Vector2i(0, 0))
+						else:
+							coin_display.tell_warning("Not enough coins")
 					else:
-						coin_display.tell_warning("Not enough coins")
+						for x in 3:
+							for y in 3:
+								var focused_tile = cell_pos + Vector2i(x-1, y-1)
+								if !plant_data.has(focused_tile):
+									if PlayerVariables.player.buy(plant_info[plant_name]["price"]):
+										coin_display.new_instance(-plant_info[plant_name]["price"])			
+										plant_data[focused_tile] = { "fruit_name" : plant_name, "stage" : 1, "time" : 0, "type": "crop"}
+										set_cell(focused_tile, plant_info[plant_name]["stage1"]["tile_id"], Vector2i(0, 0))
+									else:
+										coin_display.tell_warning("Not enough coins")	
 				else:
 					coin_display.tell_warning("Can't grow this season")
 

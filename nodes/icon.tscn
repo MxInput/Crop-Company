@@ -3,6 +3,8 @@
 [ext_resource type="Texture2D" uid="uid://y6jsinj3q8tg" path="res://tiles/toolbar/bar.png" id="1_yxp0c"]
 [ext_resource type="Texture2D" uid="uid://b1ler423ofut6" path="res://tiles/toolbar/fruits/watermelon_icon.png" id="2_aa4oc"]
 [ext_resource type="Script" uid="uid://def65f3hbn8xu" path="res://scripts/dragHandler.gd" id="3_jamr2"]
+[ext_resource type="Texture2D" uid="uid://cou6sjg11ar6l" path="res://tiles/select.png" id="4_rtvcj"]
+[ext_resource type="Texture2D" uid="uid://b0hqbywejt0rr" path="res://tiles/9_select.png" id="5_keij5"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_2tbuw"]
 size = Vector2(32, 32)
@@ -27,6 +29,8 @@ stretch_mode = 2
 collision_priority = 2.0
 priority = 2
 script = ExtResource("3_jamr2")
+one_select = ExtResource("4_rtvcj")
+nine_select = ExtResource("5_keij5")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=235975385]
 position = Vector2(20, 20)

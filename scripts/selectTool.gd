@@ -15,7 +15,7 @@ func _ready() -> void:
 	texture_disabled = norm
 	texture_focused = norm
 	
-	if name == "Hoe":
+	if name == "Glove":
 		select()
 
 func _on_pressed() -> void:
