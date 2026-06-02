@@ -40,7 +40,10 @@
 [ext_resource type="Texture2D" uid="uid://condapjcw7bnt" path="res://UI/Tools/hoe_select.png" id="16_hw60i"]
 [ext_resource type="Texture2D" uid="uid://csgos17oceag1" path="res://tiles/plants/crops/pumpkin/pumpkin_almost.png" id="18_5xfwu"]
 [ext_resource type="Texture2D" uid="uid://be2lm10afns1f" path="res://tiles/plants/trees/apple/apple_almost.png" id="25_apylq"]
+[ext_resource type="FontFile" uid="uid://ci5gbe284cx6u" path="res://UI/Fonts/SuperBakery.ttf" id="25_n3s8n"]
+[ext_resource type="Texture2D" uid="uid://dw6enki37kej5" path="res://tiles/toolbar/robot_icon.png" id="26_av8k1"]
 [ext_resource type="Texture2D" uid="uid://cmrrd6xqrptlx" path="res://tiles/plants/trees/apple/apple_final.png" id="26_csyuo"]
+[ext_resource type="Script" uid="uid://0ybkvn6qxe1c" path="res://nodes/buyBot.gd" id="26_n3s8n"]
 [ext_resource type="PackedScene" uid="uid://djx588r5klrch" path="res://nodes/CoinTeller.tscn" id="27_4teul"]
 [ext_resource type="Texture2D" uid="uid://bqfe2hfct7eqg" path="res://tiles/plants/trees/apple/apple_sapling.png" id="27_njtgi"]
 [ext_resource type="Texture2D" uid="uid://bsd74p1ixttwb" path="res://tiles/plants/trees/apple/apple_seed.png" id="28_r25gb"]
@@ -738,12 +741,6 @@ limit_right = 1500
 limit_bottom = 1000
 script = ExtResource("5_flw6b")
 
-[node name="Overview" parent="." unique_id=556799154 instance=ExtResource("6_14ebw")]
-offset_left = -496.0
-offset_top = 9.0
-offset_right = -496.0
-offset_bottom = 9.0
-
 [node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=1557134395]
 process_priority = -1
 
@@ -810,6 +807,34 @@ selected = ExtResource("16_hw60i")
 [node name="Clock" parent="CanvasLayer" unique_id=1813403149 instance=ExtResource("38_njtgi")]
 mouse_filter = 0
 
+[node name="Overview" parent="CanvasLayer" unique_id=556799154 instance=ExtResource("6_14ebw")]
+offset_left = -496.0
+offset_top = 9.0
+offset_right = -496.0
+offset_bottom = 9.0
+
+[node name="BuyBot" type="OptionButton" parent="CanvasLayer" unique_id=905307547]
+offset_left = 957.0
+offset_top = 192.0
+offset_right = 1108.0
+offset_bottom = 223.0
+theme_override_fonts/font = ExtResource("25_n3s8n")
+selected = 0
+item_count = 5
+popup/item_0/text = "Purchase robot"
+popup/item_0/icon = ExtResource("26_av8k1")
+popup/item_0/id = 0
+popup/item_0/separator = true
+popup/item_1/text = "Water Dispersal Bot"
+popup/item_1/id = 1
+popup/item_2/text = "Fertilize Bot"
+popup/item_2/id = 2
+popup/item_3/text = "Pest Removal Bot"
+popup/item_3/id = 3
+popup/item_4/text = "Collection Bot"
+popup/item_4/id = 4
+script = ExtResource("26_n3s8n")
+
 [node name="Dragged" type="Node2D" parent="." unique_id=966772768]
 visible = false
 
@@ -864,3 +889,5 @@ tile_set = SubResource("TileSet_003f7")
 script = ExtResource("62_wlrtx")
 
 [node name="Quests" type="Node2D" parent="." unique_id=313668459]
+
+[connection signal="item_selected" from="CanvasLayer/BuyBot" to="CanvasLayer/BuyBot" method="_on_item_selected"]

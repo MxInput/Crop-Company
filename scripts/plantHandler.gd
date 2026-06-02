@@ -1,7 +1,7 @@
 extends TileMapLayer
 
 @onready var terrain: TileMapLayer = get_node("/root/Game/Terrain")
-@onready var overview: Control = get_node("/root/Game/Overview")
+@onready var overview: Control = get_node("/root/Game/CanvasLayer/Overview")
 
 @onready var watered: TileMapLayer = get_node("/root/Game/Watered")
 @onready var fertilized: TileMapLayer = get_node("/root/Game/Fertilized")
@@ -146,7 +146,7 @@ func plant(plant_name, tile_size) -> void:
 			else:
 				coin_display.tell_warning("Can't grow this season")
 	else:
-		if (self_tile_id == -1):
+		if (self_tile_id == -1) or tile_size == 9:
 			if (tile_id == 1 || tile_id == 2):
 				if plant_info[plant_name]["seasons"].has(SeasonVariables.season.name):
 					if tile_size == 1:
@@ -157,16 +157,25 @@ func plant(plant_name, tile_size) -> void:
 						else:
 							coin_display.tell_warning("Not enough coins")
 					else:
+						var total = 0
+						var space_issue = 0
 						for x in 3:
 							for y in 3:
 								var focused_tile = cell_pos + Vector2i(x-1, y-1)
 								if !plant_data.has(focused_tile):
 									if PlayerVariables.player.buy(plant_info[plant_name]["price"]):
-										coin_display.new_instance(-plant_info[plant_name]["price"])			
+										total += 1
 										plant_data[focused_tile] = { "fruit_name" : plant_name, "stage" : 1, "time" : 0, "type": "crop"}
 										set_cell(focused_tile, plant_info[plant_name]["stage1"]["tile_id"], Vector2i(0, 0))
-									else:
-										coin_display.tell_warning("Not enough coins")	
+								else:
+									space_issue += 1
+						if total > 0:
+							coin_display.new_instance(-(plant_info[plant_name]["price"] * total))			
+						else:
+							if space_issue == 9:
+								coin_display.tell_warning("Not enough space")	
+							else:
+								coin_display.tell_warning("Not enough coins")	
 				else:
 					coin_display.tell_warning("Can't grow this season")
 

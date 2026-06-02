@@ -5,7 +5,7 @@ extends Area2D
 @onready var terrain: TileMapLayer = get_node("/root/Game/Terrain")
 @onready var camera: Camera2D = get_node("/root/Game/Camera2D")
 
-@onready var overview: Control = get_node("/root/Game/Overview")
+@onready var overview: Control = get_node("/root/Game/CanvasLayer/Overview")
 
 @onready var tree_placement: Node2D = get_node("/root/Game/Plants/TreePlacement")
 
@@ -17,7 +17,7 @@ var num_spaces = 1
 func _input(event: InputEvent) -> void:
 	if HoverVariables.hovered_on == get_parent().name:
 		if !plants.tree_info.get(get_parent().name):
-			if event.is_action_pressed("plus") or event.is_action_pressed("minus"):
+			if event.is_action_pressed("scroll_up") or event.is_action_pressed("scroll_down"):
 				match num_spaces:
 					1:
 						num_spaces = 9
