@@ -19,6 +19,8 @@ var SPEED : float = 50.0
 
 @onready var paths_node: Node2D = get_node("/root/Game/Paths")
 
+@onready var coin_display : Node = get_node("/root/Game/CoinDisplay")
+
 var astar_grid = AStarGrid2D.new()
 
 func initialize(_grid : AStarGrid2D, _target : Vector2i):
@@ -60,17 +62,27 @@ func _physics_process(_delta: float) -> void:
 			if (plants.tree_info.has(plants.plant_data[target_cell]["fruit_name"])):
 				if plants.plant_data.has(target_cell):
 					if plants.plant_data[target_cell]["stage"] == 5:
+						var rewarded = false
 						for x in 3:
 							for y in 4:						
 								paths_node.pickup_targeted.erase(target_cell)
 								
-								print("HHHHHHHHHERRR")
-			else:
+								if !rewarded:
+									rewarded = true
+									PlayerVariables.player.sell(plants.tree_info[plants.plant_data[target_cell]["fruit_name"]]["sell"])
+									coin_display.new_instance(plants.tree_info[plants.plant_data[target_cell]["fruit_name"]]["sell"])
+								plants.plant_data[plants.plant_data[target_cell]["initial"] + Vector2i(x-1, y-2)]["stage"] -= 1
+								plants.set_cell(plants.plant_data[target_cell]["initial"] + Vector2i(x-1, y-2), plants.tree_info[plants.plant_data[target_cell]["fruit_name"]]["stage4"]["tile_id"], Vector2i(x, y))	
+			else:					
 				paths_node.pickup_targeted.erase(target_cell)
 				if plants.plant_data.has(target_cell):
 					if plants.plant_data[target_cell]["stage"] == 4:
-						print("HHHHHHHHHERRR")
-
+						PlayerVariables.player.sell(plants.plant_info[plants.plant_data[target_cell]["fruit_name"]]["sell"])
+						coin_display.new_instance(plants.plant_info[plants.plant_data[target_cell]["fruit_name"]]["sell"])	
+						
+						plants.plant_data.erase(target_cell)
+						plants.erase_cell(target_cell)
+						tiles.set_cell(target_cell, 0, Vector2i(0,0))
 			moving = false
 			finished = true
 			move_points.clear()
@@ -105,18 +117,29 @@ func _physics_process(_delta: float) -> void:
 			if (plants.plant_data.has(target_cell)):
 				if (plants.tree_info.has(plants.plant_data[target_cell]["fruit_name"])):
 					if plants.plant_data[target_cell]["stage"] == 5:	
+						var rewarded = false
 						for x in 3:
 							for y in 4:						
 								paths_node.pickup_targeted.erase(target_cell)
 								
-								print("HHHHHHHHHERRR")
+								if !rewarded:
+									rewarded = true
+									PlayerVariables.player.sell(plants.tree_info[plants.plant_data[target_cell]["fruit_name"]]["sell"])
+									coin_display.new_instance(plants.tree_info[plants.plant_data[target_cell]["fruit_name"]]["sell"])	
+								plants.plant_data[plants.plant_data[target_cell]["initial"] + Vector2i(x-1, y-2)]["stage"] -= 1
+								plants.set_cell(plants.plant_data[target_cell]["initial"] + Vector2i(x-1, y-2), plants.tree_info[plants.plant_data[target_cell]["fruit_name"]]["stage4"]["tile_id"], Vector2i(x, y))	
 					else:
 						paths_node.pickup_targeted.erase(target_cell)
 				else:
 					paths_node.pickup_targeted.erase(target_cell)
 					
 					if plants.plant_data[target_cell]["stage"] == 4:	
-						print("HHHHHHHHHERRR")
+						PlayerVariables.player.sell(plants.plant_info[plants.plant_data[target_cell]["fruit_name"]]["sell"])
+						coin_display.new_instance(plants.plant_info[plants.plant_data[target_cell]["fruit_name"]]["sell"])	
+						
+						plants.plant_data.erase(target_cell)
+						plants.erase_cell(target_cell)
+						tiles.set_cell(target_cell, 0, Vector2i(0,0))
 
 				moving = false
 				finished = true

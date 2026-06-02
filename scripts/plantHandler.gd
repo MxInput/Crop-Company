@@ -5,6 +5,7 @@ extends TileMapLayer
 
 @onready var watered: TileMapLayer = get_node("/root/Game/Watered")
 @onready var fertilized: TileMapLayer = get_node("/root/Game/Fertilized")
+@onready var infected: TileMapLayer = get_node("/root/Game/Pests")
 
 @onready var tree_placement = get_child(0)
 @onready var tree_placement_sprite = tree_placement.get_child(0)
@@ -162,6 +163,11 @@ func _process(delta: float) -> void:
 	var mouse_pos = get_local_mouse_position()
 	var cell_pos = local_to_map(mouse_pos)
 	
+	for infected_tile in terrain.infected_tiles:
+		if !plant_data.has(infected_tile):
+			terrain.infected_tiles.erase(infected_tile)
+			infected.erase_cell(infected_tile)
+					
 	for fertilized_tile in terrain.fertilized_tiles:
 		if !plant_data.has(fertilized_tile):
 				terrain.fertilized_tiles.erase(fertilized_tile)

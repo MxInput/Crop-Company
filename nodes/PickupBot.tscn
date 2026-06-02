@@ -159,4 +159,4 @@ z_index = 6
 sprite_frames = SubResource("SpriteFrames_4x36c")
 animation = &"front"
 autoplay = "front"
-frame_progress = 0.06457438
+frame_progress = 0.267637
