@@ -15,10 +15,14 @@ func _input(event):
 			zoom += zoom_speed
 	
 	if event.is_action("move_up"):
-		position.y -= pan_dis
+		if position.y - (get_viewport_rect().size.y/2.0) / zoom.y > limit_top:
+			position.y -= pan_dis
 	if event.is_action("move_down"):
-		position.y += pan_dis
+		if position.y + (get_viewport_rect().size.y/2.0) / zoom.y < limit_bottom:
+			position.y += pan_dis
 	if event.is_action("move_left"):
-		position.x -= pan_dis 
+		if position.x - (get_viewport_rect().size.x/2.0) / zoom.x > limit_left:
+			position.x -= pan_dis 
 	if event.is_action("move_right"):
-		position.x += pan_dis
+		if position.x + (get_viewport_rect().size.x/2.0) / zoom.x < limit_right:
+			position.x += pan_dis

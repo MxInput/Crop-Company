@@ -77,3 +77,16 @@ func _process(_delta: float) -> void:
 						pests_targeted.append(plant)
 						robot.initialize(a_star_grid, plant)
 					break
+
+
+func _on_buy_bot_new_bot_purchased(bot) -> void:
+	match bot:
+		"Water":
+			robots = get_tree().get_nodes_in_group("Water_Robots")
+		"Pickup":
+			pickupBots = get_tree().get_nodes_in_group("pickupBot")
+		"Fertilize":
+			fertillBots = get_tree().get_nodes_in_group("fertillBots")
+		"Pest":
+			pestBots = get_tree().get_nodes_in_group("pestBot")
+	pass 
