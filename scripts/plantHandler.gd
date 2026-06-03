@@ -69,6 +69,56 @@ var plant_info = {
 		"sell": 28,
 		"seasons": ["Summer"],
 		"icon": load("res://tiles/toolbar/fruits/tomato_icon.png")
+	},
+	"Beet": {
+		"stage1": { "sec": 25, "tile_id": 38},
+		"stage2": { "sec": 30, "tile_id": 37},
+		"stage3": { "sec": 35, "tile_id": 35},
+		"stage4": {"tile_id": 36},
+		"price": 18,
+		"sell": 28,
+		"seasons": ["Spring", "Fall", "Winter"],
+		"icon": load("res://tiles/toolbar/fruits/beet_icon.png")
+	},
+	"Cabbage": {
+		"stage1": { "sec": 25, "tile_id": 42},
+		"stage2": { "sec": 30, "tile_id": 41},
+		"stage3": { "sec": 35, "tile_id": 39},
+		"stage4": {"tile_id": 40},
+		"price": 18,
+		"sell": 28,
+		"seasons": ["Spring", "Summer", "Fall"],
+		"icon": load("res://tiles/toolbar/fruits/cabbage_icon.png")
+	},
+	"Kale": {
+		"stage1": { "sec": 25, "tile_id": 46},
+		"stage2": { "sec": 30, "tile_id": 45},
+		"stage3": { "sec": 35, "tile_id": 44},
+		"stage4": {"tile_id": 43},
+		"price": 18,
+		"sell": 28,
+		"seasons": ["Spring", "Fall", "Winter"],
+		"icon": load("res://tiles/toolbar/fruits/kale_icon.png")
+	},
+	"Potato": {
+		"stage1": { "sec": 25, "tile_id": 50},
+		"stage2": { "sec": 30, "tile_id": 49},
+		"stage3": { "sec": 35, "tile_id": 47},
+		"stage4": {"tile_id": 48},
+		"price": 18,
+		"sell": 28,
+		"seasons": ["Spring", "Summer"],
+		"icon": load("res://tiles/toolbar/fruits/potato_icon.png")
+	},
+	"Raddish": {
+		"stage1": { "sec": 25, "tile_id": 54},
+		"stage2": { "sec": 30, "tile_id": 53},
+		"stage3": { "sec": 35, "tile_id": 51},
+		"stage4": {"tile_id": 52},
+		"price": 18,
+		"sell": 28,
+		"seasons": ["Spring", "Summer"],
+		"icon": load("res://tiles/toolbar/fruits/raddish_icon.png")
 	}
 }
 
