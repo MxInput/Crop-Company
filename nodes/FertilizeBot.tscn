@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://bi5p7660b6on8"]
 
 [ext_resource type="Texture2D" uid="uid://dqkelr26qgn80" path="res://tiles/bots/fertilizer/back_fertilizer_bot.png" id="1_vbkg1"]
-[ext_resource type="Script" uid="uid://b8woy2gecp065" path="res://nodes/fertilizeBot.gd" id="1_ynw22"]
+[ext_resource type="Script" uid="uid://b8woy2gecp065" path="res://scripts/fertilizeBot.gd" id="1_ynw22"]
 [ext_resource type="Texture2D" uid="uid://djp2wg7f3ffd6" path="res://tiles/bots/fertilizer/front_fertilizer_bot.png" id="2_77m7n"]
 [ext_resource type="Texture2D" uid="uid://cdebkma52qw3c" path="res://tiles/bots/fertilizer/left_fertilizer_bot.png" id="3_ntdr0"]
 [ext_resource type="Texture2D" uid="uid://cto6v4051fxtk" path="res://tiles/bots/fertilizer/right_fertilizer_bot.png" id="4_vcuma"]

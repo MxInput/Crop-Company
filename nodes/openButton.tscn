@@ -1,0 +1,12 @@
+[gd_scene format=3 uid="uid://duffgr68ycjuf"]
+
+[ext_resource type="Texture2D" uid="uid://cr4wjrqasbgl4" path="res://UI/Tools/Fertilizer.png" id="1_6c6b5"]
+[ext_resource type="Script" uid="uid://bk4af8pisq7ph" path="res://nodes/openMenu.gd" id="2_djw8m"]
+
+[node name="Button" type="TextureButton" unique_id=1669126804]
+offset_right = 64.0
+offset_bottom = 64.0
+texture_normal = ExtResource("1_6c6b5")
+script = ExtResource("2_djw8m")
+
+[connection signal="pressed" from="." to="." method="_on_pressed"]

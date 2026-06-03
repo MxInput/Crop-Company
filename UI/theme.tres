@@ -1,0 +1,10 @@
+[gd_resource type="Theme" format=3 uid="uid://bcsuahs2ffsd2"]
+
+[ext_resource type="Texture2D" uid="uid://cseicgud6lfs3" path="res://UI/Coin/Coin_Bar.png" id="1_go05t"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_wsa4l"]
+texture = ExtResource("1_go05t")
+
+[resource]
+OptionButton/constants/icon_max_width = 100
+OptionButton/styles/normal = SubResource("StyleBoxTexture_wsa4l")

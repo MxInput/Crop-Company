@@ -39,15 +39,19 @@
 [ext_resource type="Texture2D" uid="uid://c03cwuvp3sa58" path="res://tiles/plants/crops/pumpkin/pumpkin_sapling.png" id="15_yuymb"]
 [ext_resource type="Texture2D" uid="uid://condapjcw7bnt" path="res://UI/Tools/hoe_select.png" id="16_hw60i"]
 [ext_resource type="Texture2D" uid="uid://csgos17oceag1" path="res://tiles/plants/crops/pumpkin/pumpkin_almost.png" id="18_5xfwu"]
+[ext_resource type="Theme" uid="uid://bcsuahs2ffsd2" path="res://UI/theme.tres" id="25_7ov1c"]
 [ext_resource type="Texture2D" uid="uid://be2lm10afns1f" path="res://tiles/plants/trees/apple/apple_almost.png" id="25_apylq"]
 [ext_resource type="FontFile" uid="uid://ci5gbe284cx6u" path="res://UI/Fonts/SuperBakery.ttf" id="25_n3s8n"]
 [ext_resource type="Texture2D" uid="uid://dw6enki37kej5" path="res://tiles/toolbar/robot_icon.png" id="26_av8k1"]
 [ext_resource type="Texture2D" uid="uid://cmrrd6xqrptlx" path="res://tiles/plants/trees/apple/apple_final.png" id="26_csyuo"]
-[ext_resource type="Script" uid="uid://0ybkvn6qxe1c" path="res://nodes/buyBot.gd" id="26_n3s8n"]
+[ext_resource type="Script" uid="uid://0ybkvn6qxe1c" path="res://scripts/buyBot.gd" id="26_n3s8n"]
 [ext_resource type="PackedScene" uid="uid://djx588r5klrch" path="res://nodes/CoinTeller.tscn" id="27_4teul"]
 [ext_resource type="Texture2D" uid="uid://bqfe2hfct7eqg" path="res://tiles/plants/trees/apple/apple_sapling.png" id="27_njtgi"]
 [ext_resource type="Texture2D" uid="uid://bsd74p1ixttwb" path="res://tiles/plants/trees/apple/apple_seed.png" id="28_r25gb"]
+[ext_resource type="PackedScene" uid="uid://duffgr68ycjuf" path="res://nodes/openButton.tscn" id="29_5q475"]
+[ext_resource type="Texture2D" uid="uid://qv85wyvpsal2" path="res://UI/Buttons/upgrade_icon.png" id="30_av8k1"]
 [ext_resource type="Texture2D" uid="uid://ele6y6fbxkoj" path="res://tiles/plants/trees/apple/apple_harvest.png" id="30_njtgi"]
+[ext_resource type="Texture2D" uid="uid://clcxq6g0kcpcy" path="res://UI/Buttons/quest_icon.png" id="31_so2xc"]
 [ext_resource type="Texture2D" uid="uid://b7fxocssisltm" path="res://tiles/plants/trees/banana/banana_almost.png" id="38_0s4mg"]
 [ext_resource type="Texture2D" uid="uid://bd2wciqx2wil5" path="res://tiles/toolbar/trees/able.png" id="38_csyuo"]
 [ext_resource type="PackedScene" uid="uid://r2whf4s76sna" path="res://nodes/Clock.tscn" id="38_njtgi"]
@@ -816,11 +820,13 @@ offset_right = -496.0
 offset_bottom = 9.0
 
 [node name="BuyBot" type="OptionButton" parent="CanvasLayer" unique_id=905307547]
-offset_left = 926.0
-offset_top = 191.0
-offset_right = 1108.0
-offset_bottom = 231.0
+offset_left = 901.0
+offset_top = 206.0
+offset_right = 1083.0
+offset_bottom = 246.0
+theme = ExtResource("25_7ov1c")
 theme_override_fonts/font = ExtResource("25_n3s8n")
+theme_override_constants/arrow_margin = 12
 selected = 0
 item_count = 5
 popup/item_0/text = "Purchase robot"
@@ -829,13 +835,59 @@ popup/item_0/id = 0
 popup/item_0/separator = true
 popup/item_1/text = "Water Dispersal Bot"
 popup/item_1/id = 1
-popup/item_2/text = "Fertilize Bot"
+popup/item_2/text = "Fertilizer Bot"
 popup/item_2/id = 2
 popup/item_3/text = "Pest Removal Bot"
 popup/item_3/id = 3
-popup/item_4/text = "Collection Bot"
+popup/item_4/text = "Crop Collection Bot"
 popup/item_4/id = 4
 script = ExtResource("26_n3s8n")
+
+[node name="UpgradeButton" parent="CanvasLayer" unique_id=1669126804 instance=ExtResource("29_5q475")]
+offset_left = 1045.0
+offset_top = 451.0
+offset_right = 1109.0
+offset_bottom = 515.0
+texture_normal = ExtResource("30_av8k1")
+texture_pressed = ExtResource("31_so2xc")
+texture_hover = ExtResource("30_av8k1")
+texture_disabled = ExtResource("30_av8k1")
+texture_focused = ExtResource("30_av8k1")
+
+[node name="Label" type="Label" parent="CanvasLayer/UpgradeButton" unique_id=110480587]
+layout_mode = 0
+offset_left = -12.0
+offset_top = 65.0
+offset_right = 74.0
+offset_bottom = 90.0
+theme_override_colors/font_color = Color(0.7372549, 0.2901961, 0.60784316, 1)
+theme_override_colors/font_shadow_color = Color(0.33586407, 0.09459036, 0.26900738, 1)
+theme_override_fonts/font = ExtResource("25_n3s8n")
+theme_override_font_sizes/font_size = 20
+text = "UPGRADES"
+
+[node name="QuestButton" parent="CanvasLayer" unique_id=385144276 instance=ExtResource("29_5q475")]
+offset_left = 960.0
+offset_top = 448.0
+offset_right = 1024.0
+offset_bottom = 512.0
+texture_normal = ExtResource("31_so2xc")
+texture_pressed = ExtResource("31_so2xc")
+texture_hover = ExtResource("31_so2xc")
+texture_disabled = ExtResource("31_so2xc")
+texture_focused = ExtResource("31_so2xc")
+
+[node name="Label" type="Label" parent="CanvasLayer/QuestButton" unique_id=1530146575]
+layout_mode = 0
+offset_left = 1.0
+offset_top = 67.0
+offset_right = 63.0
+offset_bottom = 92.0
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_shadow_color = Color(0.35004482, 0.32408914, 0.4438334, 1)
+theme_override_fonts/font = ExtResource("25_n3s8n")
+theme_override_font_sizes/font_size = 20
+text = "QUESTS"
 
 [node name="Dragged" type="Node2D" parent="." unique_id=966772768]
 visible = false
@@ -891,12 +943,6 @@ tile_set = SubResource("TileSet_003f7")
 script = ExtResource("62_wlrtx")
 
 [node name="Quests" type="Node2D" parent="." unique_id=313668459]
-
-[node name="Tree" type="Tree" parent="." unique_id=1401602947]
-offset_left = 960.0
-offset_top = 257.0
-offset_right = 1151.0
-offset_bottom = 289.0
 
 [connection signal="item_selected" from="CanvasLayer/BuyBot" to="CanvasLayer/BuyBot" method="_on_item_selected"]
 [connection signal="new_bot_purchased" from="CanvasLayer/BuyBot" to="Paths" method="_on_buy_bot_new_bot_purchased"]

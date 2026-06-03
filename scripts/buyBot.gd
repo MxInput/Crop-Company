@@ -35,6 +35,12 @@ var robots = {
 	}
 }
 
+func _ready() -> void:
+	set_item_text(1, get_item_text(1) + " - " + str(robots[robots.keys()[0]]["Price"]))
+	set_item_text(2, get_item_text(2) + " - " + str(robots[robots.keys()[1]]["Price"]))
+	set_item_text(3, get_item_text(3) + " - " + str(robots[robots.keys()[2]]["Price"]))
+	set_item_text(4, get_item_text(4) + " - " + str(robots[robots.keys()[3]]["Price"]))
+	
 func _on_item_selected(index: int) -> void:
 	if robots[robots.keys()[index-1]]["Amount"] < robots[robots.keys()[index-1]]["Max"]:
 		if PlayerVariables.player.buy(robots[robots.keys()[index-1]]["Price"]):

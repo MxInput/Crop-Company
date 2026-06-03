@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://bmr0sdmfgof52"]
 
-[ext_resource type="Script" uid="uid://detixe7al8lj4" path="res://nodes/pestBot.gd" id="1_8v7e6"]
+[ext_resource type="Script" uid="uid://detixe7al8lj4" path="res://scripts/pestBot.gd" id="1_8v7e6"]
 [ext_resource type="Texture2D" uid="uid://5wii7wo0q6nf" path="res://tiles/bots/pest/back_pest_bot.png" id="1_cch7r"]
 [ext_resource type="Texture2D" uid="uid://do5o71w3g0mdh" path="res://tiles/bots/pest/front_pest_bot.png" id="2_4juxn"]
 [ext_resource type="Texture2D" uid="uid://omm80xy162de" path="res://tiles/bots/pest/left_pest_bot.png" id="3_6f48t"]

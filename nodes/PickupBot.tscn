@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://d4cagrt4wtar4"]
 
-[ext_resource type="Script" uid="uid://ds1k5hbf2xc4n" path="res://nodes/PickupBot.gd" id="1_kxm1q"]
+[ext_resource type="Script" uid="uid://ds1k5hbf2xc4n" path="res://scripts/PickupBot.gd" id="1_kxm1q"]
 [ext_resource type="Texture2D" uid="uid://c05ndgnj8m4ue" path="res://tiles/bots/pickup/pickup_bot_back.png" id="2_kxm1q"]
 [ext_resource type="Texture2D" uid="uid://dtjq45l5aetcn" path="res://tiles/bots/pickup/pickup_bot_front.png" id="3_b1sn0"]
 [ext_resource type="Texture2D" uid="uid://djb7wpojpwifg" path="res://tiles/bots/pickup/pickup_bot_left.png" id="4_7u52n"]
