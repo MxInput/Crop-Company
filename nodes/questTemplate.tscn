@@ -1,0 +1,74 @@
+[gd_scene format=3 uid="uid://dbnwo7mn1sba3"]
+
+[ext_resource type="Texture2D" uid="uid://ckcx8kvjwl0oa" path="res://UI/templates/quest_template.png" id="1_s7xtb"]
+[ext_resource type="FontFile" uid="uid://ci5gbe284cx6u" path="res://UI/Fonts/SuperBakery.ttf" id="2_h4pfh"]
+[ext_resource type="Texture2D" uid="uid://croyhuxp7gqxk" path="res://UI/Buttons/purchase_button.png" id="3_lw4ye"]
+
+[node name="QuestTemplate" type="TextureRect" unique_id=1264247898]
+texture = ExtResource("1_s7xtb")
+
+[node name="ProgressBar" type="ProgressBar" parent="." unique_id=614251049]
+layout_mode = 0
+offset_left = 9.0
+offset_top = 33.0
+offset_right = 236.0
+offset_bottom = 60.0
+theme_override_fonts/font = ExtResource("2_h4pfh")
+
+[node name="Status" type="Label" parent="." unique_id=1067572242]
+layout_mode = 0
+offset_left = 364.0
+offset_top = 69.0
+offset_right = 583.0
+offset_bottom = 94.0
+theme_override_colors/font_shadow_color = Color(0.29803923, 0.29803923, 0.29803923, 1)
+theme_override_fonts/font = ExtResource("2_h4pfh")
+theme_override_font_sizes/font_size = 20
+text = "In progress"
+
+[node name="Reward" type="Label" parent="." unique_id=1546255305]
+layout_mode = 0
+offset_left = 8.0
+offset_top = 66.0
+offset_right = 316.0
+offset_bottom = 91.0
+theme_override_colors/font_shadow_color = Color(0.29803923, 0.29803923, 0.29803923, 1)
+theme_override_fonts/font = ExtResource("2_h4pfh")
+theme_override_font_sizes/font_size = 20
+text = "Reward - Unlock Cabbages"
+
+[node name="Title" type="Label" parent="." unique_id=396559666]
+layout_mode = 0
+offset_left = 11.0
+offset_top = 5.0
+offset_right = 254.0
+offset_bottom = 28.0
+theme_override_colors/font_shadow_color = Color(0.29803923, 0.29803923, 0.29803923, 1)
+theme_override_fonts/font = ExtResource("2_h4pfh")
+theme_override_font_sizes/font_size = 20
+text = "Harvest 10 Carrots"
+
+[node name="Collect" type="TextureButton" parent="." unique_id=672662067]
+layout_mode = 0
+offset_left = 602.0
+offset_top = 17.0
+offset_right = 699.0
+offset_bottom = 77.0
+texture_normal = ExtResource("3_lw4ye")
+texture_pressed = ExtResource("3_lw4ye")
+texture_hover = ExtResource("3_lw4ye")
+texture_disabled = ExtResource("3_lw4ye")
+texture_focused = ExtResource("3_lw4ye")
+
+[node name="Label" type="Label" parent="Collect" unique_id=463175454]
+layout_mode = 0
+offset_top = 8.0
+offset_right = 96.0
+offset_bottom = 44.0
+theme_override_colors/font_color = Color(0.7490196, 0.10980392, 0.10980392, 1)
+theme_override_colors/font_shadow_color = Color(0.5764706, 0.03137255, 0.03137255, 1)
+theme_override_fonts/font = ExtResource("2_h4pfh")
+theme_override_font_sizes/font_size = 20
+text = "Collect"
+horizontal_alignment = 1
+vertical_alignment = 1

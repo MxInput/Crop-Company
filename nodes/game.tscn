@@ -52,6 +52,12 @@
 [ext_resource type="Texture2D" uid="uid://qv85wyvpsal2" path="res://UI/Buttons/upgrade_icon.png" id="30_av8k1"]
 [ext_resource type="Texture2D" uid="uid://ele6y6fbxkoj" path="res://tiles/plants/trees/apple/apple_harvest.png" id="30_njtgi"]
 [ext_resource type="Texture2D" uid="uid://clcxq6g0kcpcy" path="res://UI/Buttons/quest_icon.png" id="31_so2xc"]
+[ext_resource type="Texture2D" uid="uid://b0h2gtnr1nrfs" path="res://UI/menus/quest_menu.png" id="32_277w8"]
+[ext_resource type="Texture2D" uid="uid://g11iqkrwitox" path="res://UI/menus/upgrades_menu.png" id="32_so2xc"]
+[ext_resource type="Script" uid="uid://bubdsmwbs8fui" path="res://nodes/questMenu.gd" id="33_sknth"]
+[ext_resource type="Texture2D" uid="uid://cpxkf4tus82ql" path="res://UI/templates/upgrade_template.png" id="35_dj8g6"]
+[ext_resource type="Texture2D" uid="uid://croyhuxp7gqxk" path="res://UI/Buttons/purchase_button.png" id="36_8wk8e"]
+[ext_resource type="PackedScene" uid="uid://bpsfdqv3c14mp" path="res://nodes/closeButton.tscn" id="37_n2jxr"]
 [ext_resource type="Texture2D" uid="uid://b7fxocssisltm" path="res://tiles/plants/trees/banana/banana_almost.png" id="38_0s4mg"]
 [ext_resource type="Texture2D" uid="uid://bd2wciqx2wil5" path="res://tiles/toolbar/trees/able.png" id="38_csyuo"]
 [ext_resource type="PackedScene" uid="uid://r2whf4s76sna" path="res://nodes/Clock.tscn" id="38_njtgi"]
@@ -73,6 +79,7 @@
 [ext_resource type="Texture2D" uid="uid://g66xddj2l7q8" path="res://tiles/plants/crops/tomato/tomato_sapling.png" id="51_ftvgp"]
 [ext_resource type="Texture2D" uid="uid://dv8mmc4y55rgp" path="res://tiles/plants/crops/tomato/tomato_seed.png" id="52_h2djo"]
 [ext_resource type="Script" uid="uid://fbvn78vgomyd" path="res://scripts/pathMaker.gd" id="62_wlrtx"]
+[ext_resource type="Script" uid="uid://c6f0lcew0ah3n" path="res://nodes/questHandler.gd" id="80_37phw"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_6hfer"]
 texture = ExtResource("1_cpdmu")
@@ -843,16 +850,17 @@ popup/item_4/text = "Crop Collection Bot"
 popup/item_4/id = 4
 script = ExtResource("26_n3s8n")
 
-[node name="UpgradeButton" parent="CanvasLayer" unique_id=1669126804 instance=ExtResource("29_5q475")]
+[node name="UpgradeButton" parent="CanvasLayer" unique_id=1669126804 node_paths=PackedStringArray("menu") instance=ExtResource("29_5q475")]
 offset_left = 1045.0
 offset_top = 451.0
 offset_right = 1109.0
 offset_bottom = 515.0
 texture_normal = ExtResource("30_av8k1")
-texture_pressed = ExtResource("31_so2xc")
+texture_pressed = ExtResource("30_av8k1")
 texture_hover = ExtResource("30_av8k1")
 texture_disabled = ExtResource("30_av8k1")
 texture_focused = ExtResource("30_av8k1")
+menu = NodePath("../UpgradesMenu")
 
 [node name="Label" type="Label" parent="CanvasLayer/UpgradeButton" unique_id=110480587]
 layout_mode = 0
@@ -866,7 +874,7 @@ theme_override_fonts/font = ExtResource("25_n3s8n")
 theme_override_font_sizes/font_size = 20
 text = "UPGRADES"
 
-[node name="QuestButton" parent="CanvasLayer" unique_id=385144276 instance=ExtResource("29_5q475")]
+[node name="QuestButton" parent="CanvasLayer" unique_id=385144276 node_paths=PackedStringArray("menu") instance=ExtResource("29_5q475")]
 offset_left = 960.0
 offset_top = 448.0
 offset_right = 1024.0
@@ -876,6 +884,7 @@ texture_pressed = ExtResource("31_so2xc")
 texture_hover = ExtResource("31_so2xc")
 texture_disabled = ExtResource("31_so2xc")
 texture_focused = ExtResource("31_so2xc")
+menu = NodePath("../QuestMenu")
 
 [node name="Label" type="Label" parent="CanvasLayer/QuestButton" unique_id=1530146575]
 layout_mode = 0
@@ -888,6 +897,146 @@ theme_override_colors/font_shadow_color = Color(0.35004482, 0.32408914, 0.443833
 theme_override_fonts/font = ExtResource("25_n3s8n")
 theme_override_font_sizes/font_size = 20
 text = "QUESTS"
+
+[node name="QuestMenu" type="TextureRect" parent="CanvasLayer" unique_id=1659570085]
+visible = false
+offset_left = 128.0
+offset_top = 96.0
+offset_right = 928.0
+offset_bottom = 576.0
+texture = ExtResource("32_277w8")
+script = ExtResource("33_sknth")
+
+[node name="ScrollContainer" type="ScrollContainer" parent="CanvasLayer/QuestMenu" unique_id=1847236751]
+layout_mode = 0
+offset_left = 11.0
+offset_top = 103.0
+offset_right = 788.0
+offset_bottom = 454.0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/QuestMenu/ScrollContainer" unique_id=1406005078]
+layout_mode = 2
+
+[node name="Title" type="Label" parent="CanvasLayer/QuestMenu" unique_id=953235681]
+layout_mode = 0
+offset_left = 4.0
+offset_top = 10.0
+offset_right = 796.0
+offset_bottom = 93.0
+theme_override_colors/font_color = Color(0.9499708, 0.18393746, 0.17244467, 1)
+theme_override_colors/font_shadow_color = Color(0.6843917, 0.046171308, 0.04590112, 1)
+theme_override_fonts/font = ExtResource("25_n3s8n")
+theme_override_font_sizes/font_size = 60
+text = "QUESTS"
+horizontal_alignment = 1
+
+[node name="CloseButton" parent="CanvasLayer/QuestMenu" unique_id=1194757520 instance=ExtResource("37_n2jxr")]
+layout_mode = 0
+offset_left = 701.0
+offset_top = 19.0
+offset_right = 765.0
+offset_bottom = 83.0
+
+[node name="UpgradesMenu" type="TextureRect" parent="CanvasLayer" unique_id=1473703399]
+visible = false
+offset_left = 128.0
+offset_top = 96.0
+offset_right = 928.0
+offset_bottom = 576.0
+texture = ExtResource("32_so2xc")
+
+[node name="Title" type="Label" parent="CanvasLayer/UpgradesMenu" unique_id=926764700]
+layout_mode = 0
+offset_left = 4.0
+offset_top = 10.0
+offset_right = 796.0
+offset_bottom = 93.0
+theme_override_colors/font_color = Color(0.7372549, 0.2901961, 0.60784316, 1)
+theme_override_colors/font_shadow_color = Color(0.4862745, 0.105882354, 0.37254903, 1)
+theme_override_fonts/font = ExtResource("25_n3s8n")
+theme_override_font_sizes/font_size = 60
+text = "UPGRADES"
+horizontal_alignment = 1
+
+[node name="ScrollContainer" type="ScrollContainer" parent="CanvasLayer/UpgradesMenu" unique_id=1900357711]
+layout_mode = 0
+offset_left = 12.0
+offset_top = 112.0
+offset_right = 786.0
+offset_bottom = 460.0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/UpgradesMenu/ScrollContainer" unique_id=9739259]
+layout_mode = 2
+
+[node name="TextureRect" type="TextureRect" parent="CanvasLayer/UpgradesMenu/ScrollContainer/VBoxContainer" unique_id=1899810328]
+layout_mode = 2
+texture = ExtResource("35_dj8g6")
+
+[node name="Description" type="Label" parent="CanvasLayer/UpgradesMenu/ScrollContainer/VBoxContainer/TextureRect" unique_id=871126985]
+layout_mode = 0
+offset_left = 4.0
+offset_top = 26.0
+offset_right = 483.0
+offset_bottom = 95.0
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_shadow_color = Color(0.4862745, 0.105882354, 0.37254903, 1)
+theme_override_fonts/font = ExtResource("25_n3s8n")
+text = "Tiles will be now fertilized for 10 seconds."
+
+[node name="Level" type="Label" parent="CanvasLayer/UpgradesMenu/ScrollContainer/VBoxContainer/TextureRect" unique_id=844246940]
+layout_mode = 0
+offset_left = 327.0
+offset_top = 1.0
+offset_right = 551.0
+offset_bottom = 27.0
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_shadow_color = Color(0.5411765, 0.14509805, 0.42352942, 1)
+theme_override_fonts/font = ExtResource("25_n3s8n")
+text = "Level 1"
+
+[node name="Name" type="Label" parent="CanvasLayer/UpgradesMenu/ScrollContainer/VBoxContainer/TextureRect" unique_id=65728202]
+layout_mode = 0
+offset_left = 6.0
+offset_top = 2.0
+offset_right = 227.0
+offset_bottom = 28.0
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_shadow_color = Color(0.4862745, 0.105882354, 0.37254903, 1)
+theme_override_fonts/font = ExtResource("25_n3s8n")
+text = "Longer Fertilization"
+
+[node name="Purchase" type="TextureButton" parent="CanvasLayer/UpgradesMenu/ScrollContainer/VBoxContainer/TextureRect" unique_id=1882584840]
+layout_mode = 0
+offset_left = 602.0
+offset_top = 17.0
+offset_right = 699.0
+offset_bottom = 77.0
+texture_normal = ExtResource("36_8wk8e")
+texture_pressed = ExtResource("36_8wk8e")
+texture_hover = ExtResource("36_8wk8e")
+texture_disabled = ExtResource("36_8wk8e")
+texture_focused = ExtResource("36_8wk8e")
+
+[node name="Label" type="Label" parent="CanvasLayer/UpgradesMenu/ScrollContainer/VBoxContainer/TextureRect/Purchase" unique_id=1988261766]
+layout_mode = 0
+offset_top = 8.0
+offset_right = 96.0
+offset_bottom = 44.0
+theme_override_colors/font_color = Color(0.7372549, 0.2901961, 0.60784316, 1)
+theme_override_colors/font_shadow_color = Color(0.4862745, 0.105882354, 0.37254903, 1)
+theme_override_fonts/font = ExtResource("25_n3s8n")
+theme_override_font_sizes/font_size = 20
+text = "PURCHASE"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="CloseButton" parent="CanvasLayer/UpgradesMenu" unique_id=1941118294 node_paths=PackedStringArray("menu") instance=ExtResource("37_n2jxr")]
+layout_mode = 0
+offset_left = 719.0
+offset_top = 22.0
+offset_right = 783.0
+offset_bottom = 86.0
+menu = NodePath("..")
 
 [node name="Dragged" type="Node2D" parent="." unique_id=966772768]
 visible = false
@@ -942,7 +1091,10 @@ tile_set = SubResource("TileSet_003f7")
 [node name="Paths" type="Node2D" parent="." unique_id=156886163]
 script = ExtResource("62_wlrtx")
 
+[node name="Upgrades" type="Node2D" parent="." unique_id=1747126775]
+
 [node name="Quests" type="Node2D" parent="." unique_id=313668459]
+script = ExtResource("80_37phw")
 
 [connection signal="item_selected" from="CanvasLayer/BuyBot" to="CanvasLayer/BuyBot" method="_on_item_selected"]
 [connection signal="new_bot_purchased" from="CanvasLayer/BuyBot" to="Paths" method="_on_buy_bot_new_bot_purchased"]

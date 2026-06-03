@@ -1,0 +1,24 @@
+[gd_scene format=3 uid="uid://bpsfdqv3c14mp"]
+
+[ext_resource type="Texture2D" uid="uid://curtswncmwrqi" path="res://UI/Buttons/close_button.png" id="1_xj1s5"]
+[ext_resource type="Script" uid="uid://c2i3l7imi3qgn" path="res://closeMenu.gd" id="2_oulud"]
+[ext_resource type="FontFile" uid="uid://ci5gbe284cx6u" path="res://UI/Fonts/SuperBakery.ttf" id="3_k37io"]
+
+[node name="CloseButton" type="TextureButton" unique_id=1194757520]
+offset_right = 64.0
+offset_bottom = 64.0
+texture_normal = ExtResource("1_xj1s5")
+script = ExtResource("2_oulud")
+
+[node name="Label" type="Label" parent="." unique_id=616485045]
+layout_mode = 0
+offset_right = 63.0
+offset_bottom = 61.0
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 0.49411765)
+theme_override_fonts/font = ExtResource("3_k37io")
+theme_override_font_sizes/font_size = 50
+text = "X"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[connection signal="pressed" from="." to="." method="_on_pressed"]
