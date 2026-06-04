@@ -247,7 +247,7 @@ func plant(plant_name, tile_size) -> void:
 						for x in 3:
 							for y in 3:
 								var focused_tile = cell_pos + Vector2i(x-1, y-1)
-								if !plant_data.has(focused_tile):
+								if !plant_data.has(focused_tile) && terrain.get_cell_source_id(focused_tile) != 0:
 									if PlayerVariables.player.buy(plant_info[plant_name]["price"]):
 										total += 1
 										plant_data[focused_tile] = { "fruit_name" : plant_name, "stage" : 1, "time" : 0, "type": "crop"}

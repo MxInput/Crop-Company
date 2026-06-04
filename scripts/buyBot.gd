@@ -8,6 +8,8 @@ extends OptionButton
 
 signal new_bot_purchased
 
+@onready var quests = get_node("/root/Game/Quests")
+
 var robots = {
 	"Water": {
 		"Price": 50,
@@ -35,6 +37,11 @@ var robots = {
 	}
 }
 
+func bought_all() -> bool:
+	if get_tree().get_nodes_in_group("Water_Robots").size() > 0 && get_tree().get_nodes_in_group("fertillBots").size() > 0 && get_tree().get_nodes_in_group("pestBot").size() > 0 && get_tree().get_nodes_in_group("pickupBot").size() > 0:
+		return true
+	return false
+	
 func _ready() -> void:
 	set_item_text(1, get_item_text(1) + " - " + str(robots[robots.keys()[0]]["Price"]))
 	set_item_text(2, get_item_text(2) + " - " + str(robots[robots.keys()[1]]["Price"]))
@@ -52,6 +59,13 @@ func _on_item_selected(index: int) -> void:
 			game.add_child(new_bot)
 			new_bot.position = plants.to_global(plants.map_to_local(cell_pos))
 			
+			if !quests.quests["Buy a robot"]["Completed"]:
+				quests.quests["Buy a robot"]["Completed"] = true
+				
+			if !quests.quests["Have (at least) one of each robot type"]["Completed"]:
+				if bought_all():
+					quests.quests["Have (at least) one of each robot type"]["Completed"] = true
+				
 			robots[robots.keys()[index-1]]["Amount"] += 1
 			
 			new_bot_purchased.emit(robots.keys()[index-1])

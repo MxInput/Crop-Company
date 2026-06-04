@@ -51,8 +51,9 @@ func _process(_delta: float) -> void:
 								targeted.append(plants.plant_data[plant]["initial"])
 								robot.initialize(a_star_grid, plants.plant_data[plant]["initial"])
 					else:
-						targeted.append(plant)
-						robot.initialize(a_star_grid, plant)
+						if plants.plant_data[plant]["stage"] < 4:
+							targeted.append(plant)
+							robot.initialize(a_star_grid, plant)
 					break
 		if !map.fertilized_tiles.has(plant) && fertilizer_targeted.find(plant) == -1:	
 			for robot in fertillBots:
@@ -63,8 +64,9 @@ func _process(_delta: float) -> void:
 								fertilizer_targeted.append(plants.plant_data[plant]["initial"])
 								robot.initialize(a_star_grid, plants.plant_data[plant]["initial"])
 					else:
-						fertilizer_targeted.append(plant)
-						robot.initialize(a_star_grid, plant)
+						if plants.plant_data[plant]["stage"] < 4:
+							fertilizer_targeted.append(plant)
+							robot.initialize(a_star_grid, plant)
 					break
 		if map.infected_tiles.has(plant) && !pests_targeted.has(plant):
 			for robot in pestBots:

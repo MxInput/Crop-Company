@@ -73,8 +73,9 @@ func _physics_process(_delta: float) -> void:
 				paths_node.targeted.erase(target_cell)
 				if !tiles.watered_tiles.has(target_cell):
 					if plants.plant_data.has(target_cell):
-						tiles.watered_tiles[target_cell] = {"time": 0}
-						watered.set_cell(target_cell, 0, Vector2i(0,0))
+						if plants.plant_data[target_cell]["stage"] < 4:
+							tiles.watered_tiles[target_cell] = {"time": 0}
+							watered.set_cell(target_cell, 0, Vector2i(0,0))
 			moving = false
 			finished = true
 			move_points.clear()
@@ -121,8 +122,9 @@ func _physics_process(_delta: float) -> void:
 					paths_node.targeted.erase(target_cell)
 					
 					if !tiles.watered_tiles.has(target_cell):
-						tiles.watered_tiles[target_cell] = {"time": 0}
-						watered.set_cell(target_cell, 0, Vector2i(0,0))
+						if plants.plant_data[target_cell]["stage"] < 4:
+							tiles.watered_tiles[target_cell] = {"time": 0}
+							watered.set_cell(target_cell, 0, Vector2i(0,0))
 				moving = false
 				finished = true
 				current_point = 0

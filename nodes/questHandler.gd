@@ -69,7 +69,7 @@ var quests = {
 		"Completed": false,
 		"Type": "Completion"
 	},
-	"Spend 1000 Coins": {
+	"Complete 5 quests": {
 		"Status": "In Progress",
 		"Reward": "Unlock Tomato",
 		"Completed": false,
