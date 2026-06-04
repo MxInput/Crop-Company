@@ -13,6 +13,7 @@ extends TileMapLayer
 @onready var ground_check = tree_placement.get_child(1)
 
 @onready var upgrades: Node2D = get_node("/root/Game/Upgrades")
+@onready var quests: Node2D = get_node("/root/Game/Quests")
 
 var accounted_fertilized_tiles = []
 
@@ -335,12 +336,18 @@ func _process(delta: float) -> void:
 		if (plant_data.has(cell_pos)):
 			if ToolVariables.current_tool == "Shovel":
 				if plant_data[cell_pos]["type"] == "crop":
-					PlayerVariables.player.sell(plant_info[plant_data[cell_pos]["fruit_name"]]["price"])
-					coin_display.new_instance(plant_info[plant_data[cell_pos]["fruit_name"]]["price"])			
+					if plant_data[cell_pos]["stage"] == 4:
+						PlayerVariables.player.sell(plant_info[plant_data[cell_pos]["fruit_name"]]["sell"])
+						coin_display.new_instance(plant_info[plant_data[cell_pos]["fruit_name"]]["sell"])			
+						quests.quests["Harvest 80 Crops"]["Amount"] += 1
+					else:
+						PlayerVariables.player.sell(plant_info[plant_data[cell_pos]["fruit_name"]]["price"])
+						coin_display.new_instance(plant_info[plant_data[cell_pos]["fruit_name"]]["price"])			
 				else:
 					if plant_data[plant_data[cell_pos]["initial"]]["stage"] == 5:
 						PlayerVariables.player.sell(tree_info[plant_data[cell_pos]["fruit_name"]]["sell"])
 						coin_display.new_instance(tree_info[plant_data[cell_pos]["fruit_name"]]["sell"])			
+						quests.quests["Harvest 80 Crops"]["Amount"] += 1
 					else:
 						PlayerVariables.player.sell(tree_info[plant_data[cell_pos]["fruit_name"]]["price"])
 						coin_display.new_instance(tree_info[plant_data[cell_pos]["fruit_name"]]["price"])	
@@ -349,10 +356,12 @@ func _process(delta: float) -> void:
 					if plant_data[cell_pos]["stage"] == 4:
 						PlayerVariables.player.sell(plant_info[plant_data[cell_pos]["fruit_name"]]["sell"])
 						coin_display.new_instance(plant_info[plant_data[cell_pos]["fruit_name"]]["sell"])	
+						quests.quests["Harvest 80 Crops"]["Amount"] += 1
 				elif plant_data[cell_pos]["type"] == "tree":
 					if plant_data[plant_data[cell_pos]["initial"]]["stage"] == 5:
 						PlayerVariables.player.sell(tree_info[plant_data[cell_pos]["fruit_name"]]["sell"])
 						coin_display.new_instance(tree_info[plant_data[cell_pos]["fruit_name"]]["sell"])	
+						quests.quests["Harvest 80 Crops"]["Amount"] += 1
 			if ToolVariables.current_tool == "Shovel" or plant_data[cell_pos]["stage"] >= 4 or plant_data[cell_pos].has("initial"):
 				if plant_data[cell_pos]["type"] == "crop": 
 					plant_data.erase(cell_pos)
