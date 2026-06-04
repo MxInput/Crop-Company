@@ -173,8 +173,7 @@ func move_placement():
 				for ground in ground_check.get_overlapping_bodies():
 					if ground.name == terrain.name:
 						tree_placement_sprite.texture = unable_to_place
-						
-	
+							
 func plant(plant_name, tile_size) -> void:
 	var local_pos = terrain.to_local(get_global_mouse_position())
 	var cell_pos = terrain.local_to_map(local_pos)

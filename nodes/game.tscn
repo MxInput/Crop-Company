@@ -55,8 +55,6 @@
 [ext_resource type="Texture2D" uid="uid://b0h2gtnr1nrfs" path="res://UI/menus/quest_menu.png" id="32_277w8"]
 [ext_resource type="Texture2D" uid="uid://g11iqkrwitox" path="res://UI/menus/upgrades_menu.png" id="32_so2xc"]
 [ext_resource type="Script" uid="uid://bubdsmwbs8fui" path="res://nodes/questMenu.gd" id="33_sknth"]
-[ext_resource type="Texture2D" uid="uid://cpxkf4tus82ql" path="res://UI/templates/upgrade_template.png" id="35_dj8g6"]
-[ext_resource type="Texture2D" uid="uid://croyhuxp7gqxk" path="res://UI/Buttons/purchase_button.png" id="36_8wk8e"]
 [ext_resource type="PackedScene" uid="uid://bpsfdqv3c14mp" path="res://nodes/closeButton.tscn" id="37_n2jxr"]
 [ext_resource type="Texture2D" uid="uid://b7fxocssisltm" path="res://tiles/plants/trees/banana/banana_almost.png" id="38_0s4mg"]
 [ext_resource type="Texture2D" uid="uid://bd2wciqx2wil5" path="res://tiles/toolbar/trees/able.png" id="38_csyuo"]
@@ -100,6 +98,7 @@
 [ext_resource type="Texture2D" uid="uid://cwyj8fl3jqkwd" path="res://tiles/plants/crops/radish/raddish_ready.png" id="86_25wip"]
 [ext_resource type="Texture2D" uid="uid://cj4t6lpv4wwpo" path="res://tiles/plants/crops/radish/raddish_sapling.png" id="87_c1087"]
 [ext_resource type="Texture2D" uid="uid://d3pryvnnmnehy" path="res://tiles/plants/crops/radish/raddish_seed.png" id="88_oguo6"]
+[ext_resource type="Script" uid="uid://nfps8eofcy66" path="res://nodes/upgradeHandler.gd" id="100_axdn6"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_6hfer"]
 texture = ExtResource("1_cpdmu")
@@ -1090,12 +1089,13 @@ theme_override_font_sizes/font_size = 60
 text = "QUESTS"
 horizontal_alignment = 1
 
-[node name="CloseButton" parent="CanvasLayer/QuestMenu" unique_id=1194757520 instance=ExtResource("37_n2jxr")]
+[node name="CloseButton" parent="CanvasLayer/QuestMenu" unique_id=1194757520 node_paths=PackedStringArray("menu") instance=ExtResource("37_n2jxr")]
 layout_mode = 0
 offset_left = 701.0
 offset_top = 19.0
 offset_right = 765.0
 offset_bottom = 83.0
+menu = NodePath("..")
 
 [node name="UpgradesMenu" type="TextureRect" parent="CanvasLayer" unique_id=1473703399]
 visible = false
@@ -1111,8 +1111,8 @@ offset_left = 4.0
 offset_top = 10.0
 offset_right = 796.0
 offset_bottom = 93.0
-theme_override_colors/font_color = Color(0.7372549, 0.2901961, 0.60784316, 1)
-theme_override_colors/font_shadow_color = Color(0.4862745, 0.105882354, 0.37254903, 1)
+theme_override_colors/font_color = Color(0.6439104, 0.23002082, 0.52679497, 1)
+theme_override_colors/font_shadow_color = Color(0.43835872, 0.09063604, 0.33458298, 1)
 theme_override_fonts/font = ExtResource("25_n3s8n")
 theme_override_font_sizes/font_size = 60
 text = "UPGRADES"
@@ -1127,68 +1127,6 @@ offset_bottom = 460.0
 
 [node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/UpgradesMenu/ScrollContainer" unique_id=9739259]
 layout_mode = 2
-
-[node name="TextureRect" type="TextureRect" parent="CanvasLayer/UpgradesMenu/ScrollContainer/VBoxContainer" unique_id=1899810328]
-layout_mode = 2
-texture = ExtResource("35_dj8g6")
-
-[node name="Description" type="Label" parent="CanvasLayer/UpgradesMenu/ScrollContainer/VBoxContainer/TextureRect" unique_id=871126985]
-layout_mode = 0
-offset_left = 4.0
-offset_top = 26.0
-offset_right = 483.0
-offset_bottom = 95.0
-theme_override_colors/font_color = Color(1, 1, 1, 1)
-theme_override_colors/font_shadow_color = Color(0.4862745, 0.105882354, 0.37254903, 1)
-theme_override_fonts/font = ExtResource("25_n3s8n")
-text = "Tiles will be now fertilized for 10 seconds."
-
-[node name="Level" type="Label" parent="CanvasLayer/UpgradesMenu/ScrollContainer/VBoxContainer/TextureRect" unique_id=844246940]
-layout_mode = 0
-offset_left = 327.0
-offset_top = 1.0
-offset_right = 551.0
-offset_bottom = 27.0
-theme_override_colors/font_color = Color(1, 1, 1, 1)
-theme_override_colors/font_shadow_color = Color(0.5411765, 0.14509805, 0.42352942, 1)
-theme_override_fonts/font = ExtResource("25_n3s8n")
-text = "Level 1"
-
-[node name="Name" type="Label" parent="CanvasLayer/UpgradesMenu/ScrollContainer/VBoxContainer/TextureRect" unique_id=65728202]
-layout_mode = 0
-offset_left = 6.0
-offset_top = 2.0
-offset_right = 227.0
-offset_bottom = 28.0
-theme_override_colors/font_color = Color(1, 1, 1, 1)
-theme_override_colors/font_shadow_color = Color(0.4862745, 0.105882354, 0.37254903, 1)
-theme_override_fonts/font = ExtResource("25_n3s8n")
-text = "Longer Fertilization"
-
-[node name="Purchase" type="TextureButton" parent="CanvasLayer/UpgradesMenu/ScrollContainer/VBoxContainer/TextureRect" unique_id=1882584840]
-layout_mode = 0
-offset_left = 602.0
-offset_top = 17.0
-offset_right = 699.0
-offset_bottom = 77.0
-texture_normal = ExtResource("36_8wk8e")
-texture_pressed = ExtResource("36_8wk8e")
-texture_hover = ExtResource("36_8wk8e")
-texture_disabled = ExtResource("36_8wk8e")
-texture_focused = ExtResource("36_8wk8e")
-
-[node name="Label" type="Label" parent="CanvasLayer/UpgradesMenu/ScrollContainer/VBoxContainer/TextureRect/Purchase" unique_id=1988261766]
-layout_mode = 0
-offset_top = 8.0
-offset_right = 96.0
-offset_bottom = 44.0
-theme_override_colors/font_color = Color(0.7372549, 0.2901961, 0.60784316, 1)
-theme_override_colors/font_shadow_color = Color(0.4862745, 0.105882354, 0.37254903, 1)
-theme_override_fonts/font = ExtResource("25_n3s8n")
-theme_override_font_sizes/font_size = 20
-text = "PURCHASE"
-horizontal_alignment = 1
-vertical_alignment = 1
 
 [node name="CloseButton" parent="CanvasLayer/UpgradesMenu" unique_id=1941118294 node_paths=PackedStringArray("menu") instance=ExtResource("37_n2jxr")]
 layout_mode = 0
@@ -1252,6 +1190,7 @@ tile_set = SubResource("TileSet_003f7")
 script = ExtResource("62_wlrtx")
 
 [node name="Upgrades" type="Node2D" parent="." unique_id=1747126775]
+script = ExtResource("100_axdn6")
 
 [node name="Quests" type="Node2D" parent="." unique_id=313668459]
 script = ExtResource("80_37phw")

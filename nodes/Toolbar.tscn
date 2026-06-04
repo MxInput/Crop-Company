@@ -23,7 +23,7 @@ offset_top = 96.0
 offset_right = 1151.0
 offset_bottom = 136.0
 mouse_filter = 2
-horizontal_scroll_mode = 2
+horizontal_scroll_mode = 3
 vertical_scroll_mode = 0
 
 [node name="HBoxContainer" type="HBoxContainer" parent="ScrollContainer" unique_id=363601170]

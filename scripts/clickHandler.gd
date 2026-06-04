@@ -6,6 +6,7 @@ extends TileMapLayer
 @onready var infected: TileMapLayer = get_node("/root/Game/Pests")
 
 @onready var select: Node2D = get_node("Select")
+@onready var upgrades: Node2D = get_node("/root/Game/Upgrades")
 
 @export var one_select : CompressedTexture2D
 @export var nine_select : CompressedTexture2D
@@ -190,11 +191,11 @@ func _process(delta: float):
 				var rand = randi_range(1, 100000)
 				if plants.plant_data.has(timer):
 					if plants.plant_data[timer]["type"] == "crop":
-						if rand > 90000:
+						if rand > upgrades.upgrades["Bye-Bye Pests"]["Rates"][upgrades.upgrades["Bye-Bye Pests"]["Level"] - 1]:
 							infected_tiles.append(timer)
 							infected.set_cell(timer, 0, Vector2i(0,0))
 					else:
-						if rand > 90000:
+						if rand > upgrades.upgrades["Bye-Bye Pests"]["Rates"][upgrades.upgrades["Bye-Bye Pests"]["Level"] - 1]:
 							for x in 3:
 								for y in 4:
 									var initial = timer

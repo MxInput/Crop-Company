@@ -1,7 +1,7 @@
 extends Node
 
 var season = Season.new()
-var length = 1200
+var length = 420
 
 @onready var clock: TextureRect = get_node("/root/Game/CanvasLayer/Clock")
 
