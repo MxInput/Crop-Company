@@ -153,7 +153,7 @@ func _process(delta: float):
 	
 	for watered_tile in watered_tiles:
 		watered_tiles[watered_tile]["time"] += delta
-		if watered_tiles[watered_tile]["time"] >= 60:
+		if watered_tiles[watered_tile]["time"] >= upgrades.upgrades["Greater Soakage"]["Times"][upgrades.upgrades["Greater Soakage"]["Level"]-1]:
 			if get_cell_source_id(watered_tile) == 2 || get_cell_source_id(watered_tile) == 1:
 				set_cell(watered_tile, 1, Vector2i(0, 0))
 			else:

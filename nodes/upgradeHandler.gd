@@ -8,14 +8,16 @@ var upgrade_temp = preload("res://nodes/upgradeTemplate.tscn")
 
 var max_level = 3
 var upgrades = {
-	"Longer Fertilization": {
-		"Description": "Increases the length that tiles remain fertilized.",
+	"Better Fertilized": {
+		"Description": "Removes a greater percentage of time from the plant when fertilizer is used.",
 		"Level": 1,
+		"Percentages": [0.25, 0.375, 0.5],
 		"Prices": [10, 50, 100]
 	},
 	"Greater Soakage": {
 		"Description": "Increases the length that tiles remain watered.",
 		"Level": 1,
+		"Times": [30, 60, 120],
 		"Prices": [10, 50, 100]
 	},
 	"Rapid Robots": {

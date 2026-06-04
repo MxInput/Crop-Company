@@ -12,6 +12,8 @@ extends TileMapLayer
 @onready var plant_check = tree_placement.get_child(2)
 @onready var ground_check = tree_placement.get_child(1)
 
+@onready var upgrades: Node2D = get_node("/root/Game/Upgrades")
+
 var accounted_fertilized_tiles = []
 
 @onready var able_to_place = preload("res://tiles/toolbar/trees/able.png")
@@ -155,6 +157,39 @@ var tree_info = {
 		"sell": 15,
 		"seasons": ["Spring", "Summer", "Fall", "Winter"],
 		"icon": load("res://tiles/toolbar/trees/banana_icon.png")
+	},
+	"Coconut": {
+		"stage1": { "sec": 16, "tile_id": 59},
+		"stage2": { "sec": 16, "tile_id": 58},
+		"stage3": { "sec": 16, "tile_id": 55},
+		"stage4": {"sec": 8, "tile_id": 57},
+		"stage5": {"tile_id": 56},
+		"price": 75,
+		"sell": 15,
+		"seasons": ["Spring", "Summer", "Fall", "Winter"],
+		"icon": load("res://tiles/toolbar/trees/coconut_icon.png")
+	},
+	"Fig": {
+		"stage1": { "sec": 16, "tile_id": 64},
+		"stage2": { "sec": 16, "tile_id": 63},
+		"stage3": { "sec": 16, "tile_id": 60},
+		"stage4": {"sec": 8, "tile_id": 62},
+		"stage5": {"tile_id": 61},
+		"price": 75,
+		"sell": 15,
+		"seasons": ["Spring", "Summer", "Fall", "Winter"],
+		"icon": load("res://tiles/toolbar/trees/fig_icon.png")
+	},
+	"Pomegranate": {
+		"stage1": { "sec": 16, "tile_id": 69},
+		"stage2": { "sec": 16, "tile_id": 68},
+		"stage3": { "sec": 16, "tile_id": 65},
+		"stage4": {"sec": 8, "tile_id": 67},
+		"stage5": {"tile_id": 66},
+		"price": 75,
+		"sell": 15,
+		"seasons": ["Spring", "Summer", "Fall", "Winter"],
+		"icon": load("res://tiles/toolbar/trees/pomegranate_icon.png")
 	}
 }
 
@@ -260,7 +295,7 @@ func _process(delta: float) -> void:
 							goal = plant_info[plant_data[fertilized_tile]["fruit_name"]]["stage3"]["sec"]
 					if goal != 0:
 						var time_left = goal - plant_data[fertilized_tile]["time"]
-						plant_data[fertilized_tile]["time"] = plant_data[fertilized_tile]["time"] + floor(time_left * 1 / 4)
+						plant_data[fertilized_tile]["time"] = plant_data[fertilized_tile]["time"] + floor(time_left * upgrades.upgrades["Better Fertilized"]["Percentages"][upgrades.upgrades["Better Fertilized"]["Level"]-1])
 			else:		
 				if fertilized_tile == plant_data[fertilized_tile]["initial"]:
 					if !accounted_fertilized_tiles.has(fertilized_tile):
