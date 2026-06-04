@@ -1511,6 +1511,7 @@ text = "QUESTS"
 
 [node name="QuestMenu" type="TextureRect" parent="CanvasLayer" unique_id=1659570085]
 visible = false
+z_index = 8
 offset_left = 128.0
 offset_top = 96.0
 offset_right = 928.0
@@ -1551,6 +1552,7 @@ menu = NodePath("..")
 
 [node name="UpgradesMenu" type="TextureRect" parent="CanvasLayer" unique_id=1473703399]
 visible = false
+z_index = 8
 offset_left = 128.0
 offset_top = 96.0
 offset_right = 928.0

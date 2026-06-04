@@ -8,64 +8,78 @@ var quests = {
 	"Harvest 80 Crops": {
 		"Status": "In Progress",
 		"Reward": "Unlock Robots",
-		"Amount": 0,
-		"Max": 80,
+		"Amount": 0.0,
+		"Max": 80.0,
 		"Type": "Count"
 	},
 	"Reach Summer": {
 		"Status": "In Progress",
 		"Reward": "Unlock Watermelon",
-		"Completed": false
+		"Completed": false,
+		"Type": "Completion"
 	},
 	"Experience all seasons and make it back to Spring": {
 		"Status": "In Progress",
 		"Reward": "Unlock Pomegranate",
-		"Completed": false
+		"Completed": false,
+		"Type": "Completion"
 	},
-	"Plant 5 Banana Trees": {
+	"Have 5 Banana Trees at once": {
 		"Status": "In Progress",
 		"Reward": "Unlock Apple Trees",
-		"Amount": 0
+		"Amount": 0.0,
+		"Max": 5.0,
+		"Type": "Count"
 	},
-	"Earn 1000 coins": {
+	"Harvest plants worth a total of 1000 coins": {
 		"Status": "In Progress",
 		"Reward": "Unlock Grapefruit Trees",
-		"Amount": 0
+		"Amount": 0.0,
+		"Max": 1000.0,
+		"Type": "Count"
 	},
-	"Earn 5000 coins": {
+	"Harvest plants worth a total of 5000 coins": {
 		"Status": "In Progress",
 		"Reward": "Unlock Kale",
-		"Amount": 0
+		"Amount": 0.0,
+		"Max": 5000.0,
+		"Type": "Count"
 	},
 	"Buy a robot": {
 		"Status": "In Progress",
 		"Reward": "Unlock Pumpkin",
-		"Amount": 0
+		"Completed": false,
+		"Type": "Completion"
 	},
 	"Have (at least) one of each robot type": {
 		"Status": "In Progress",
 		"Reward": "Unlock Butternut Squash",
-		"Amount": 0
+		"Completed": false,
+		"Type": "Completion"
 	},
 	"Buy an upgrade": {
 		"Status": "In Progress",
 		"Reward": "Unlock Coconut",
-		"Amount": 0
+		"Completed": false,
+		"Type": "Completion"
 	},
 	"Buy every upgrade": {
 		"Status": "In Progress",
 		"Reward": "Unlock Potato",
-		"Amount": 0
+		"Completed": false,
+		"Type": "Completion"
 	},
 	"Spend 1000 Coins": {
 		"Status": "In Progress",
 		"Reward": "Unlock Tomato",
-		"Amount": 0
+		"Completed": false,
+		"Type": "Completion"
 	},
 	"Complete the Tutorial (or skip it)": {
 		"Status": "In Progress",
 		"Reward": "Unlock Beet, Fig, and Cabbage",
-		"Amount": 0
+		"Completed": true,
+		"Type": "Completion"
 	}
 }
 

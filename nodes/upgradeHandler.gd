@@ -6,6 +6,8 @@ var upgrade_temp = preload("res://nodes/upgradeTemplate.tscn")
 
 @onready var coin_display : Node = get_node("/root/Game/CoinDisplay")
 
+@onready var quests = get_node("/root/Game/Quests")
+
 var max_level = 3
 var upgrades = {
 	"Better Fertilized": {
@@ -34,11 +36,23 @@ var upgrades = {
 	}
 }
 
+func bought_all() -> bool:
+	for upgrade in upgrades:
+		if upgrades[upgrade]["Level"] != 3:
+			return false
+	return true
+	
 func bought(upgrade_button, chosen_upgrade):
 	if upgrades[chosen_upgrade]["Level"] < max_level:
 		if PlayerVariables.player.buy(upgrades[chosen_upgrade]["Prices"][upgrades[chosen_upgrade]["Level"]]):
+			if !quests.quests["Buy an upgrade"]["Completed"]:
+				quests.quests["Buy an upgrade"]["Completed"] = true					
 			coin_display.new_instance(-upgrades[chosen_upgrade]["Prices"][upgrades[chosen_upgrade]["Level"]])
 			upgrades[chosen_upgrade]["Level"] += 1
+			if !quests.quests["Buy every upgrade"]["Completed"]:
+				if bought_all():
+					quests.quests["Buy every upgrade"]["Completed"] = true
+					
 			upgrade_button.get_parent().get_child(1).text = "Level " + str(upgrades[chosen_upgrade]["Level"])
 			if upgrades[chosen_upgrade]["Level"] < max_level:
 				upgrade_button.get_parent().get_child(3).text = str(upgrades[chosen_upgrade]["Prices"][upgrades[chosen_upgrade]["Level"]]) + " coins"
