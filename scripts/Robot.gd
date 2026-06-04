@@ -10,7 +10,9 @@ var finished : bool = true
 var moving : bool = false
 var current_point : int = 0
 
-var SPEED : float = 50.0
+@onready var upgrades : Node2D = get_node("/root/Game/Upgrades")
+
+@onready var SPEED : float = upgrades.upgrades["Rapid Robots"]["Speeds"][upgrades.upgrades["Rapid Robots"]["Level"]-1]
 
 @onready var animated_sprite = get_child(1)
 

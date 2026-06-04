@@ -21,7 +21,7 @@ var upgrades = {
 	"Rapid Robots": {
 		"Description": "Increases the movement speed of robots.",
 		"Level": 1,
-		"Speeds": [10.0, 25.0, 50.0],
+		"Speeds": [10.0, 50.0, 65.0],
 		"Prices": [10, 50, 100]
 	},
 	"Bye-Bye Pests": {
@@ -35,14 +35,25 @@ var upgrades = {
 func bought(upgrade_button, chosen_upgrade):
 	if upgrades[chosen_upgrade]["Level"] < max_level:
 		if PlayerVariables.player.buy(upgrades[chosen_upgrade]["Prices"][upgrades[chosen_upgrade]["Level"]]):
+			coin_display.new_instance(-upgrades[chosen_upgrade]["Prices"][upgrades[chosen_upgrade]["Level"]])
 			upgrades[chosen_upgrade]["Level"] += 1
 			upgrade_button.get_parent().get_child(1).text = "Level " + str(upgrades[chosen_upgrade]["Level"])
-			upgrade_button.get_parent().get_child(3).text = str(upgrades[chosen_upgrade]["Prices"][upgrades[chosen_upgrade]["Level"] - 1]) + " coins"
+			if upgrades[chosen_upgrade]["Level"] < max_level:
+				upgrade_button.get_parent().get_child(3).text = str(upgrades[chosen_upgrade]["Prices"][upgrades[chosen_upgrade]["Level"]]) + " coins"
+			else:
+				upgrade_button.get_parent().get_child(3).text = "Max Level"
 			
-			coin_display.new_instance(upgrades[chosen_upgrade]["Prices"][upgrades[chosen_upgrade]["Level"]])
-			
-			if upgrades[chosen_upgrade]["Level"] == 3:
-				upgrade_button.get_parent().get_child(5).visible = true
+			match chosen_upgrade:
+				"Rapid Robots":
+					for robot in get_tree().get_nodes_in_group("Water_Robots"):
+						robot.SPEED = upgrades[chosen_upgrade]["Speeds"][upgrades[chosen_upgrade]["Level"]-1]
+					for robot in get_tree().get_nodes_in_group("pestBot"):
+						robot.SPEED = upgrades[chosen_upgrade]["Speeds"][upgrades[chosen_upgrade]["Level"]-1]
+					for robot in get_tree().get_nodes_in_group("pickupBot"):
+						robot.SPEED = upgrades[chosen_upgrade]["Speeds"][upgrades[chosen_upgrade]["Level"]-1]
+					for robot in get_tree().get_nodes_in_group("fertillBots"):	
+						robot.SPEED = upgrades[chosen_upgrade]["Speeds"][upgrades[chosen_upgrade]["Level"]-1]
+		
 			if upgrade_button.get_child(0).text == "PURCHASE":
 				upgrade_button.get_child(0).text = "BOUGHT"
 			
@@ -57,7 +68,8 @@ func bought(upgrade_button, chosen_upgrade):
 				timer.one_shot = true
 				timer.start()
 		else:
-			print("bad")
+			coin_display.tell_warning("Not enough coins")
+			
 func _ready() -> void:
 	for upgrade in upgrades:
 		var upgrade_created = upgrade_temp.instantiate()
@@ -66,5 +78,8 @@ func _ready() -> void:
 		upgrade_created.get_child(0).text = upgrades[upgrade]["Description"]
 		upgrade_created.get_child(1).text = "Level " + str(upgrades[upgrade]["Level"])
 		upgrade_created.get_child(2).text = upgrade
-		upgrade_created.get_child(3).text = str(upgrades[upgrade]["Prices"][upgrades[upgrade]["Level"] - 1]) + " coins"
+		if upgrades[upgrade]["Prices"][upgrades[upgrade]["Level"]] >= max_level:
+			upgrade_created.get_child(3).text = str(upgrades[upgrade]["Prices"][upgrades[upgrade]["Level"]]) + " coins"
+		else:
+			upgrade_created.get_child(3).text = "Max Level"
 		upgrade_created.name = upgrade
