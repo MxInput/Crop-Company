@@ -27,7 +27,15 @@ var tutorial_text = [
 	"Hover over the carrot icon.",
 	"The overview that appears provides information on the plant including its name, growth time, sell price, buy price, and the seasons it grows in.",
 	"Drag the carrot, scroll to change the how much you want to plant, and place it onto a tilled tile to plant it.",
-	"Plant (at least) 18 carrots."
+	"Plant (at least) 18 carrots.",
+	"Hover over any planted tile.",
+	"This overview tells you the plant's name, current stage, time left growing, and whether it is in season.",
+	"Click on the shovel.",
+	"Click on at least one of the planted carrots to remove it. Once removed you are repaid the price that was originally paid to plant it.",
+	"Click on the fertilizer bag icon. Click on at least 17 tiles to lessen the time it takes for them to grow by appling fertilizer.",
+	"Plants only grow when watered. Click on the watering can then, click on the carrot seeds to water them. Water at least 17 of them.",
+	
+	"change"
 ]
 
 @onready var activates = {
@@ -47,6 +55,8 @@ var tutorial_text = [
 	"Quest Button": get_node("/root/Game/CanvasLayer/QuestButton")
 }
 
+func _process(_delta: float) -> void:
+	print(place)
 func change():
 	if place < tutorial_text.size() - 1:
 		if timer.is_stopped():
@@ -82,12 +92,9 @@ func place_up():
 		fall.visible = true
 		winter.visible = true
 	if place == 6:
-		activates["Pesticide"].visible = true
+		#activates["Pesticide"].visible = true
 		activates["Glove"].visible = true
 		activates["Hoe"].visible = true
-		activates["Shovel"].visible = true
-		activates["Fertilizer"].visible = true
-		activates["Watering Can"].visible = true
 		
 		spring.visible = false
 		summer.visible = false
@@ -108,7 +115,15 @@ func place_up():
 		continue_button.visible = true
 	if place == 16:
 		continue_button.visible = false
-			
+	if place == 18:
+		continue_button.visible = true
+	if place == 19:
+		activates["Shovel"].visible = true
+		continue_button.visible = false
+	if place == 21:		
+		activates["Fertilizer"].visible = true
+	if place == 22:		
+		activates["Watering Can"].visible = true	
 func _on_confirm_pressed() -> void:
 	get_child(1).visible = false
 	get_child(2).visible = false

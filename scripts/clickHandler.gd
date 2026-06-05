@@ -90,6 +90,8 @@ func  _input(event: InputEvent) -> void:
 		var cell_pos = local_to_map(mouse_pos)
 		var tile_id = (get_cell_source_id(cell_pos))
 		if event.is_action_pressed("click"):
+			if !PlayerVariables.player.completed_tutorial && tutorial.place == 20:
+				tiles_values.emit()		
 			if (tile_id == 2 && plants.plant_data.get(cell_pos)):
 				watered_tiles.erase(cell_pos)
 				if watered.get_cell_source_id(cell_pos) != -1:
@@ -159,9 +161,13 @@ func _process(delta: float):
 	
 	if !PlayerVariables.player.completed_tutorial && tutorial.place == 10:
 		var total_used = get_used_cells_by_id(1) + get_used_cells_by_id(2)
-		if total_used.size() > 18:
+		if total_used.size() >= 18:
 			tiles_values.emit()
 	
+	if !PlayerVariables.player.completed_tutorial && tutorial.place == 20:		
+		if watered_tiles.keys().size() >= 18:
+			tiles_values.emit()
+			
 	for watered_tile in watered_tiles:
 		watered_tiles[watered_tile]["time"] += delta
 		if watered_tiles[watered_tile]["time"] >= upgrades.upgrades["Greater Soakage"]["Times"][upgrades.upgrades["Greater Soakage"]["Level"]-1]:
@@ -196,24 +202,25 @@ func _process(delta: float):
 						timers[plant] = {"timer": created_timer}
 			
 	
-	for timer in timers:
-		timers[timer]["timer"].timeout.connect(func ():
-			if timers.has(timer):
-				var rand = randi_range(1, 100000)
-				if plants.plant_data.has(timer):
-					if plants.plant_data[timer]["type"] == "crop":
-						if rand > upgrades.upgrades["Bye-Bye Pests"]["Rates"][upgrades.upgrades["Bye-Bye Pests"]["Level"] - 1]:
-							infected_tiles.append(timer)
-							infected.set_cell(timer, 0, Vector2i(0,0))
-					else:
-						if rand > upgrades.upgrades["Bye-Bye Pests"]["Rates"][upgrades.upgrades["Bye-Bye Pests"]["Level"] - 1]:
-							for x in 3:
-								for y in 4:
-									var initial = timer
-									infected_tiles.append(initial + Vector2i(x-1, y-2))
-									infected.set_cell(initial + Vector2i(x-1, y-2), 0, Vector2i(0, 0))
-				timers.erase(timer)
-		)
+	if PlayerVariables.player.completed_tutorial:
+		for timer in timers:
+			timers[timer]["timer"].timeout.connect(func ():
+				if timers.has(timer):
+					var rand = randi_range(1, 100000)
+					if plants.plant_data.has(timer):
+						if plants.plant_data[timer]["type"] == "crop":
+							if rand > upgrades.upgrades["Bye-Bye Pests"]["Rates"][upgrades.upgrades["Bye-Bye Pests"]["Level"] - 1]:
+								infected_tiles.append(timer)
+								infected.set_cell(timer, 0, Vector2i(0,0))
+						else:
+							if rand > upgrades.upgrades["Bye-Bye Pests"]["Rates"][upgrades.upgrades["Bye-Bye Pests"]["Level"] - 1]:
+								for x in 3:
+									for y in 4:
+										var initial = timer
+										infected_tiles.append(initial + Vector2i(x-1, y-2))
+										infected.set_cell(initial + Vector2i(x-1, y-2), 0, Vector2i(0, 0))
+					timers.erase(timer)
+			)
 			
 		
 func highlight (cell_pos: Vector2i):

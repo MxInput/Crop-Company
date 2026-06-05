@@ -32,6 +32,10 @@ func change_tool(tool : String):
 	if !PlayerVariables.player.completed_tutorial && tutorial.place == 7:
 		if current_tool == "Hoe":
 			tool_selected.emit()
+		
+	if !PlayerVariables.player.completed_tutorial && tutorial.place == 19:
+		if current_tool == "Shovel":
+			tool_selected.emit()
 
 	for foundTool in tools:
 		if tool == foundTool.name:

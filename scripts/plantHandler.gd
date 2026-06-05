@@ -15,12 +15,16 @@ extends TileMapLayer
 @onready var upgrades: Node2D = get_node("/root/Game/Upgrades")
 @onready var quests: Node2D = get_node("/root/Game/Quests")
 
+@onready var tutorial = get_node("/root/Game/CanvasLayer/Tutorial")
+
 var accounted_fertilized_tiles = []
 
 @onready var able_to_place = preload("res://tiles/toolbar/trees/able.png")
 @onready var unable_to_place = preload("res://tiles/toolbar/trees/unable.png")
 
 @onready var coin_display : Node = get_node("/root/Game/CoinDisplay")
+
+signal send_values
 
 var plant_info = {
 	"Watermelon": {
@@ -169,7 +173,7 @@ var tree_info = {
 		"price": 75,
 		"sell": 15,
 		"seasons": ["Spring", "Summer", "Fall", "Winter"],
-		"locked": false,
+		"locked": true,
 		"icon": load("res://tiles/toolbar/trees/banana_icon.png")
 	},
 	"Coconut": {
@@ -298,11 +302,25 @@ func plant(plant_name, tile_size) -> void:
 				else:
 					coin_display.tell_warning("Can't grow this season")
 
-					
+func _ready() -> void:
+	send_values.connect(tutorial.change)
+			
 func _process(delta: float) -> void:
 	var mouse_pos = get_local_mouse_position()
 	var cell_pos = local_to_map(mouse_pos)
 	
+	if !PlayerVariables.player.completed_tutorial && tutorial.place == 16:
+		if get_carrot_count() >= 18:
+			send_values.emit()
+			
+	if !PlayerVariables.player.completed_tutorial && tutorial.place == 21:
+		if terrain.fertilized_tiles.keys().size() >= 17:
+			send_values.emit()			
+			
+	if !PlayerVariables.player.completed_tutorial && tutorial.place == 22:
+		if terrain.watered_tiles.keys().size() >= 17:
+			send_values.emit()			
+										
 	for infected_tile in terrain.infected_tiles:
 		if !plant_data.has(infected_tile):
 			terrain.infected_tiles.erase(infected_tile)

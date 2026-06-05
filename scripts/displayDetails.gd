@@ -11,9 +11,17 @@ extends Control
 @onready var priceTeller = get_child(0).get_child(2)
 @onready var growthTeller = get_child(0).get_child(0)
 
+
+@onready var tutorial = get_node("/root/Game/CanvasLayer/Tutorial")
+
+signal send_values
+
 var plant_use = false
 var toolbar_use = false
 
+func _ready() -> void:
+	send_values.connect(tutorial.change)
+	
 func _process(_delta: float) -> void:
 	if !plant_use and !toolbar_use:
 		visible = false
@@ -81,6 +89,9 @@ func display(stage : String, type : String, givenName : String, time : String) -
 	visible = true
 	nameTeller.text = givenName	
 	
+	if !PlayerVariables.player.completed_tutorial && tutorial.place == 17:		
+		send_values.emit()
+
 	if type == "crop":
 		stageTeller.text = "Stage " + stage + " / 4"
 		
