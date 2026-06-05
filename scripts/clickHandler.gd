@@ -21,6 +21,8 @@ var timers = {}
 
 var num_spaces = 1
 
+var spawned_pests_tutorial = false
+
 func _ready() -> void:
 	tiles_values.connect(tutorial.change)
 
@@ -159,6 +161,20 @@ func _process(delta: float):
 	var cell_pos = local_to_map(mouse_pos)
 	highlight(cell_pos)
 	
+	if !PlayerVariables.player.completed_tutorial && tutorial.place == 23 && !spawned_pests_tutorial:
+		spawned_pests_tutorial = true
+		var count = 0
+		for plant in plants.plant_data:
+			infected_tiles.append(plant)
+			infected.set_cell(plant, 0, Vector2i(0,0))
+			count += 1
+			if count >= 17:
+				break
+		
+	if !PlayerVariables.player.completed_tutorial && tutorial.place == 23:
+		if infected_tiles.size() == 0 or infected.get_used_cells().size() == 0:
+			tiles_values.emit()
+			
 	if !PlayerVariables.player.completed_tutorial && tutorial.place == 10:
 		var total_used = get_used_cells_by_id(1) + get_used_cells_by_id(2)
 		if total_used.size() >= 18:

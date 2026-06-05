@@ -3,12 +3,16 @@ extends TextureRect
 var place = 0
 var timer = Timer.new()
 
+@onready var quests = get_node("/root/Game/Quests")
+
 @onready var continue_button = get_child(3)
 
 @onready var spring = get_child(6)
 @onready var summer = get_child(7)
 @onready var winter = get_child(4)
 @onready var fall = get_child(5)
+
+@onready var toolbar = get_node("/root/Game/CanvasLayer/Toolbar")	
 
 var tutorial_text = [
 	"Welcome to Crop Company! Would you like to play the tutorial?",
@@ -34,8 +38,13 @@ var tutorial_text = [
 	"Click on at least one of the planted carrots to remove it. Once removed you are repaid the price that was originally paid to plant it.",
 	"Click on the fertilizer bag icon. Click on at least 17 tiles to lessen the time it takes for them to grow by appling fertilizer.",
 	"Plants only grow when watered. Click on the watering can then, click on the carrot seeds to water them. Water at least 17 of them.",
-	
-	"change"
+	"Oh no, some pests appeared! Click on the pesticide icon then, click on the infested tiles to remove them.",
+	"It typically takes time for plants to grow, but right now let's speed it up! Click to harvest at least one completed tile. Clicking and holding harvests multiple tiles.",
+	"Till tiles in a 2x3 pattern and place at least one now unlocked banana tree.",
+	"Trees, unlike normal crops, can be harvested multiple times without disappearing.",
+	"The button that appeared can be used to access upgrades that you can buy.",
+	"The other button that appeared can be used to access quests that you can complete for rewards.",
+	"Clicking this button marks the end of the tutorial."
 ]
 
 @onready var activates = {
@@ -55,8 +64,6 @@ var tutorial_text = [
 	"Quest Button": get_node("/root/Game/CanvasLayer/QuestButton")
 }
 
-func _process(_delta: float) -> void:
-	print(place)
 func change():
 	if place < tutorial_text.size() - 1:
 		if timer.is_stopped():
@@ -92,7 +99,6 @@ func place_up():
 		fall.visible = true
 		winter.visible = true
 	if place == 6:
-		#activates["Pesticide"].visible = true
 		activates["Glove"].visible = true
 		activates["Hoe"].visible = true
 		
@@ -124,6 +130,17 @@ func place_up():
 		activates["Fertilizer"].visible = true
 	if place == 22:		
 		activates["Watering Can"].visible = true	
+	if place == 23:		
+		activates["Pesticide"].visible = true
+	if place == 25:		
+		toolbar.unlock_plant(["Banana"])
+	if place == 26:		
+		continue_button.visible = true
+	if place == 27:		
+		activates["Upgrade Button"].visible = true
+	if place == 28:		
+		activates["Quest Button"].visible = true
+
 func _on_confirm_pressed() -> void:
 	get_child(1).visible = false
 	get_child(2).visible = false
@@ -132,4 +149,10 @@ func _on_confirm_pressed() -> void:
 	place = 1
 	
 func _on_continue_pressed() -> void:
-	place_up()
+	if place == 29:		
+		visible = false
+		quests.quests["Complete the Tutorial (or skip it)"]["Completed"] = true
+		PlayerVariables.player.completed_tutorial = true
+	else:
+		place_up()
+	

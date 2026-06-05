@@ -91,7 +91,7 @@ var quests = {
 		"Status": "In Progress",
 		"Reward": "Unlock Beet, Fig, and Cabbage",
 		"Reward Array": ["Beet", "Fig", "Cabbage"],
-		"Completed": true,
+		"Completed": false,
 		"Type": "Completion"
 	}
 }

@@ -320,6 +320,20 @@ func _process(delta: float) -> void:
 	if !PlayerVariables.player.completed_tutorial && tutorial.place == 22:
 		if terrain.watered_tiles.keys().size() >= 17:
 			send_values.emit()			
+			
+	if !PlayerVariables.player.completed_tutorial && tutorial.place == 25:
+		if get_banana_count() >= 1:
+			send_values.emit()		
+		
+	if !PlayerVariables.player.completed_tutorial && tutorial.place == 24:
+		var count = 0
+		for plant in plant_data:
+			if plant_data[plant]["fruit_name"] == "Carrot":
+				set_cell(plant, plant_info[plant_data[plant]["fruit_name"]]["stage4"]["tile_id"], Vector2i(0, 0))
+				plant_data[plant]["stage"] = 4
+				plant_data[plant]["time"] = 0
+			if count >= 17:
+				break		
 										
 	for infected_tile in terrain.infected_tiles:
 		if !plant_data.has(infected_tile):
@@ -391,6 +405,10 @@ func _process(delta: float) -> void:
 					if plant_data[cell_pos]["stage"] == 4:
 						PlayerVariables.player.sell(plant_info[plant_data[cell_pos]["fruit_name"]]["sell"])
 						coin_display.new_instance(plant_info[plant_data[cell_pos]["fruit_name"]]["sell"])			
+						
+						if !PlayerVariables.player.completed_tutorial && tutorial.place == 24:
+							send_values.emit()
+						
 						quests.quests["Harvest 80 Crops"]["Amount"] += 1
 						
 						quests.quests["Harvest plants worth a total of 1000 coins"]["Amount"] += plant_info[plant_data[cell_pos]["fruit_name"]]["sell"]
@@ -413,6 +431,10 @@ func _process(delta: float) -> void:
 					if plant_data[cell_pos]["stage"] == 4:
 						PlayerVariables.player.sell(plant_info[plant_data[cell_pos]["fruit_name"]]["sell"])
 						coin_display.new_instance(plant_info[plant_data[cell_pos]["fruit_name"]]["sell"])	
+					
+						if !PlayerVariables.player.completed_tutorial && tutorial.place == 24:
+							send_values.emit()
+							
 						quests.quests["Harvest 80 Crops"]["Amount"] += 1
 						quests.quests["Harvest plants worth a total of 1000 coins"]["Amount"] += plant_info[plant_data[cell_pos]["fruit_name"]]["sell"]
 						quests.quests["Harvest plants worth a total of 5000 coins"]["Amount"] += plant_info[plant_data[cell_pos]["fruit_name"]]["sell"]
