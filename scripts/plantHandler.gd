@@ -212,6 +212,13 @@ var tree_info = {
 
 var plant_data = {}
 	
+func get_carrot_count():
+	var count = 0
+	for found_plant in plant_data:
+		if plant_data[found_plant]["fruit_name"] == "Carrot":
+			count += 1
+	return count
+	
 func get_banana_count():
 	var count = 0
 	for found_plant in plant_data:

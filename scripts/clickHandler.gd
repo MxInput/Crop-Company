@@ -11,12 +11,18 @@ extends TileMapLayer
 @export var one_select : CompressedTexture2D
 @export var nine_select : CompressedTexture2D
 
+@onready var tutorial = get_node("/root/Game/CanvasLayer/Tutorial")
+signal tiles_values
+
 var watered_tiles = {}
 var fertilized_tiles = {}
 var infected_tiles = []
 var timers = {}
 
 var num_spaces = 1
+
+func _ready() -> void:
+	tiles_values.connect(tutorial.change)
 
 func change_select_to_one():
 	select.get_child(0).texture = one_select
@@ -150,6 +156,11 @@ func _process(delta: float):
 	var mouse_pos = get_local_mouse_position()
 	var cell_pos = local_to_map(mouse_pos)
 	highlight(cell_pos)
+	
+	if !PlayerVariables.player.completed_tutorial && tutorial.place == 10:
+		var total_used = get_used_cells_by_id(1) + get_used_cells_by_id(2)
+		if total_used.size() > 18:
+			tiles_values.emit()
 	
 	for watered_tile in watered_tiles:
 		watered_tiles[watered_tile]["time"] += delta

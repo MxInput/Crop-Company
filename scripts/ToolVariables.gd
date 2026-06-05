@@ -13,8 +13,14 @@ var current_tool
 
 @onready var terrain: TileMapLayer = get_node("/root/Game/Terrain")
 
+@onready var tutorial = get_node("/root/Game/CanvasLayer/Tutorial")
+
+signal tool_selected
+
 func _ready() -> void:
 	change_tool("Glove")
+	
+	tool_selected.connect(tutorial.change)
 
 func change_tool(tool : String):
 	if current_tool != null:
@@ -22,6 +28,10 @@ func change_tool(tool : String):
 		terrain.change_select_to_one()
 
 	current_tool = tool
+	
+	if !PlayerVariables.player.completed_tutorial && tutorial.place == 7:
+		if current_tool == "Hoe":
+			tool_selected.emit()
 
 	for foundTool in tools:
 		if tool == foundTool.name:

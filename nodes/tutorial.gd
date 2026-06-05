@@ -5,16 +5,29 @@ var timer = Timer.new()
 
 @onready var continue_button = get_child(3)
 
+@onready var spring = get_child(6)
+@onready var summer = get_child(7)
+@onready var winter = get_child(4)
+@onready var fall = get_child(5)
+
 var tutorial_text = [
 	"Welcome to Crop Company! Would you like to play the tutorial?",
 	"Move the camera by pressing W, A, S, and D or the arrow keys.",
 	"Zoom in and out by pressing Q and E.",
-	"The icon that just appeared showed how many coins you have.",
+	"The icon that appeared displays how many coins you have.",
 	"The clock that appeared now shows the current season.",
-	"Only in season crops will grow and be planted.",
+	"Only crops that are in season will grow and are able to be planted.",
 	"The left buttons are your tools.",
 	"Select the hoe icon.",
-	"Till at least 10 tiles."
+	"Scroll up and down to change the till size.",
+	"Click to till a tile and click the tilled tile to untill it.",
+	"Till (at least) 18 tiles.",
+	"The toolbar that just appeared displays all crops that can be planted.",
+	"Right now, only carrots and bananas are unlocked.",
+	"Hover over the carrot icon.",
+	"The overview that appears provides information on the plant including its name, growth time, sell price, buy price, and the seasons it grows in.",
+	"Drag the carrot, scroll to change the how much you want to plant, and place it onto a tilled tile to plant it.",
+	"Plant (at least) 18 carrots."
 ]
 
 @onready var activates = {
@@ -40,7 +53,7 @@ func change():
 			timer.start()
 		
 func _ready() -> void:
-	timer.wait_time = 2
+	timer.wait_time = 1.5
 	timer.one_shot = true
 	add_child(timer)
 	timer.timeout.connect(place_up)
@@ -63,6 +76,11 @@ func place_up():
 		continue_button.visible = true
 	if place == 4:
 		activates["Clock"].visible = true
+		
+		spring.visible = true
+		summer.visible = true
+		fall.visible = true
+		winter.visible = true
 	if place == 6:
 		activates["Pesticide"].visible = true
 		activates["Glove"].visible = true
@@ -70,7 +88,25 @@ func place_up():
 		activates["Shovel"].visible = true
 		activates["Fertilizer"].visible = true
 		activates["Watering Can"].visible = true
+		
+		spring.visible = false
+		summer.visible = false
+		fall.visible = false
+		winter.visible = false
 	if place == 7:
+		continue_button.visible = false
+	if place == 8:
+		continue_button.visible = true
+	if place == 10:
+		continue_button.visible = false
+	if place == 11:
+		activates["Toolbar"].visible = true
+		continue_button.visible = true
+	if place == 13:
+		continue_button.visible = false
+	if place == 14:
+		continue_button.visible = true
+	if place == 16:
 		continue_button.visible = false
 			
 func _on_confirm_pressed() -> void:
@@ -80,7 +116,5 @@ func _on_confirm_pressed() -> void:
 	get_child(0).text = tutorial_text[1]
 	place = 1
 	
-
-
 func _on_continue_pressed() -> void:
 	place_up()

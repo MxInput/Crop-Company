@@ -68,9 +68,13 @@
 [ext_resource type="Script" uid="uid://cchnbcoabk73b" path="res://nodes/deny.gd" id="40_oguo6"]
 [ext_resource type="Texture2D" uid="uid://ctrlcfps215bc" path="res://tiles/plants/trees/banana/banana_harvest.png" id="40_wlrtx"]
 [ext_resource type="Texture2D" uid="uid://wxqkuj10tlbj" path="res://tiles/plants/trees/banana/banana_sapling.png" id="41_ixyu5"]
+[ext_resource type="Texture2D" uid="uid://8h38l4yvxqi5" path="res://UI/Clock/winter.png" id="42_ibqal"]
 [ext_resource type="Texture2D" uid="uid://revkm8hkwihy" path="res://tiles/plants/trees/banana/banana_seed.png" id="42_v6y31"]
+[ext_resource type="Texture2D" uid="uid://bidhol242jbeo" path="res://UI/Clock/fall.png" id="43_dp1ot"]
 [ext_resource type="Texture2D" uid="uid://ceqrt6mp5gjwp" path="res://tiles/plants/trees/grapefruit/grapefruit_almost.png" id="43_q3dac"]
 [ext_resource type="Texture2D" uid="uid://dokdffdlgps43" path="res://tiles/plants/trees/grapefruit/grapefruit_final.png" id="44_6rchb"]
+[ext_resource type="Texture2D" uid="uid://tlmy34hdwqcy" path="res://UI/Clock/summer.png" id="44_uo3d2"]
+[ext_resource type="Texture2D" uid="uid://daokho801td7n" path="res://UI/Clock/spring.png" id="45_0tvdf"]
 [ext_resource type="Texture2D" uid="uid://dpstfy4ju137j" path="res://tiles/plants/trees/grapefruit/grapefruit_harvest.png" id="45_5jfld"]
 [ext_resource type="Texture2D" uid="uid://d02vtse01haeq" path="res://tiles/plants/trees/grapefruit/grapefruit_sapling.png" id="46_ftvgp"]
 [ext_resource type="Script" uid="uid://c78r4t6at3pfa" path="res://scripts/coinDisplay.gd" id="47_umco5"]
@@ -1679,10 +1683,10 @@ vertical_alignment = 1
 [node name="Continue" type="TextureButton" parent="CanvasLayer/Tutorial" unique_id=100532873]
 visible = false
 layout_mode = 0
-offset_left = 233.0
-offset_top = 103.0
-offset_right = 393.0
-offset_bottom = 167.0
+offset_left = 235.0
+offset_top = 113.0
+offset_right = 395.0
+offset_bottom = 177.0
 texture_normal = ExtResource("39_c1087")
 texture_pressed = ExtResource("39_c1087")
 texture_hover = ExtResource("39_c1087")
@@ -1700,6 +1704,82 @@ theme_override_font_sizes/font_size = 24
 text = "CONTINUE"
 horizontal_alignment = 1
 vertical_alignment = 1
+
+[node name="Winter" type="TextureRect" parent="CanvasLayer/Tutorial" unique_id=390627976]
+visible = false
+z_index = 6
+layout_mode = 0
+offset_left = 475.0
+offset_top = -103.0
+offset_right = 571.0
+offset_bottom = -23.0
+texture = ExtResource("42_ibqal")
+expand_mode = 1
+
+[node name="Label" type="Label" parent="CanvasLayer/Tutorial/Winter" unique_id=970848741]
+layout_mode = 0
+offset_right = 55.0
+offset_bottom = 23.0
+theme_override_colors/font_shadow_color = Color(0.09411765, 0.08627451, 0.08235294, 1)
+theme_override_fonts/font = ExtResource("25_n3s8n")
+text = "WINTER"
+
+[node name="Fall" type="TextureRect" parent="CanvasLayer/Tutorial" unique_id=1632020582]
+visible = false
+z_index = 6
+layout_mode = 0
+offset_left = 322.0
+offset_top = -102.0
+offset_right = 418.0
+offset_bottom = -22.0
+texture = ExtResource("43_dp1ot")
+expand_mode = 1
+
+[node name="Label" type="Label" parent="CanvasLayer/Tutorial/Fall" unique_id=1914740472]
+layout_mode = 0
+offset_right = 55.0
+offset_bottom = 23.0
+theme_override_colors/font_shadow_color = Color(0.09411765, 0.08627451, 0.08235294, 1)
+theme_override_fonts/font = ExtResource("25_n3s8n")
+text = "FALL"
+
+[node name="Summer" type="TextureRect" parent="CanvasLayer/Tutorial" unique_id=1563631443]
+visible = false
+z_index = 6
+layout_mode = 0
+offset_left = 196.0
+offset_top = -101.0
+offset_right = 292.0
+offset_bottom = -21.0
+texture = ExtResource("44_uo3d2")
+expand_mode = 1
+
+[node name="Label" type="Label" parent="CanvasLayer/Tutorial/Summer" unique_id=1212928988]
+layout_mode = 0
+offset_right = 55.0
+offset_bottom = 23.0
+theme_override_colors/font_shadow_color = Color(0.09411765, 0.08627451, 0.08235294, 1)
+theme_override_fonts/font = ExtResource("25_n3s8n")
+text = "SUMMER"
+
+[node name="Spring" type="TextureRect" parent="CanvasLayer/Tutorial" unique_id=693008773]
+visible = false
+z_index = 6
+layout_mode = 0
+offset_left = 68.0
+offset_top = -99.0
+offset_right = 164.0
+offset_bottom = -19.0
+texture = ExtResource("45_0tvdf")
+expand_mode = 1
+
+[node name="Label" type="Label" parent="CanvasLayer/Tutorial/Spring" unique_id=609967774]
+layout_mode = 0
+offset_right = 55.0
+offset_bottom = 23.0
+theme_override_colors/font_shadow_color = Color(0.09411765, 0.08627451, 0.08235294, 1)
+theme_override_fonts/font = ExtResource("25_n3s8n")
+text = "SPRING"
 
 [node name="Dragged" type="Node2D" parent="." unique_id=966772768]
 visible = false

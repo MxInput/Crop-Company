@@ -12,8 +12,14 @@ extends Area2D
 @export var one_select : CompressedTexture2D
 @export var nine_select : CompressedTexture2D
 
+@onready var tutorial = get_node("/root/Game/CanvasLayer/Tutorial")
+signal drag_for_tutorial
+
 var num_spaces = 1
 
+func _ready() -> void:
+	drag_for_tutorial.connect(tutorial.change)
+	
 func _input(event: InputEvent) -> void:
 	if HoverVariables.hovered_on == get_parent().name:
 		if !plants.tree_info.get(get_parent().name):
@@ -73,6 +79,10 @@ func _on_mouse_entered() -> void:
 			unlocked = true
 		
 	if HoverVariables.dragging == "" && unlocked:
+		if !PlayerVariables.player.completed_tutorial && tutorial.place == 13:
+			if get_parent().name == "Carrot":
+				drag_for_tutorial.emit()
+				
 		terrain.num_spaces = 1
 		terrain.change_select_to_one()
 		
