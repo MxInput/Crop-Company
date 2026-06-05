@@ -16,6 +16,8 @@ var current_point : int = 0
 
 @onready var animated_sprite = get_child(1)
 
+@onready var quests = get_node("/root/Game/Quests")
+
 @onready var tiles: TileMapLayer = get_node("/root/Game/Terrain")
 @onready var plants: TileMapLayer = get_node("/root/Game/Plants")
 
@@ -71,6 +73,9 @@ func _physics_process(_delta: float) -> void:
 								
 								if !rewarded:
 									rewarded = true
+									
+									quests.quests["Harvest 80 Crops"]["Amount"] += 1
+									
 									PlayerVariables.player.sell(plants.tree_info[plants.plant_data[target_cell]["fruit_name"]]["sell"])
 									coin_display.new_instance(plants.tree_info[plants.plant_data[target_cell]["fruit_name"]]["sell"])
 								plants.plant_data[plants.plant_data[target_cell]["initial"] + Vector2i(x-1, y-2)]["stage"] -= 1
@@ -81,6 +86,8 @@ func _physics_process(_delta: float) -> void:
 					if plants.plant_data[target_cell]["stage"] == 4:
 						PlayerVariables.player.sell(plants.plant_info[plants.plant_data[target_cell]["fruit_name"]]["sell"])
 						coin_display.new_instance(plants.plant_info[plants.plant_data[target_cell]["fruit_name"]]["sell"])	
+						
+						quests.quests["Harvest 80 Crops"]["Amount"] += 1
 						
 						plants.plant_data.erase(target_cell)
 						plants.erase_cell(target_cell)
@@ -126,6 +133,9 @@ func _physics_process(_delta: float) -> void:
 								
 								if !rewarded:
 									rewarded = true
+									
+									quests.quests["Harvest 80 Crops"]["Amount"] += 1
+									
 									PlayerVariables.player.sell(plants.tree_info[plants.plant_data[target_cell]["fruit_name"]]["sell"])
 									coin_display.new_instance(plants.tree_info[plants.plant_data[target_cell]["fruit_name"]]["sell"])	
 								plants.plant_data[plants.plant_data[target_cell]["initial"] + Vector2i(x-1, y-2)]["stage"] -= 1
@@ -138,6 +148,8 @@ func _physics_process(_delta: float) -> void:
 					if plants.plant_data[target_cell]["stage"] == 4:	
 						PlayerVariables.player.sell(plants.plant_info[plants.plant_data[target_cell]["fruit_name"]]["sell"])
 						coin_display.new_instance(plants.plant_info[plants.plant_data[target_cell]["fruit_name"]]["sell"])	
+						
+						quests.quests["Harvest 80 Crops"]["Amount"] += 1
 						
 						plants.plant_data.erase(target_cell)
 						plants.erase_cell(target_cell)

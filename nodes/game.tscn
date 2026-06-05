@@ -1436,6 +1436,7 @@ offset_right = -496.0
 offset_bottom = 9.0
 
 [node name="BuyBot" type="OptionButton" parent="CanvasLayer" unique_id=905307547]
+visible = false
 offset_left = 901.0
 offset_top = 206.0
 offset_right = 1083.0

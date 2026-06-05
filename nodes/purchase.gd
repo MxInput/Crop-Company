@@ -3,7 +3,7 @@ extends TextureButton
 signal purchased_upgrade
 
 @onready var upgrades = get_node("/root/Game/Upgrades")
-
+	
 func change_back() -> void:
 	get_child(0).text = "PURCHASE"
 	

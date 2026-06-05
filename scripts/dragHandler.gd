@@ -64,7 +64,15 @@ func _process(_delta: float) -> void:
 			terrain.change_select_to_one()
 
 func _on_mouse_entered() -> void:
-	if HoverVariables.dragging == "":
+	var unlocked = false
+	if plants.plant_info.has(get_parent().name):
+		if !plants.plant_info[get_parent().name]["locked"]:
+			unlocked = true
+	else:
+		if !plants.tree_info[get_parent().name]["locked"]:
+			unlocked = true
+		
+	if HoverVariables.dragging == "" && unlocked:
 		terrain.num_spaces = 1
 		terrain.change_select_to_one()
 		

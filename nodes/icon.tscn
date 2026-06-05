@@ -5,6 +5,7 @@
 [ext_resource type="Script" uid="uid://def65f3hbn8xu" path="res://scripts/dragHandler.gd" id="3_jamr2"]
 [ext_resource type="Texture2D" uid="uid://cou6sjg11ar6l" path="res://tiles/select.png" id="4_rtvcj"]
 [ext_resource type="Texture2D" uid="uid://b0hqbywejt0rr" path="res://tiles/9_select.png" id="5_keij5"]
+[ext_resource type="Texture2D" uid="uid://cbnkova6sucis" path="res://tiles/toolbar/lock.png" id="6_keij5"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_2tbuw"]
 size = Vector2(32, 32)
@@ -35,6 +36,13 @@ nine_select = ExtResource("5_keij5")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=235975385]
 position = Vector2(20, 20)
 shape = SubResource("RectangleShape2D_2tbuw")
+
+[node name="Lock" type="TextureRect" parent="." unique_id=1299068212]
+visible = false
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+texture = ExtResource("6_keij5")
 
 [connection signal="mouse_entered" from="Area2D" to="Area2D" method="_on_mouse_entered"]
 [connection signal="mouse_exited" from="Area2D" to="Area2D" method="_on_mouse_exited"]

@@ -31,6 +31,7 @@ var plant_info = {
 		"price": 12,
 		"sell": 30,
 		"seasons": ["Summer"],
+		"locked": true,
 		"icon": load("res://tiles/toolbar/fruits/watermelon_icon.png")
 	},
 	"Carrot": {
@@ -41,6 +42,7 @@ var plant_info = {
 		"price": 5,
 		"sell": 10,
 		"seasons": ["Spring", "Summer", "Fall", "Winter"],
+		"locked": false,
 		"icon": load("res://tiles/toolbar/fruits/carrot_icon.png")
 	},
 	"Pumpkin": {
@@ -51,6 +53,7 @@ var plant_info = {
 		"price": 30,
 		"sell": 50,
 		"seasons": ["Fall"],
+		"locked": true,
 		"icon": load("res://tiles/toolbar/fruits/pumpkin_icon.png")
 	},
 	"Butternut Squash": {
@@ -61,6 +64,7 @@ var plant_info = {
 		"price": 18,
 		"sell": 28,
 		"seasons": ["Fall"],
+		"locked": true,
 		"icon": load("res://tiles/toolbar/fruits/butternut_icon.png")
 	},
 	"Tomato": {
@@ -71,6 +75,7 @@ var plant_info = {
 		"price": 18,
 		"sell": 28,
 		"seasons": ["Summer"],
+		"locked": true,
 		"icon": load("res://tiles/toolbar/fruits/tomato_icon.png")
 	},
 	"Beet": {
@@ -81,6 +86,7 @@ var plant_info = {
 		"price": 18,
 		"sell": 28,
 		"seasons": ["Spring", "Fall", "Winter"],
+		"locked": true,
 		"icon": load("res://tiles/toolbar/fruits/beet_icon.png")
 	},
 	"Cabbage": {
@@ -91,6 +97,7 @@ var plant_info = {
 		"price": 18,
 		"sell": 28,
 		"seasons": ["Spring", "Summer", "Fall"],
+		"locked": true,
 		"icon": load("res://tiles/toolbar/fruits/cabbage_icon.png")
 	},
 	"Kale": {
@@ -101,6 +108,7 @@ var plant_info = {
 		"price": 18,
 		"sell": 28,
 		"seasons": ["Spring", "Fall", "Winter"],
+		"locked": true,
 		"icon": load("res://tiles/toolbar/fruits/kale_icon.png")
 	},
 	"Potato": {
@@ -111,6 +119,7 @@ var plant_info = {
 		"price": 18,
 		"sell": 28,
 		"seasons": ["Spring", "Summer"],
+		"locked": true,
 		"icon": load("res://tiles/toolbar/fruits/potato_icon.png")
 	},
 	"Raddish": {
@@ -121,6 +130,7 @@ var plant_info = {
 		"price": 18,
 		"sell": 28,
 		"seasons": ["Spring", "Summer"],
+		"locked": true,
 		"icon": load("res://tiles/toolbar/fruits/raddish_icon.png")
 	}
 }
@@ -135,6 +145,7 @@ var tree_info = {
 		"price": 50,
 		"sell": 10,
 		"seasons": ["Summer", "Fall"],
+		"locked": true,
 		"icon": load("res://tiles/toolbar/trees/Apple_Icon.png")
 	},
 	"Grapefruit": {
@@ -146,6 +157,7 @@ var tree_info = {
 		"price": 100,
 		"sell": 20,
 		"seasons": ["Spring", "Winter"],
+		"locked": true,
 		"icon": load("res://tiles/toolbar/trees/grapefruit_icon.png")
 	},
 	"Banana": {
@@ -157,6 +169,7 @@ var tree_info = {
 		"price": 75,
 		"sell": 15,
 		"seasons": ["Spring", "Summer", "Fall", "Winter"],
+		"locked": false,
 		"icon": load("res://tiles/toolbar/trees/banana_icon.png")
 	},
 	"Coconut": {
@@ -168,6 +181,7 @@ var tree_info = {
 		"price": 75,
 		"sell": 15,
 		"seasons": ["Spring", "Summer", "Fall", "Winter"],
+		"locked": true,
 		"icon": load("res://tiles/toolbar/trees/coconut_icon.png")
 	},
 	"Fig": {
@@ -179,6 +193,7 @@ var tree_info = {
 		"price": 75,
 		"sell": 15,
 		"seasons": ["Spring", "Summer", "Fall", "Winter"],
+		"locked": true,
 		"icon": load("res://tiles/toolbar/trees/fig_icon.png")
 	},
 	"Pomegranate": {
@@ -190,12 +205,21 @@ var tree_info = {
 		"price": 75,
 		"sell": 15,
 		"seasons": ["Spring", "Summer", "Fall", "Winter"],
+		"locked": true,
 		"icon": load("res://tiles/toolbar/trees/pomegranate_icon.png")
 	}
 }
 
 var plant_data = {}
 	
+func get_banana_count():
+	var count = 0
+	for found_plant in plant_data:
+		if plant_data[found_plant]["fruit_name"] == "Banana":
+			if plant_data[found_plant]["initial"] == found_plant:
+				count += 1
+	return count
+			
 func move_placement():
 	tree_placement.visible = true
 	tree_placement.position = (get_local_mouse_position())
@@ -226,6 +250,9 @@ func plant(plant_name, tile_size) -> void:
 						for y in 4:
 							plant_data[cell_pos + Vector2i(x-1, y-2)] = { "fruit_name" : plant_name, "stage" : 1, "time" : 0, "type": "tree", "initial": cell_pos}
 							set_cell(cell_pos + Vector2i(x-1, y-2), tree_info[plant_name]["stage1"]["tile_id"], Vector2i(x, y))
+					if plant_name == "Banana":
+						if quests.quests["Have 5 Banana Trees at once"]["Amount"] < quests.quests["Have 5 Banana Trees at once"]["Max"] && quests.quests["Have 5 Banana Trees at once"]["Amount"] < get_banana_count():
+							quests.quests["Have 5 Banana Trees at once"]["Amount"] = get_banana_count()		
 				else:
 					coin_display.tell_warning("Not enough coins")
 			else:
