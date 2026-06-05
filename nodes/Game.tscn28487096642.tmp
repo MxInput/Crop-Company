@@ -1676,31 +1676,6 @@ text = "NO THANKS!"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="Continue" type="TextureButton" parent="CanvasLayer/Tutorial" unique_id=100532873]
-visible = false
-layout_mode = 0
-offset_left = 233.0
-offset_top = 103.0
-offset_right = 393.0
-offset_bottom = 167.0
-texture_normal = ExtResource("39_c1087")
-texture_pressed = ExtResource("39_c1087")
-texture_hover = ExtResource("39_c1087")
-texture_disabled = ExtResource("39_c1087")
-texture_focused = ExtResource("39_c1087")
-
-[node name="Label" type="Label" parent="CanvasLayer/Tutorial/Continue" unique_id=378113410]
-layout_mode = 0
-offset_right = 160.0
-offset_bottom = 56.0
-theme_override_colors/font_color = Color(1, 1, 1, 1)
-theme_override_colors/font_shadow_color = Color(0.015686275, 0.32156864, 0.5921569, 1)
-theme_override_fonts/font = ExtResource("25_n3s8n")
-theme_override_font_sizes/font_size = 24
-text = "CONTINUE"
-horizontal_alignment = 1
-vertical_alignment = 1
-
 [node name="Dragged" type="Node2D" parent="." unique_id=966772768]
 visible = false
 
@@ -1765,4 +1740,3 @@ script = ExtResource("80_37phw")
 [connection signal="pressed" from="CanvasLayer/QuestButton" to="CanvasLayer/QuestMenu" method="_on_quest_button_pressed"]
 [connection signal="pressed" from="CanvasLayer/Tutorial/Confirm" to="CanvasLayer/Tutorial" method="_on_confirm_pressed"]
 [connection signal="pressed" from="CanvasLayer/Tutorial/Deny" to="CanvasLayer/Tutorial/Deny" method="_on_pressed"]
-[connection signal="pressed" from="CanvasLayer/Tutorial/Continue" to="CanvasLayer/Tutorial" method="_on_continue_pressed"]
