@@ -12,14 +12,14 @@ func _on_pressed() -> void:
 		if quests.quests[get_parent().name]["Type"] == "Count":
 			if quests.quests[get_parent().name]["Amount"] / quests.quests[get_parent().name]["Max"] >= 1:
 				get_child(0).text = "Collected"
-				if plants.plant_info.has(quests.quests[get_parent().name]["Reward Array"][0]):
+				if plants.plant_info.has(quests.quests[get_parent().name]["Reward Array"][0]) or plants.tree_info.has(quests.quests[get_parent().name]["Reward Array"][0]):
 					toolbar.unlock_plant(quests.quests[get_parent().name]["Reward Array"])
 				elif quests.quests[get_parent().name]["Reward Array"][0] == "Robots":
 					buy_bot_button.visible = true
 		else:
 			if quests.quests[get_parent().name]["Completed"]:
 				get_child(0).text = "Collected"
-				if plants.plant_info.has(quests.quests[get_parent().name]["Reward Array"][0]):
+				if plants.plant_info.has(quests.quests[get_parent().name]["Reward Array"][0]) or plants.tree_info.has(quests.quests[get_parent().name]["Reward Array"][0]):
 					toolbar.unlock_plant(quests.quests[get_parent().name]["Reward Array"])
 				elif quests.quests[get_parent().name]["Reward Array"][0] == "Robots":
 					buy_bot_button.visible = true

@@ -207,3 +207,7 @@ func _process(delta: float):
 		
 func highlight (cell_pos: Vector2i):
 	select.position = map_to_local(cell_pos)
+
+
+func _on_deny_pressed() -> void:
+	pass # Replace with function body.

@@ -1,6 +1,6 @@
 class_name Player
-var name
 var coins
+var completed_tutorial
 
 func buy(price : int):
 	if coins >= price:

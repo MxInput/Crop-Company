@@ -4,10 +4,13 @@ extends Control
 @onready var container = get_child(0).get_child(0)
 
 func unlock_plant(plant_names):	
-	print(plant_names)
 	for plant in plant_names:
-		print(plant)
-	
+		var found_plant = get_child(0).get_child(0).get_node(NodePath(plant))
+		found_plant.get_child(2).visible = false
+		if plants.plant_info.has(plant):
+			plants.plant_info[plant]["locked"] = false
+		else:
+			plants.tree_info[plant]["locked"] = false
 
 func _ready() -> void:
 	var temp_fruit = preload("res://nodes/Icon.tscn")
