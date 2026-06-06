@@ -11,6 +11,7 @@ var quests = {
 		"Reward Array": ["Robots"],
 		"Amount": 0.0,
 		"Max": 80.0,
+		"Took": false,
 		"Type": "Count"
 	},
 	"Reach Summer": {
@@ -18,6 +19,7 @@ var quests = {
 		"Reward": "Unlock Watermelon",
 		"Reward Array": ["Watermelon"],
 		"Completed": false,
+		"Took": false,
 		"Type": "Completion"
 	},
 	"Experience all seasons and make it back to Spring": {
@@ -25,6 +27,7 @@ var quests = {
 		"Reward": "Unlock Pomegranate",
 		"Reward Array": ["Pomegranate"],
 		"Completed": false,
+		"Took": false,
 		"Type": "Completion"
 	},
 	"Have 5 Banana Trees at once": {
@@ -33,6 +36,7 @@ var quests = {
 		"Reward Array": ["Apple"],
 		"Amount": 0.0,
 		"Max": 5.0,
+		"Took": false,
 		"Type": "Count"
 	},
 	"Harvest plants worth a total of 1000 coins": {
@@ -41,6 +45,7 @@ var quests = {
 		"Reward Array": ["Grapefruit"],
 		"Amount": 0.0,
 		"Max": 1000.0,
+		"Took": false,
 		"Type": "Count"
 	},
 	"Harvest plants worth a total of 5000 coins": {
@@ -49,6 +54,7 @@ var quests = {
 		"Reward Array": ["Kale"],
 		"Amount": 0.0,
 		"Max": 5000.0,
+		"Took": false,
 		"Type": "Count"
 	},
 	"Buy a robot": {
@@ -56,6 +62,7 @@ var quests = {
 		"Reward": "Unlock Pumpkin",
 		"Reward Array": ["Pumpkin"],
 		"Completed": false,
+		"Took": false,
 		"Type": "Completion"
 	},
 	"Have (at least) one of each robot type": {
@@ -63,6 +70,7 @@ var quests = {
 		"Reward": "Unlock Butternut Squash",
 		"Reward Array": ["Butternut Squash"],
 		"Completed": false,
+		"Took": false,
 		"Type": "Completion"
 	},
 	"Buy an upgrade": {
@@ -70,6 +78,7 @@ var quests = {
 		"Reward": "Unlock Coconut",
 		"Reward Array": ["Coconut"],
 		"Completed": false,
+		"Took": false,
 		"Type": "Completion"
 	},
 	"Buy every upgrade": {
@@ -77,6 +86,7 @@ var quests = {
 		"Reward": "Unlock Potato",
 		"Reward Array": ["Potato"],
 		"Completed": false,
+		"Took": false,
 		"Type": "Completion"
 	},
 	"Complete 5 quests": {
@@ -85,6 +95,7 @@ var quests = {
 		"Reward Array": ["Tomato"],
 		"Amount": 0.0,
 		"Max": 5.0,
+		"Took": false,
 		"Type": "Count"
 	},
 	"Complete the Tutorial (or skip it)": {
@@ -92,6 +103,7 @@ var quests = {
 		"Reward": "Unlock Beet, Fig, and Cabbage",
 		"Reward Array": ["Beet", "Fig", "Cabbage"],
 		"Completed": false,
+		"Took": false,
 		"Type": "Completion"
 	}
 }

@@ -391,9 +391,9 @@ func _process(delta: float) -> void:
 				else:
 					for x in 3:
 						for y in 4:
-							watered.set_cell(plant_data[cell_pos]["initial"] + Vector2i(x-1, y-2), 0, Vector2i(0, 0))
-							if !terrain.watered_tiles.has(plant_data[cell_pos]["initial"] + Vector2i(x-1, y-2)):
-								terrain.watered_tiles[plant_data[cell_pos]["initial"] + Vector2i(x-1, y-2)] = {"time": terrain.watered_tiles[watered_tile]["time"] }
+							watered.set_cell(plant_data[watered_tile]["initial"] + Vector2i(x-1, y-2), 0, Vector2i(0, 0))
+							if !terrain.watered_tiles.has(plant_data[watered_tile]["initial"] + Vector2i(x-1, y-2)):
+								terrain.watered_tiles[plant_data[watered_tile]["initial"] + Vector2i(x-1, y-2)] = {"time": terrain.watered_tiles[watered_tile]["time"] }
 		elif !plant_data.has(watered_tile):
 				terrain.watered_tiles.erase(watered_tile)
 				watered.erase_cell(watered_tile)
