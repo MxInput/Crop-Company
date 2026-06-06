@@ -1,10 +1,49 @@
 [gd_resource type="Theme" format=3 uid="uid://bcsuahs2ffsd2"]
 
-[ext_resource type="Texture2D" uid="uid://cseicgud6lfs3" path="res://UI/Coin/Coin_Bar.png" id="1_go05t"]
+[ext_resource type="Texture2D" uid="uid://cdb8ccxtodawy" path="res://UI/menus/bot_box.png" id="1_wsa4l"]
+[ext_resource type="Texture2D" uid="uid://dlyu762d61u3n" path="res://UI/menus/dialog_bots.png" id="2_wsa4l"]
+[ext_resource type="FontFile" uid="uid://ms55ijbyuslt" path="res://UI/Fonts/FriendlySans-Regular.ttf" id="3_oieh5"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_t3rxx"]
+texture = ExtResource("1_wsa4l")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_eovu6"]
+texture = ExtResource("1_wsa4l")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_6epsk"]
+texture = ExtResource("1_wsa4l")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_5jho1"]
+texture = ExtResource("1_wsa4l")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_fux4m"]
+texture = ExtResource("1_wsa4l")
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_wsa4l"]
-texture = ExtResource("1_go05t")
+texture = ExtResource("1_wsa4l")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_olyjj"]
+texture = ExtResource("1_wsa4l")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_5ip22"]
+texture = ExtResource("1_wsa4l")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_1djji"]
+texture = ExtResource("1_wsa4l")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_oieh5"]
+texture = ExtResource("2_wsa4l")
 
 [resource]
-OptionButton/constants/icon_max_width = 100
+default_font = ExtResource("3_oieh5")
+OptionButton/constants/align_to_largest_stylebox = 0
+OptionButton/styles/disabled = SubResource("StyleBoxTexture_t3rxx")
+OptionButton/styles/disabled_mirrored = SubResource("StyleBoxTexture_eovu6")
+OptionButton/styles/focus = SubResource("StyleBoxTexture_6epsk")
+OptionButton/styles/hover = SubResource("StyleBoxTexture_5jho1")
+OptionButton/styles/hover_mirrored = SubResource("StyleBoxTexture_fux4m")
 OptionButton/styles/normal = SubResource("StyleBoxTexture_wsa4l")
+OptionButton/styles/normal_mirrored = SubResource("StyleBoxTexture_olyjj")
+OptionButton/styles/pressed = SubResource("StyleBoxTexture_5ip22")
+OptionButton/styles/pressed_mirrored = SubResource("StyleBoxTexture_1djji")
+PopupMenu/styles/panel = SubResource("StyleBoxTexture_oieh5")

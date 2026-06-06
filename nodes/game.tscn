@@ -1452,17 +1452,17 @@ offset_bottom = 9.0
 
 [node name="BuyBot" type="OptionButton" parent="CanvasLayer" unique_id=905307547]
 visible = false
-offset_left = 901.0
-offset_top = 206.0
-offset_right = 1083.0
-offset_bottom = 246.0
+offset_left = 856.0
+offset_top = 244.0
+offset_right = 1056.0
+offset_bottom = 284.0
 theme = ExtResource("25_7ov1c")
-theme_override_fonts/font = ExtResource("25_n3s8n")
-theme_override_constants/arrow_margin = 12
+theme_override_fonts/font = ExtResource("40_uo3d2")
+theme_override_font_sizes/font_size = 24
+alignment = 1
 selected = 0
 item_count = 5
-popup/item_0/text = "Purchase robot"
-popup/item_0/icon = ExtResource("26_av8k1")
+popup/item_0/text = "PURCHASE ROBOT"
 popup/item_0/id = 0
 popup/item_0/separator = true
 popup/item_1/text = "Water Dispersal Bot"
@@ -1474,6 +1474,15 @@ popup/item_3/id = 3
 popup/item_4/text = "Crop Collection Bot"
 popup/item_4/id = 4
 script = ExtResource("26_n3s8n")
+
+[node name="TextureRect" type="TextureRect" parent="CanvasLayer/BuyBot" unique_id=1248748850]
+z_index = 1
+layout_mode = 0
+offset_left = -30.0
+offset_top = -25.0
+offset_right = 29.0
+offset_bottom = 35.0
+texture = ExtResource("26_av8k1")
 
 [node name="UpgradeButton" parent="CanvasLayer" unique_id=1669126804 node_paths=PackedStringArray("menu", "other_menu") instance=ExtResource("29_5q475")]
 offset_left = 1045.0

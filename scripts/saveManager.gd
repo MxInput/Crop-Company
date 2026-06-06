@@ -7,9 +7,23 @@ const SAVE_PATH := "user://simple_save.tres"
 
 var save_game: SaveGame = null
 
+@onready var pathMaker := get_node("/root/Game/Paths")
+
+signal new_bot_spawned
+
 @onready var buy_bot : Node = get_node("/root/Game/CanvasLayer/BuyBot")
 
+var timer = Timer.new()
+var can_click = false
+
 func _ready() -> void:
+	add_child(timer)
+	timer.one_shot = true
+	timer.wait_time = 2.0
+	timer.timeout.connect(change_text_back)
+	
+	new_bot_spawned.connect(pathMaker._on_buy_bot_new_bot_purchased)
+	
 	if ResourceLoader.exists(SAVE_PATH):
 		save_game = ResourceLoader.load(SAVE_PATH, "", ResourceLoader.CACHE_MODE_IGNORE)
 	else:
@@ -91,7 +105,9 @@ func load_game():
 			quest_menu.update_value(quest_menu.get_child(0).get_child(0).get_node(quest))
 			if save_game.quests[quest]["Took"]:
 				quest_menu.get_child(0).get_child(0).get_node(quest).get_child(4).get_child(0).text = "Collected"	
-				
+				if quest == "Harvest 80 Crops":
+					buy_bot.visible = true
+					
 		for plant in save_game.plants["Plant Info"]:
 			if save_game.plants["Plant Info"][plant]["locked"] == false:
 				if plant != "Carrot":
@@ -121,9 +137,7 @@ func load_game():
 		
 		for pest in terrain.infected_tiles:
 			terrain.infected.set_cell(pest, 0, Vector2i(0,0))
-			
-		for watered in terrain.watered_tiles:
-			terrain.fertilized.set_cell(watered, 0, Vector2i(0,0))
+		
 					
 		for plant in plants.plant_data:
 			if plants.plant_data[plant]["type"] == "crop":
@@ -133,14 +147,40 @@ func load_game():
 					for x in 3:
 						for y in 4:
 							plants.set_cell(plant + Vector2i(x-1, y-2), plants.tree_info[plants.plant_data[plant]["fruit_name"]]["stage" + str(plants.plant_data[plant]["stage"])]["tile_id"], Vector2i(x, y))
-		var index = 0
 		for robot in save_game.robots:
-			index += 1
 			for number in save_game.robots[robot]:
-				var new_bot = buy_bot.robots[buy_bot.robots.keys()[index-1]]["Asset"].instantiate()
-				get_parent().add_child(new_bot)
-				new_bot.position = Vector2i(16, 16)
+				var robot_name
+				match robot:
+					"Waterbots":
+						robot_name = "Water"
+					"FertillBots":
+						robot_name = "Fertilize"
+					"pestBots":
+						robot_name = "Pest"
+					"pickupBots":	
+						robot_name = "Pickup"
 						
+				var new_bot = buy_bot.robots[robot_name]["Asset"].instantiate()
+				get_parent().add_child(new_bot)
+				new_bot.position = Vector2i(16, 16)	
+				
+				new_bot_spawned.emit(robot_name)
 
+func change_save_text():
+	var save_button = get_node("/root/Game/CanvasLayer/Save")
+	save_button.get_child(0).text = "SAVED"
+	
+func change_text_back():
+	timer.stop()
+	
+	var save_button = get_node("/root/Game/CanvasLayer/Save")
+	save_button.get_child(0).text = "SAVE"
+	
 func _on_save_pressed() -> void:
+	var save_button = get_node("/root/Game/CanvasLayer/Save")
+	
+	if timer.is_stopped():
+		change_save_text()
+		timer.start()
+		
 	save()

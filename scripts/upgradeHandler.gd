@@ -14,25 +14,25 @@ var upgrades = {
 		"Description": "Removes a greater percentage of time from the plant when fertilizer is used.",
 		"Level": 1,
 		"Percentages": [0.25, 0.375, 0.5],
-		"Prices": [10, 50, 100]
+		"Prices": [10, 325, 675]
 	},
 	"Greater Soakage": {
 		"Description": "Increases the length that tiles remain watered.",
 		"Level": 1,
 		"Times": [30, 60, 120],
-		"Prices": [10, 50, 100]
+		"Prices": [10, 600, 1120]
 	},
 	"Rapid Robots": {
 		"Description": "Increases the movement speed of robots.",
 		"Level": 1,
 		"Speeds": [10.0, 50.0, 65.0],
-		"Prices": [10, 50, 100]
+		"Prices": [10, 500, 1000]
 	},
 	"Bye-Bye Pests": {
 		"Description": "Decreases the rate that pests spawn at.",
 		"Level": 1,
 		"Rates": [90000, 92500, 95000],
-		"Prices": [10, 50, 100]
+		"Prices": [10, 660, 1270]
 	}
 }
 

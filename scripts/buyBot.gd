@@ -12,25 +12,25 @@ signal new_bot_purchased
 	
 var robots = {
 	"Water": {
-		"Price": 50,
+		"Price": 200,
 		"Amount": 0,
 		"Asset": preload("res://nodes/Robot.tscn"),
 		"Max": 5
 	},
 	"Fertilize": {
-		"Price": 25,
+		"Price": 175,
 		"Amount": 0,
 		"Asset": preload("res://nodes/FertilizeBot.tscn"),
 		"Max": 5
 	},
 	"Pest": {
-		"Price": 100,
+		"Price": 250,
 		"Amount": 0,
 		"Asset": preload("res://nodes/PestBot.tscn"),
 		"Max": 5
 	},
 	"Pickup": {
-		"Price": 75,
+		"Price": 300,
 		"Amount": 0,
 		"Asset": preload("res://nodes/PickupBot.tscn"),
 		"Max": 5

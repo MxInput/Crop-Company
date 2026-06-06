@@ -5,12 +5,12 @@ var quest_temp = preload("res://nodes/questTemplate.tscn")
 @onready var quest_menu = get_node("/root/Game/CanvasLayer/QuestMenu")
 	
 var quests = {
-	"Harvest 80 Crops": {
+	"Harvest 100 Crops": {
 		"Status": "In Progress",
 		"Reward": "Unlock Robots",
 		"Reward Array": ["Robots"],
 		"Amount": 0.0,
-		"Max": 80.0,
+		"Max": 100.0,
 		"Took": false,
 		"Type": "Count"
 	},
@@ -39,21 +39,21 @@ var quests = {
 		"Took": false,
 		"Type": "Count"
 	},
-	"Harvest plants worth a total of 1000 coins": {
+	"Harvest plants worth a total of 1400 coins": {
 		"Status": "In Progress",
 		"Reward": "Unlock Grapefruit Trees",
 		"Reward Array": ["Grapefruit"],
 		"Amount": 0.0,
-		"Max": 1000.0,
+		"Max": 1400.0,
 		"Took": false,
 		"Type": "Count"
 	},
-	"Harvest plants worth a total of 5000 coins": {
+	"Harvest plants worth a total of 5600 coins": {
 		"Status": "In Progress",
 		"Reward": "Unlock Kale",
 		"Reward Array": ["Kale"],
 		"Amount": 0.0,
-		"Max": 5000.0,
+		"Max": 5600.0,
 		"Took": false,
 		"Type": "Count"
 	},
@@ -95,6 +95,15 @@ var quests = {
 		"Reward Array": ["Tomato"],
 		"Amount": 0.0,
 		"Max": 5.0,
+		"Took": false,
+		"Type": "Count"
+	},
+	"Complete 10 quests": {
+		"Status": "In Progress",
+		"Reward": "Unlock Raddish",
+		"Reward Array": ["Raddish"],
+		"Amount": 0.0,
+		"Max": 10.0,
 		"Took": false,
 		"Type": "Count"
 	},

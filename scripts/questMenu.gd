@@ -34,6 +34,9 @@ func _on_quest_button_pressed() -> void:
 	if quests.quests["Complete 5 quests"]["Amount"] < quests.quests["Complete 5 quests"]["Max"]:
 		quests.quests["Complete 5 quests"]["Amount"] = get_quests_completed()
 		
+	if quests.quests["Complete 10 quests"]["Amount"] < quests.quests["Complete 10 quests"]["Max"]:
+		quests.quests["Complete 10 quests"]["Amount"] = get_quests_completed()
+		
 	for found_quest in get_child(0).get_child(0).get_children():
 		update_value(found_quest)
 		
