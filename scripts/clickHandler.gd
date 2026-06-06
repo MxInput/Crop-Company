@@ -31,33 +31,7 @@ func change_select_to_one():
 
 func change_select_to_nine():
 	select.get_child(0).texture = nine_select
-	
-func save():
-	var save_dict = {
-		"name": name,
-		"terrain": tile_map_data,
-		"watered": watered.tile_map_data,
-		"pests": infected.tile_map_data,
-		"fertilized": fertilized.tile_map_data,
-		"watered_tiles": watered_tiles,
-		"fertilized_tiles": fertilized_tiles,
-		"infected_tiles": infected_tiles,
-		"timers": timers
-	}
-	return save_dict
-	
-func load(data : Dictionary):
-	set("tile_data", data["terrain"])
-	print(watered.name)
-	watered.set("tile_data", data["watered"])
-	infected.set("tile_data", data["pests"])
-	fertilized.set("tile_data", data["fertilized"])
 
-	watered_tiles = data["watered_tiles"]
-	fertilized_tiles = data["fertilized_tiles"]
-	infected_tiles = data["infected_tiles"]
-	timers = data["timers"]
-	
 func  _input(event: InputEvent) -> void:
 	if ToolVariables.current_tool == "Hoe":
 		if event.is_action_pressed("scroll_up") or event.is_action_pressed("scroll_down"):				

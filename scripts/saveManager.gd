@@ -1,57 +1,40 @@
 extends Node
 
-const SAVE_PATH = "user://savegame.json"
-var current_data = {}
+const SAVE_PATH := "user://simple_save.tres"
 
-func save_game():
-	var save_file = FileAccess.open(SAVE_PATH, FileAccess.WRITE)
-	var save_nodes = get_tree().get_nodes_in_group("persist")
-	for node in save_nodes:		
-		var node_data = node.call("save")
+var save_game: SaveGame = null
 
-		var json_string = JSON.stringify(node_data)
+func _ready() -> void:
+	if ResourceLoader.exists(SAVE_PATH):
+		save_game = ResourceLoader.load(SAVE_PATH, "", ResourceLoader.CACHE_MODE_IGNORE)
+	else:
+		save_game = SaveGame.new()
+	
+func save() -> void:
+	save_game = SaveGame.new()
+	
+	save_game.player_coins = PlayerVariables.player.coins
+	save_game.player_completed_tutorial = PlayerVariables.player.completed_tutorial
+	
+	save_game.season_name = SeasonVariables.season.name
+	save_game.season_time_in = SeasonVariables.season.time_in
 
-		save_file.store_line(json_string)
-	var player_data = {"name": "Player", "coins": PlayerVariables.player.coins, "completed_tutorial": PlayerVariables.player.completed_tutorial}
-	var season_data = {"name": "Season", "season_name": SeasonVariables.season.name, "time_left": SeasonVariables.season.time_in} 
-	
-	var player_data_string = JSON.stringify(player_data)
-	var season_data_string = JSON.stringify(season_data)
-	
-	save_file.store_line(player_data_string)
-	save_file.store_line(season_data_string)
-	
+	save_game.tiles = {
+		"Terrain": get_node("/root/Game/Terrain").num_spaces
+	}
+	ResourceSaver.save(save_game, SAVE_PATH)	
+
 func load_game():
-	if not FileAccess.file_exists(SAVE_PATH):
-		return 
+	save_game = ResourceLoader.load(SAVE_PATH)	
+	
+	if save_game != null:
+		PlayerVariables.player.coins = save_game.player_coins
+		PlayerVariables.player.completed_tutorial = save_game.player_completed_tutorial
 		
-	var save_nodes = get_tree().get_nodes_in_group("persist")
-		
-	var save_file = FileAccess.open(SAVE_PATH, FileAccess.READ)
-	while save_file.get_position() < save_file.get_length():
-		var json_string = save_file.get_line()
-		
-		var json = JSON.new()
+		SeasonVariables.season.name = save_game.season_name
+		SeasonVariables.season.time_in = save_game.season_time_in
 
-		var parse_result = json.parse(json_string)
-		if not parse_result == OK:
-			continue
-			
-		var node_data = json.data
+		print(save_game.tiles["Terrain"])
 
-		for node in save_nodes:	
-			if node_data.has("name"):
-				if node_data["name"] == node.name:
-					node.load(node_data)
-		if node_data.has("name"):
-			if node_data["name"] == "Player":
-				PlayerVariables.player.coins = int(node_data["coins"])
-				PlayerVariables.player.completed_tutorial = node_data["completed_tutorial"]
-			elif node_data["name"] == "Season":
-				SeasonVariables.season.name = node_data["season_name"]
-				SeasonVariables.season.time_in = node_data["time_left"]
-							
-		
-		
-		
-		
+func _on_save_pressed() -> void:
+	save()

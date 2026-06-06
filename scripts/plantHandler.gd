@@ -28,25 +28,6 @@ var finished_all = false
 
 signal send_values
 
-func save():
-	var save_dict = {
-		"name": name,
-		"plants": tile_map_data,
-		"plant_info": plant_info,
-		"tree_info": tree_info,
-		"plant_data": plant_data,
-		"accounted_fertilized_tiles": accounted_fertilized_tiles
-	}
-	return save_dict
-
-func load(data : Dictionary):
-	set("tile_data", data["plants"])
-
-	plant_info = data["plant_info"]
-	tree_info = data["tree_info"]
-	plant_data = data["plant_data"]
-	accounted_fertilized_tiles = data["accounted_fertilized_tiles"]
-		
 var plant_info = {
 	"Watermelon": {
 		"stage1": { "sec": 20, "tile_id": 3},

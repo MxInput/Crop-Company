@@ -81,6 +81,7 @@
 [ext_resource type="Texture2D" uid="uid://croyhuxp7gqxk" path="res://UI/Buttons/purchase_button.png" id="46_dp1ot"]
 [ext_resource type="Texture2D" uid="uid://d02vtse01haeq" path="res://tiles/plants/trees/grapefruit/grapefruit_sapling.png" id="46_ftvgp"]
 [ext_resource type="Script" uid="uid://c78r4t6at3pfa" path="res://scripts/coinDisplay.gd" id="47_umco5"]
+[ext_resource type="Script" uid="uid://djbkryda1ydl1" path="res://scripts/save.gd" id="48_0tvdf"]
 [ext_resource type="Texture2D" uid="uid://yln13m8fu1y7" path="res://tiles/plants/trees/grapefruit/grapefruit_seed.png" id="48_h2djo"]
 [ext_resource type="Texture2D" uid="uid://l8r5t424ihqi" path="res://tiles/watered.png" id="48_ibvi0"]
 [ext_resource type="Texture2D" uid="uid://ceggjurbtmk5x" path="res://tiles/plants/crops/tomato/tomato_almost.png" id="49_6rchb"]
@@ -1797,6 +1798,7 @@ texture_pressed = ExtResource("46_dp1ot")
 texture_hover = ExtResource("46_dp1ot")
 texture_disabled = ExtResource("46_dp1ot")
 texture_focused = ExtResource("46_dp1ot")
+script = ExtResource("48_0tvdf")
 
 [node name="Label" type="Label" parent="CanvasLayer/Save" unique_id=1058752056]
 layout_mode = 0
@@ -1877,4 +1879,4 @@ script = ExtResource("129_hbomn")
 [connection signal="pressed" from="CanvasLayer/Tutorial/Confirm" to="CanvasLayer/Tutorial" method="_on_confirm_pressed"]
 [connection signal="pressed" from="CanvasLayer/Tutorial/Deny" to="CanvasLayer/Tutorial/Deny" method="_on_pressed"]
 [connection signal="pressed" from="CanvasLayer/Tutorial/Continue" to="CanvasLayer/Tutorial" method="_on_continue_pressed"]
-[connection signal="pressed" from="CanvasLayer/Save" to="SaveManager" method="_on_save_pressed"]
+[connection signal="pressed" from="CanvasLayer/Save" to="CanvasLayer/Save" method="_on_pressed"]

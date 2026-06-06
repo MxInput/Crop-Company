@@ -1,5 +1,6 @@
 extends Node
 
+@onready var saveManager = get_node("SaveManager") 
 
 func _on_ready() -> void:
-	SaveManager.load_game()
+	saveManager.load_game()

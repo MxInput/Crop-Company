@@ -1,11 +1,12 @@
 extends TextureRect
 
 @onready var quests = get_node("/root/Game/Quests")
-@onready var quest_info = quests.quests
 
 @onready var plants: TileMapLayer = get_node("/root/Game/Plants")
 
 func get_quests_completed() -> int:
+	var quest_info = quests.quests
+	
 	var count = 0 
 	for quest in quest_info:
 		if quest_info[quest]["Type"] == "Count":
@@ -17,6 +18,8 @@ func get_quests_completed() -> int:
 	return count
 	
 func update_value(current_button):
+	var quest_info = quests.quests
+	
 	if quest_info[current_button.name]["Type"] == "Count":
 		if quest_info[current_button.name]["Amount"] / quest_info[current_button.name]["Max"] >= 1:
 			current_button.get_child(0).value = 100

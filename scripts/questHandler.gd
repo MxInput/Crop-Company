@@ -3,16 +3,6 @@ extends Node2D
 var quest_temp = preload("res://nodes/questTemplate.tscn")
 
 @onready var quest_menu = get_node("/root/Game/CanvasLayer/QuestMenu")
-
-func save():
-	var save_dict = {
-		"name": name,
-		"quests": quests,
-	}
-	return save_dict
-	
-func load(data : Dictionary):
-	quests = data["quests"]
 	
 var quests = {
 	"Harvest 80 Crops": {
