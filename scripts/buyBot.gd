@@ -12,6 +12,7 @@ signal new_bot_purchased
 
 func save():
 	var save_dict = {
+		"name": name,
 		"water_bots": get_tree().get_nodes_in_group("Water_Robots").size(),
 		"fertillBots": get_tree().get_nodes_in_group("fertillBots"),
 		"pestBots": get_tree().get_nodes_in_group("pestBot"),

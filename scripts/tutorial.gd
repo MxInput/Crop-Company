@@ -14,6 +14,8 @@ var timer = Timer.new()
 
 @onready var toolbar = get_node("/root/Game/CanvasLayer/Toolbar")	
 
+const SAVE_PATH = "user://savegame.json"
+
 var tutorial_text = [
 	"Welcome to Crop Company! Would you like to play the tutorial?",
 	"Move the camera by pressing W, A, S, and D or the arrow keys.",
@@ -77,7 +79,7 @@ func _ready() -> void:
 	add_child(timer)
 	timer.timeout.connect(place_up)
 	
-	if !PlayerVariables.player.completed_tutorial:
+	if !PlayerVariables.player.completed_tutorial && !FileAccess.file_exists(SAVE_PATH):
 		for activate in activates:
 			activates[activate].visible = false
 			

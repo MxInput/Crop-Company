@@ -1,39 +1,31 @@
 extends Node
 
-const SAVE_PATH = "user://savegame.save"
+const SAVE_PATH = "user://savegame.json"
 var current_data = {}
 
-func _ready() -> void:
-	if FileAccess.file_exists(SAVE_PATH):
-		load_game()
-	else:
-		print("null")
-	
 func save_game():
 	var save_file = FileAccess.open(SAVE_PATH, FileAccess.WRITE)
 	var save_nodes = get_tree().get_nodes_in_group("persist")
-	for node in save_nodes:
-		if node.scene_file_path.is_empty():
-			print("persistent node '%s' is not an instanced scene, skipped" % node.name)
-			continue
-			
-		if !node.has_method("save"):
-			print("persistent node '%s' is missing a save() function, skipped" % node.name)
-			continue
-			
+	for node in save_nodes:		
 		var node_data = node.call("save")
 
 		var json_string = JSON.stringify(node_data)
 
 		save_file.store_line(json_string)
-		
+	var player_data = {"name": "Player", "coins": PlayerVariables.player.coins, "completed_tutorial": PlayerVariables.player.completed_tutorial}
+	var season_data = {"name": "Season", "season_name": SeasonVariables.season.name, "time_left": SeasonVariables.season.time_in} 
+	
+	var player_data_string = JSON.stringify(player_data)
+	var season_data_string = JSON.stringify(season_data)
+	
+	save_file.store_line(player_data_string)
+	save_file.store_line(season_data_string)
+	
 func load_game():
-	if not FileAccess.file_exists("user://savegame.save"):
+	if not FileAccess.file_exists(SAVE_PATH):
 		return 
 		
 	var save_nodes = get_tree().get_nodes_in_group("persist")
-	for i in save_nodes:
-		i.queue_free()
 		
 	var save_file = FileAccess.open(SAVE_PATH, FileAccess.READ)
 	while save_file.get_position() < save_file.get_length():
@@ -43,16 +35,23 @@ func load_game():
 
 		var parse_result = json.parse(json_string)
 		if not parse_result == OK:
-			print("JSON Parse Error: ", json.get_error_message(), " in ", json_string, " at line ", json.get_error_line())
 			continue
 			
 		var node_data = json.data
+
+		for node in save_nodes:	
+			if node_data.has("name"):
+				if node_data["name"] == node.name:
+					node.load(node_data)
+		if node_data.has("name"):
+			if node_data["name"] == "Player":
+				PlayerVariables.player.coins = int(node_data["coins"])
+				PlayerVariables.player.completed_tutorial = node_data["completed_tutorial"]
+			elif node_data["name"] == "Season":
+				SeasonVariables.season.name = node_data["season_name"]
+				SeasonVariables.season.time_in = node_data["time_left"]
+							
 		
-		var new_object = load(node_data["filename"]).instantiate()
-		get_node(node_data["parent"]).add_child(new_object)
-		new_object.position = Vector2(node_data["pos_x"], node_data["pos_y"])
 		
-		for i in node_data.keys():
-			if i == "filename" or i == "parent" or i == "pos_x" or i == "pos_y":
-				continue
-			new_object.set(i, node_data[i])
+		
+		

@@ -6,9 +6,13 @@ var quest_temp = preload("res://nodes/questTemplate.tscn")
 
 func save():
 	var save_dict = {
+		"name": name,
 		"quests": quests,
 	}
 	return save_dict
+	
+func load(data : Dictionary):
+	quests = data["quests"]
 	
 var quests = {
 	"Harvest 80 Crops": {

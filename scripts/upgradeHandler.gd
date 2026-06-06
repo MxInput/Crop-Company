@@ -10,9 +10,13 @@ var upgrade_temp = preload("res://nodes/upgradeTemplate.tscn")
 
 func save():
 	var save_dict = {
+		"name": name,
 		"upgrades": upgrades,
 	}
 	return save_dict
+	
+func load(data : Dictionary):
+	upgrades = data[upgrades]
 	
 var max_level = 3
 var upgrades = {
