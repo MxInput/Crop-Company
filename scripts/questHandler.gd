@@ -4,6 +4,12 @@ var quest_temp = preload("res://nodes/questTemplate.tscn")
 
 @onready var quest_menu = get_node("/root/Game/CanvasLayer/QuestMenu")
 
+func save():
+	var save_dict = {
+		"quests": quests,
+	}
+	return save_dict
+	
 var quests = {
 	"Harvest 80 Crops": {
 		"Status": "In Progress",

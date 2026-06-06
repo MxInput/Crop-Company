@@ -24,8 +24,19 @@ var accounted_fertilized_tiles = []
 
 @onready var coin_display : Node = get_node("/root/Game/CoinDisplay")
 
+var finished_all = false
+
 signal send_values
 
+func save():
+	var save_dict = {
+		"plant_info": plant_info,
+		"tree_info": tree_info,
+		"plant_data": plant_data,
+		"accounted_fertilized_tiles": accounted_fertilized_tiles
+	}
+	return save_dict
+	
 var plant_info = {
 	"Watermelon": {
 		"stage1": { "sec": 20, "tile_id": 3},
@@ -325,13 +336,15 @@ func _process(delta: float) -> void:
 		if get_banana_count() >= 1:
 			send_values.emit()		
 		
-	if !PlayerVariables.player.completed_tutorial && tutorial.place == 24:
+	if !PlayerVariables.player.completed_tutorial && tutorial.place == 24 && !finished_all:
+		finished_all = true
 		var count = 0
 		for plant in plant_data:
 			if plant_data[plant]["fruit_name"] == "Carrot":
 				set_cell(plant, plant_info[plant_data[plant]["fruit_name"]]["stage4"]["tile_id"], Vector2i(0, 0))
 				plant_data[plant]["stage"] = 4
 				plant_data[plant]["time"] = 0
+				count += 1
 			if count >= 17:
 				break		
 										

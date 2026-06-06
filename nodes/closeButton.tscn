@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://bpsfdqv3c14mp"]
 
 [ext_resource type="Texture2D" uid="uid://curtswncmwrqi" path="res://UI/Buttons/close_button.png" id="1_xj1s5"]
-[ext_resource type="Script" uid="uid://c2i3l7imi3qgn" path="res://closeMenu.gd" id="2_oulud"]
+[ext_resource type="Script" uid="uid://c2i3l7imi3qgn" path="res://scripts/closeMenu.gd" id="2_oulud"]
 [ext_resource type="FontFile" uid="uid://ci5gbe284cx6u" path="res://UI/Fonts/SuperBakery.ttf" id="3_k37io"]
 
 [node name="CloseButton" type="TextureButton" unique_id=1194757520]

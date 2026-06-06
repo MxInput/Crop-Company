@@ -3,6 +3,7 @@
 [ext_resource type="Script" uid="uid://b07twj21m8mc2" path="res://scripts/displayDetails.gd" id="1_dwpnw"]
 [ext_resource type="Texture2D" uid="uid://b01enuukya4xn" path="res://UI/overview.png" id="1_f6fno"]
 [ext_resource type="FontFile" uid="uid://ci5gbe284cx6u" path="res://UI/Fonts/SuperBakery.ttf" id="3_k7f5j"]
+[ext_resource type="FontFile" uid="uid://ms55ijbyuslt" path="res://UI/Fonts/FriendlySans-Regular.ttf" id="3_rgitp"]
 
 [node name="Overview" type="Control" unique_id=556799154]
 z_index = 5
@@ -33,7 +34,7 @@ offset_bottom = 105.0
 mouse_filter = 0
 theme_override_colors/font_shadow_color = Color(0.35686275, 0.3254902, 0.41960785, 1)
 theme_override_constants/line_spacing = 1
-theme_override_fonts/font = ExtResource("3_k7f5j")
+theme_override_fonts/font = ExtResource("3_rgitp")
 theme_override_font_sizes/font_size = 14
 text = "DO THIS aaaaaaaa aaaaaaaaa aaaaaaaaaaaaa aaaaaaaaa"
 vertical_alignment = 1
@@ -49,7 +50,7 @@ offset_bottom = 52.0
 mouse_filter = 0
 theme_override_colors/font_color = Color(0.62352943, 0.91764706, 0.6862745, 1)
 theme_override_colors/font_shadow_color = Color(0.21549541, 0.458879, 0.3708319, 1)
-theme_override_fonts/font = ExtResource("3_k7f5j")
+theme_override_fonts/font = ExtResource("3_rgitp")
 text = "Seed"
 
 [node name="Price" type="Label" parent="TextureRect" unique_id=1792093448]
@@ -62,7 +63,7 @@ offset_bottom = 72.0
 mouse_filter = 0
 theme_override_colors/font_color = Color(1, 0.9187369, 0.44796598, 1)
 theme_override_colors/font_shadow_color = Color(0.61689526, 0.5360658, 0.47535205, 1)
-theme_override_fonts/font = ExtResource("3_k7f5j")
+theme_override_fonts/font = ExtResource("3_rgitp")
 text = "40 min till change"
 
 [node name="Stage" type="Label" parent="TextureRect" unique_id=9066054]
@@ -115,7 +116,7 @@ offset_bottom = 121.0
 mouse_filter = 0
 theme_override_colors/font_color = Color(0.87956303, 0.6066351, 0.6801424, 1)
 theme_override_colors/font_shadow_color = Color(0.8498588, 0.3097488, 0.4200039, 1)
-theme_override_fonts/font = ExtResource("3_k7f5j")
+theme_override_fonts/font = ExtResource("3_rgitp")
 theme_override_font_sizes/font_size = 12
 text = "Seed"
 autowrap_mode = 3

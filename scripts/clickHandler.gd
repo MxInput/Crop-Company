@@ -32,6 +32,19 @@ func change_select_to_one():
 func change_select_to_nine():
 	select.get_child(0).texture = nine_select
 	
+func save():
+	var save_dict = {
+		"terrain": self.tile_map_data,
+		"watered": watered.tile_map_data,
+		"pests": infected.tile_map_data,
+		"fertilized": fertilized.tile_map_data,
+		"watered_tiles": watered_tiles,
+		"fertilized_tiles": fertilized_tiles,
+		"infected_tiles": infected_tiles,
+		"timers": timers
+	}
+	return save_dict
+	
 func  _input(event: InputEvent) -> void:
 	if ToolVariables.current_tool == "Hoe":
 		if event.is_action_pressed("scroll_up") or event.is_action_pressed("scroll_down"):				
@@ -244,4 +257,8 @@ func highlight (cell_pos: Vector2i):
 
 
 func _on_deny_pressed() -> void:
+	pass # Replace with function body.
+
+
+func _on_save_pressed() -> void:
 	pass # Replace with function body.

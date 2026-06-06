@@ -1,9 +1,10 @@
 [gd_scene format=3 uid="uid://dvqqu181skiof"]
 
 [ext_resource type="Texture2D" uid="uid://cpxkf4tus82ql" path="res://UI/templates/upgrade_template.png" id="1_evtdr"]
+[ext_resource type="FontFile" uid="uid://ms55ijbyuslt" path="res://UI/Fonts/FriendlySans-Regular.ttf" id="2_0lj4n"]
 [ext_resource type="FontFile" uid="uid://ci5gbe284cx6u" path="res://UI/Fonts/SuperBakery.ttf" id="2_ws76m"]
 [ext_resource type="Texture2D" uid="uid://croyhuxp7gqxk" path="res://UI/Buttons/purchase_button.png" id="3_0lj4n"]
-[ext_resource type="Script" uid="uid://b2n3rq62063ca" path="res://nodes/purchase.gd" id="4_ws76m"]
+[ext_resource type="Script" uid="uid://b2n3rq62063ca" path="res://scripts/purchase.gd" id="4_ws76m"]
 
 [node name="TextureRect" type="TextureRect" unique_id=243512049]
 texture = ExtResource("1_evtdr")
@@ -16,7 +17,7 @@ offset_right = 483.0
 offset_bottom = 95.0
 theme_override_colors/font_color = Color(1, 1, 1, 1)
 theme_override_colors/font_shadow_color = Color(0.4862745, 0.105882354, 0.37254903, 1)
-theme_override_fonts/font = ExtResource("2_ws76m")
+theme_override_fonts/font = ExtResource("2_0lj4n")
 text = "Tiles will be now fertilized for 10 seconds."
 
 [node name="Level" type="Label" parent="." unique_id=66819650]
@@ -72,7 +73,7 @@ offset_top = 8.0
 offset_right = 96.0
 offset_bottom = 44.0
 theme_override_colors/font_color = Color(0.7372549, 0.2901961, 0.60784316, 1)
-theme_override_fonts/font = ExtResource("2_ws76m")
+theme_override_fonts/font = ExtResource("2_0lj4n")
 theme_override_font_sizes/font_size = 20
 text = "PURCHASE"
 horizontal_alignment = 1

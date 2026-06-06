@@ -61,7 +61,9 @@ var tutorial_text = [
 	"Clock": get_node("/root/Game/CanvasLayer/Clock"),
 	
 	"Upgrade Button": get_node("/root/Game/CanvasLayer/UpgradeButton"),
-	"Quest Button": get_node("/root/Game/CanvasLayer/QuestButton")
+	"Quest Button": get_node("/root/Game/CanvasLayer/QuestButton"),
+	
+	"Save Button": get_node("/root/Game/CanvasLayer/Save")
 }
 
 func change():
@@ -151,6 +153,7 @@ func _on_confirm_pressed() -> void:
 func _on_continue_pressed() -> void:
 	if place == 29:		
 		visible = false
+		activates["Save Button"].visible = true
 		quests.quests["Complete the Tutorial (or skip it)"]["Completed"] = true
 		PlayerVariables.player.completed_tutorial = true
 	else:

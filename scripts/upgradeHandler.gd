@@ -8,6 +8,12 @@ var upgrade_temp = preload("res://nodes/upgradeTemplate.tscn")
 
 @onready var quests = get_node("/root/Game/Quests")
 
+func save():
+	var save_dict = {
+		"upgrades": upgrades,
+	}
+	return save_dict
+	
 var max_level = 3
 var upgrades = {
 	"Better Fertilized": {
