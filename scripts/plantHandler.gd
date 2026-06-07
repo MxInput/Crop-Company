@@ -330,11 +330,11 @@ func _process(delta: float) -> void:
 	if !PlayerVariables.player.completed_tutorial && tutorial.place == 24 && !finished_all:
 		finished_all = true
 		var count = 0
-		for plant in plant_data:
-			if plant_data[plant]["fruit_name"] == "Carrot":
-				set_cell(plant, plant_info[plant_data[plant]["fruit_name"]]["stage4"]["tile_id"], Vector2i(0, 0))
-				plant_data[plant]["stage"] = 4
-				plant_data[plant]["time"] = 0
+		for found_plant in plant_data:
+			if plant_data[found_plant]["fruit_name"] == "Carrot":
+				set_cell(found_plant, plant_info[plant_data[found_plant]["fruit_name"]]["stage4"]["tile_id"], Vector2i(0, 0))
+				plant_data[found_plant]["stage"] = 4
+				plant_data[found_plant]["time"] = 0
 				count += 1
 			if count >= 17:
 				break		
@@ -413,10 +413,10 @@ func _process(delta: float) -> void:
 						if !PlayerVariables.player.completed_tutorial && tutorial.place == 24:
 							send_values.emit()
 						
-						quests.quests["Harvest 80 Crops"]["Amount"] += 1
+						quests.quests["Harvest 100 Crops"]["Amount"] += 1
 						
-						quests.quests["Harvest plants worth a total of 1000 coins"]["Amount"] += plant_info[plant_data[cell_pos]["fruit_name"]]["sell"]
-						quests.quests["Harvest plants worth a total of 5000 coins"]["Amount"] += plant_info[plant_data[cell_pos]["fruit_name"]]["sell"]
+						quests.quests["Harvest plants worth a total of 1400 coins"]["Amount"] += plant_info[plant_data[cell_pos]["fruit_name"]]["sell"]
+						quests.quests["Harvest plants worth a total of 5600 coins"]["Amount"] += plant_info[plant_data[cell_pos]["fruit_name"]]["sell"]
 					else:
 						PlayerVariables.player.sell(plant_info[plant_data[cell_pos]["fruit_name"]]["price"])
 						coin_display.new_instance(plant_info[plant_data[cell_pos]["fruit_name"]]["price"])			
@@ -424,9 +424,9 @@ func _process(delta: float) -> void:
 					if plant_data[plant_data[cell_pos]["initial"]]["stage"] == 5:
 						PlayerVariables.player.sell(tree_info[plant_data[cell_pos]["fruit_name"]]["sell"])
 						coin_display.new_instance(tree_info[plant_data[cell_pos]["fruit_name"]]["sell"])			
-						quests.quests["Harvest 80 Crops"]["Amount"] += 1
-						quests.quests["Harvest plants worth a total of 1000 coins"]["Amount"] += tree_info[plant_data[cell_pos]["fruit_name"]]["sell"]
-						quests.quests["Harvest plants worth a total of 5000 coins"]["Amount"] += tree_info[plant_data[cell_pos]["fruit_name"]]["sell"]
+						quests.quests["Harvest 100 Crops"]["Amount"] += 1
+						quests.quests["Harvest plants worth a total of 1400 coins"]["Amount"] += tree_info[plant_data[cell_pos]["fruit_name"]]["sell"]
+						quests.quests["Harvest plants worth a total of 5600 coins"]["Amount"] += tree_info[plant_data[cell_pos]["fruit_name"]]["sell"]
 					else:
 						PlayerVariables.player.sell(tree_info[plant_data[cell_pos]["fruit_name"]]["price"])
 						coin_display.new_instance(tree_info[plant_data[cell_pos]["fruit_name"]]["price"])	
@@ -439,16 +439,16 @@ func _process(delta: float) -> void:
 						if !PlayerVariables.player.completed_tutorial && tutorial.place == 24:
 							send_values.emit()
 							
-						quests.quests["Harvest 80 Crops"]["Amount"] += 1
-						quests.quests["Harvest plants worth a total of 1000 coins"]["Amount"] += plant_info[plant_data[cell_pos]["fruit_name"]]["sell"]
-						quests.quests["Harvest plants worth a total of 5000 coins"]["Amount"] += plant_info[plant_data[cell_pos]["fruit_name"]]["sell"]
+						quests.quests["Harvest 100 Crops"]["Amount"] += 1
+						quests.quests["Harvest plants worth a total of 1400 coins"]["Amount"] += plant_info[plant_data[cell_pos]["fruit_name"]]["sell"]
+						quests.quests["Harvest plants worth a total of 5600 coins"]["Amount"] += plant_info[plant_data[cell_pos]["fruit_name"]]["sell"]
 				elif plant_data[cell_pos]["type"] == "tree":
 					if plant_data[plant_data[cell_pos]["initial"]]["stage"] == 5:
 						PlayerVariables.player.sell(tree_info[plant_data[cell_pos]["fruit_name"]]["sell"])
 						coin_display.new_instance(tree_info[plant_data[cell_pos]["fruit_name"]]["sell"])	
-						quests.quests["Harvest 80 Crops"]["Amount"] += 1
-						quests.quests["Harvest plants worth a total of 1000 coins"]["Amount"] += tree_info[plant_data[cell_pos]["fruit_name"]]["sell"]
-						quests.quests["Harvest plants worth a total of 5000 coins"]["Amount"] += tree_info[plant_data[cell_pos]["fruit_name"]]["sell"]
+						quests.quests["Harvest 100 Crops"]["Amount"] += 1
+						quests.quests["Harvest plants worth a total of 1400 coins"]["Amount"] += tree_info[plant_data[cell_pos]["fruit_name"]]["sell"]
+						quests.quests["Harvest plants worth a total of 5600 coins"]["Amount"] += tree_info[plant_data[cell_pos]["fruit_name"]]["sell"]
 			if ToolVariables.current_tool == "Shovel" or plant_data[cell_pos]["stage"] >= 4 or plant_data[cell_pos].has("initial"):
 				if plant_data[cell_pos]["type"] == "crop": 
 					plant_data.erase(cell_pos)

@@ -74,12 +74,12 @@ func change():
 			timer.start()
 		
 func _ready() -> void:
-	timer.wait_time = 1.5
+	timer.wait_time = 1
 	timer.one_shot = true
 	add_child(timer)
 	timer.timeout.connect(place_up)
 	
-	if !PlayerVariables.player.completed_tutorial && ResourceLoader.load(SAVE_PATH) == null:
+	if !PlayerVariables.player.completed_tutorial && !ResourceLoader.exists(SAVE_PATH):
 		for activate in activates:
 			activates[activate].visible = false
 			

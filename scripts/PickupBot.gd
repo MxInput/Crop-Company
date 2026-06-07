@@ -74,7 +74,7 @@ func _physics_process(_delta: float) -> void:
 								if !rewarded:
 									rewarded = true
 									
-									quests.quests["Harvest 80 Crops"]["Amount"] += 1
+									quests.quests["Harvest 100 Crops"]["Amount"] += 1
 									
 									PlayerVariables.player.sell(plants.tree_info[plants.plant_data[target_cell]["fruit_name"]]["sell"])
 									coin_display.new_instance(plants.tree_info[plants.plant_data[target_cell]["fruit_name"]]["sell"])
@@ -87,7 +87,7 @@ func _physics_process(_delta: float) -> void:
 						PlayerVariables.player.sell(plants.plant_info[plants.plant_data[target_cell]["fruit_name"]]["sell"])
 						coin_display.new_instance(plants.plant_info[plants.plant_data[target_cell]["fruit_name"]]["sell"])	
 						
-						quests.quests["Harvest 80 Crops"]["Amount"] += 1
+						quests.quests["Harvest 100 Crops"]["Amount"] += 1
 						
 						plants.plant_data.erase(target_cell)
 						plants.erase_cell(target_cell)
@@ -134,7 +134,7 @@ func _physics_process(_delta: float) -> void:
 								if !rewarded:
 									rewarded = true
 									
-									quests.quests["Harvest 80 Crops"]["Amount"] += 1
+									quests.quests["Harvest 100 Crops"]["Amount"] += 1
 									
 									PlayerVariables.player.sell(plants.tree_info[plants.plant_data[target_cell]["fruit_name"]]["sell"])
 									coin_display.new_instance(plants.tree_info[plants.plant_data[target_cell]["fruit_name"]]["sell"])	
@@ -149,7 +149,7 @@ func _physics_process(_delta: float) -> void:
 						PlayerVariables.player.sell(plants.plant_info[plants.plant_data[target_cell]["fruit_name"]]["sell"])
 						coin_display.new_instance(plants.plant_info[plants.plant_data[target_cell]["fruit_name"]]["sell"])	
 						
-						quests.quests["Harvest 80 Crops"]["Amount"] += 1
+						quests.quests["Harvest 100 Crops"]["Amount"] += 1
 						
 						plants.plant_data.erase(target_cell)
 						plants.erase_cell(target_cell)

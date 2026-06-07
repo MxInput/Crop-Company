@@ -38,7 +38,7 @@ func new_instance(amount : float):
 	
 	coin_changes.append(instance)
 	
-func _process(delta: float) -> void:
+func _process(_delta: float) -> void:
 	for instance in coin_changes:
 		instance.position.y -= 1
 		instance.modulate.a -= 0.05

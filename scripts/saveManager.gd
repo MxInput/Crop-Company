@@ -28,6 +28,11 @@ func _ready() -> void:
 		save_game = ResourceLoader.load(SAVE_PATH, "", ResourceLoader.CACHE_MODE_IGNORE)
 	else:
 		save_game = SaveGame.new()
+
+func able_to_load() -> bool:
+	if ResourceLoader.exists(SAVE_PATH):
+		return true
+	return false
 	
 func save() -> void:
 	var terrain : TileMapLayer = get_node("/root/Game/Terrain")
@@ -40,6 +45,8 @@ func save() -> void:
 	save_game.season_name = SeasonVariables.season.name
 	save_game.season_time_in = SeasonVariables.season.time_in
 
+	save_game.seasons_experienced = SeasonVariables.seasons_experienced
+	
 	var robots = get_tree().get_nodes_in_group("Water_Robots")
 	var fertillBots = get_tree().get_nodes_in_group("fertillBots")
 	var pestBots = get_tree().get_nodes_in_group("pestBot")
@@ -80,6 +87,8 @@ func load_game():
 	
 	save_game = ResourceLoader.load(SAVE_PATH)	
 	
+	SeasonVariables.seasons_experienced = save_game.seasons_experienced
+	
 	if save_game != null:
 		PlayerVariables.player.coins = save_game.player_coins
 		PlayerVariables.player.completed_tutorial = save_game.player_completed_tutorial
@@ -105,7 +114,7 @@ func load_game():
 			quest_menu.update_value(quest_menu.get_child(0).get_child(0).get_node(quest))
 			if save_game.quests[quest]["Took"]:
 				quest_menu.get_child(0).get_child(0).get_node(quest).get_child(4).get_child(0).text = "Collected"	
-				if quest == "Harvest 80 Crops":
+				if quest == "Harvest 100 Crops":
 					buy_bot.visible = true
 					
 		for plant in save_game.plants["Plant Info"]:
@@ -177,8 +186,6 @@ func change_text_back():
 	save_button.get_child(0).text = "SAVE"
 	
 func _on_save_pressed() -> void:
-	var save_button = get_node("/root/Game/CanvasLayer/Save")
-	
 	if timer.is_stopped():
 		change_save_text()
 		timer.start()

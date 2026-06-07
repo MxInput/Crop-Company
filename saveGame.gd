@@ -7,6 +7,8 @@ extends Resource
 @export var season_name := "Spring"
 @export var season_time_in := 0.0
 
+@export var seasons_experienced := 0
+
 @export var terrain = {
 	
 }
