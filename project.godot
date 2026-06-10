@@ -21,6 +21,10 @@ PlayerVariables="*uid://ch0mpmr8anscv"
 SeasonVariables="*uid://balmymobudfur"
 ToolVariables="*uid://d5wf1ou7kh1o"
 
+[display]
+
+window/stretch/mode="canvas_items"
+
 [editor_plugins]
 
 enabled=PackedStringArray("res://addons/godot_super-wakatime/plugin.cfg")
